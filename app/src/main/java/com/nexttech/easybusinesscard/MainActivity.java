@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import java.util.Calendar;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -14,6 +16,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        startActivity(new Intent(this,example.class));
+        startActivity(new Intent(this, Create_card.class));
     }
 }
