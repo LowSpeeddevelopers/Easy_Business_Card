@@ -5,7 +5,6 @@ import android.content.ClipDescription;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.DragEvent;
@@ -14,13 +13,10 @@ import android.view.ViewGroup;
 import android.widget.AbsoluteLayout;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class example extends AppCompatActivity implements View.OnDragListener, View.OnLongClickListener {
 
