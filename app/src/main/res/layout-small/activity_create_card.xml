@@ -70,19 +70,20 @@
                         android:text="Export"
                         android:textStyle="bold"
                         android:gravity="center"/>
+
                     <TextView
                         android:id="@+id/browse"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:foreground="?attr/selectableItemBackground"
+                        android:background="@color/buttonbackground"
                         android:clickable="true"
                         android:focusable="true"
-                        android:textColor="#000"
-                        android:background="@color/buttonbackground"
-                        android:layout_height="match_parent"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:gravity="center"
                         android:text="Browse"
-                        android:textStyle="bold"
-                        android:gravity="center"/>
+                        android:textColor="#000"
+                        android:textStyle="bold" />
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/layout"
@@ -108,21 +109,21 @@
                         android:id="@+id/view5"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-
                         android:layout_weight="1"/>
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-
-        <ImageView
-            android:id="@+id/maintemp"
+        <AbsoluteLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="4dp"
-            android:src="@drawable/cardone"/>
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="4dp"
+                android:src="@drawable/cardone"/>
 
-
+        </AbsoluteLayout>
     </LinearLayout>
 
 
@@ -131,13 +132,14 @@
 
 
     <androidx.cardview.widget.CardView
-        android:layout_width="120dp"
+        android:layout_width="0dp"
+        android:layout_weight=".20"
         android:layout_height="match_parent"
         android:gravity="center"
         android:foregroundGravity="center"
         app:cardBackgroundColor="@color/buttonbackground"
         app:cardElevation="10dp"
-      >
+        >
 
 
         <LinearLayout
