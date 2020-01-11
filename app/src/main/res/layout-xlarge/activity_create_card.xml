@@ -120,11 +120,21 @@
         </androidx.cardview.widget.CardView>
 
 
-        <ImageView
+        <AbsoluteLayout
+            android:id="@+id/absolutelayout"
+            android:background="#fff"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="4dp"
-            android:src="@drawable/cardone" />
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/maintemp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="4dp"
+                android:src="@drawable/cardone"/>
+
+
+        </AbsoluteLayout>
 
 
     </LinearLayout>
