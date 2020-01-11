@@ -2,24 +2,31 @@ package com.nexttech.easybusinesscard;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.Random;
 
 public class Create_card extends AppCompatActivity {
     TextView importtemp,share,export,browse;
@@ -29,13 +36,14 @@ public class Create_card extends AppCompatActivity {
     View focusview, dialogueView;
     AlertDialog.Builder builder;
     AlertDialog alertDialog;
-    ImageView mainTemp;
+    ImageView mainTemp, ivLockCard;
     boolean b=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_card);
         importtemp=findViewById(R.id.importtemp);
+        ivLockCard=findViewById(R.id.iv_lock_card);
         share=findViewById(R.id.share);
         export=findViewById(R.id.export);
         browse=findViewById(R.id.browse);
@@ -108,8 +116,61 @@ public class Create_card extends AppCompatActivity {
 
             }
         });
+        ivLockCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BitmapDrawable drawable = (BitmapDrawable) mainTemp.getDrawable();
+                Bitmap bitmap = drawable.getBitmap();
+
+                if(isStoragePermissionGranted()){
+                    SaveImage(bitmap);
+                }
+            }
+        });
 
     }
+
+    private void SaveImage(Bitmap finalBitmap) {
+
+        String root = Environment.getExternalStorageDirectory().toString();
+        File myDir = new File(root + "/cards");
+        myDir.mkdirs();
+        Random generator = new Random();
+        int n = 10000;
+        n = generator.nextInt(n);
+        String fname = "Image-"+ n +".jpg";
+        File file = new File (myDir, fname);
+        if (file.exists ()) file.delete ();
+        try {
+            FileOutputStream out = new FileOutputStream(file);
+            finalBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
+            out.flush();
+            out.close();
+            Toast.makeText(this, "Save", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean isStoragePermissionGranted() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                Log.e("Permission","Permission is granted");
+                return true;
+            } else {
+
+                Log.v("Permission","Permission is revoked");
+                ActivityCompat.requestPermissions(Create_card.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);
+                return false;
+            }
+        }
+        else { //permission is automatically granted on sdk<23 upon installation
+            Log.v("Permission","Permission is granted");
+            return true;
+        }
+    }
+
     void ShowDialogebox()
     {
         ImageView temp1, temp1rear, temp2,temp2rear, temp3, temp3rear;
