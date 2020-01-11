@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
@@ -143,8 +144,7 @@ public class Create_card extends AppCompatActivity implements View.OnDragListene
         ivLockCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BitmapDrawable drawable = (BitmapDrawable) mainTemp.getDrawable();
-                Bitmap bitmap = drawable.getBitmap();
+                Bitmap bitmap = loadBitmapFromView(absoluteLayout);
 
                 if(isStoragePermissionGranted()){
                     SaveImage(bitmap);
@@ -154,7 +154,13 @@ public class Create_card extends AppCompatActivity implements View.OnDragListene
 
     }
 
-
+    public static Bitmap loadBitmapFromView(View v) {
+        Bitmap b = Bitmap.createBitmap(v.getWidth(), v.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas c = new Canvas(b);
+        v.measure(0, 0); v.getMeasuredWidth(); v.getMeasuredHeight();
+        v.draw(c);
+        return b;
+    }
 
 
     public boolean isStoragePermissionGranted() {
