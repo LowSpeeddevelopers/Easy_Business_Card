@@ -133,7 +133,10 @@ public class Create_card extends AppCompatActivity {
     private void SaveImage(Bitmap finalBitmap) {
 
         String root = Environment.getExternalStorageDirectory().toString();
-        File myDir = new File(root + "/cards");
+
+        String saveDirectoryName = "Business Cards";
+
+        File myDir = new File(root + "/"+saveDirectoryName);
         myDir.mkdirs();
         Random generator = new Random();
         int n = 10000;
@@ -146,7 +149,7 @@ public class Create_card extends AppCompatActivity {
             finalBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
             out.flush();
             out.close();
-            Toast.makeText(this, "Save", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Save to "+saveDirectoryName, Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             e.printStackTrace();
         }
