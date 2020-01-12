@@ -39,7 +39,6 @@
                         android:focusable="true"
                         android:layout_weight="1"
                         android:textColor="#000"
-
                         android:textSize="25sp"
                         android:layout_height="match_parent"
                         android:text="Import"
@@ -121,17 +120,34 @@
 
 
         <AbsoluteLayout
-            android:id="@+id/absolutelayout"
-            android:background="#fff"
+            android:id="@+id/absolute_layout_front"
             android:layout_width="match_parent"
+            android:background="#fff"
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/maintemp"
+                android:id="@+id/main_temp_front"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="4dp"
-                android:src="@drawable/cardone"/>
+                android:src="@drawable/cardone" />
+
+
+        </AbsoluteLayout>
+
+        <AbsoluteLayout
+            android:id="@+id/absolute_layout_back"
+            android:layout_width="match_parent"
+            android:background="#fff"
+            android:visibility="gone"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/main_temp_back"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="4dp"
+                android:src="@drawable/cardone" />
 
 
         </AbsoluteLayout>

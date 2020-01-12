@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -44,7 +45,13 @@ public class ToolbarFragment extends Fragment {
                 Create_card.viewPager.setCurrentItem(1);
                 Create_card.mAdapter.notifyDataSetChanged();
 
-               Create_card.absoluteLayout.addView(textView);
+                if (Create_card.absoluteLayoutFront.getVisibility()==View.VISIBLE){
+                    Create_card.absoluteLayoutFront.addView(textView);
+                } else{
+                    Create_card.absoluteLayoutBack.addView(textView);
+                }
+
+
             }
         });
 
@@ -88,6 +95,18 @@ public class ToolbarFragment extends Fragment {
             public void onClick(View v) {
                 Create_card.viewPager.setCurrentItem(6);
                 Create_card.mAdapter.notifyDataSetChanged();
+
+                if (Create_card.absoluteLayoutFront.getVisibility()==View.VISIBLE){
+                    backside.setText("Front Side");
+                    Create_card.absoluteLayoutFront.setVisibility(View.GONE);
+                    Create_card.absoluteLayoutBack.setVisibility(View.VISIBLE);
+                } else{
+                    backside.setText("Back Side");
+                    Create_card.absoluteLayoutFront.setVisibility(View.VISIBLE);
+                    Create_card.absoluteLayoutBack.setVisibility(View.GONE);
+                }
+
+
             }
         });
 

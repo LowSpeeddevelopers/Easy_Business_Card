@@ -46,9 +46,10 @@ public class Create_card extends AppCompatActivity{
     View focusview, dialogueView;
     AlertDialog.Builder builder;
     AlertDialog alertDialog;
-    ImageView mainTemp, ivLockCard;
+    ImageView mainTempFront, mainTempBack, ivLockCard;
 
-   public static AbsoluteLayout absoluteLayout;
+   public static AbsoluteLayout absoluteLayoutFront;
+   public static AbsoluteLayout absoluteLayoutBack;
 
    public static ViewPager viewPager;
     public static ViewpagerAdapter mAdapter;
@@ -68,8 +69,10 @@ public class Create_card extends AppCompatActivity{
         v2=findViewById(R.id.view2);
         v3=findViewById(R.id.view3);
         v5=findViewById(R.id.view5);
-        absoluteLayout=findViewById(R.id.absolutelayout);
-        mainTemp = findViewById(R.id.maintemp);
+        absoluteLayoutFront=findViewById(R.id.absolute_layout_front);
+        absoluteLayoutBack=findViewById(R.id.absolute_layout_back);
+        mainTempFront = findViewById(R.id.main_temp_front);
+        mainTempBack= findViewById(R.id.main_temp_back);
         viewPager=findViewById(R.id.viewpager);
 
 
@@ -82,7 +85,9 @@ public class Create_card extends AppCompatActivity{
         viewPager.setAdapter(mAdapter);
 
 
-        absoluteLayout.setOnDragListener(new LongPresslistener(this));
+        absoluteLayoutFront.setOnDragListener(new LongPresslistener(this));
+        absoluteLayoutBack.setOnDragListener(new LongPresslistener(this));
+
 
         builder = new AlertDialog.Builder(Create_card.this);
         importtemp.setOnClickListener(new View.OnClickListener() {
@@ -151,10 +156,12 @@ public class Create_card extends AppCompatActivity{
         ivLockCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bitmap bitmap = loadBitmapFromView(absoluteLayout);
+                Bitmap bitmapFront = loadBitmapFromView(absoluteLayoutFront);
+                Bitmap bitmapBack = loadBitmapFromView(absoluteLayoutBack);
 
                 if(isStoragePermissionGranted()){
-                    SaveImage(bitmap);
+                    SaveImage(bitmapFront, "Front");
+                    SaveImage(bitmapBack, "Back");
                 }
             }
         });
@@ -191,7 +198,7 @@ public class Create_card extends AppCompatActivity{
         }
     }
 
-    private void SaveImage(Bitmap finalBitmap) {
+    private void SaveImage(Bitmap finalBitmap, String name) {
 
         String root = Environment.getExternalStorageDirectory().toString();
 
@@ -200,9 +207,7 @@ public class Create_card extends AppCompatActivity{
         File myDir = new File(root + "/"+saveDirectoryName);
         myDir.mkdirs();
         Random generator = new Random();
-        int n = 10000;
-        n = generator.nextInt(n);
-        String fname = "Image-"+ n +".jpg";
+        String fname = System.currentTimeMillis()+" "+ name +".jpg";
         File file = new File (myDir, fname);
         if (file.exists ()) file.delete ();
         try {
@@ -240,28 +245,28 @@ public class Create_card extends AppCompatActivity{
         temp1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mainTemp.setImageDrawable(getResources().getDrawable(R.drawable.cardone));
+                mainTempFront.setImageDrawable(getResources().getDrawable(R.drawable.cardone));
                 alertDialogDismiss();
             }
         });
         temp1rear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mainTemp.setImageDrawable(getResources().getDrawable(R.drawable.rear));
+                mainTempFront.setImageDrawable(getResources().getDrawable(R.drawable.rear));
                 alertDialogDismiss();
             }
         });
         temp2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mainTemp.setImageDrawable(getResources().getDrawable(R.drawable.temp2));
+                mainTempFront.setImageDrawable(getResources().getDrawable(R.drawable.temp2));
                 alertDialogDismiss();
             }
         });
         temp2rear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mainTemp.setImageDrawable(getResources().getDrawable(R.drawable.temp2rear));
+                mainTempFront.setImageDrawable(getResources().getDrawable(R.drawable.temp2rear));
                 alertDialogDismiss();
 
             }
@@ -269,14 +274,14 @@ public class Create_card extends AppCompatActivity{
         temp3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mainTemp.setImageDrawable(getResources().getDrawable(R.drawable.temp3));
+                mainTempFront.setImageDrawable(getResources().getDrawable(R.drawable.temp3));
                 alertDialogDismiss();
             }
         });
         temp3rear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mainTemp.setImageDrawable(getResources().getDrawable(R.drawable.temp3rear));
+                mainTempFront.setImageDrawable(getResources().getDrawable(R.drawable.temp3rear));
                 alertDialogDismiss();
             }
         });
@@ -289,7 +294,7 @@ public class Create_card extends AppCompatActivity{
     }
     void showShareDialougeBox(){
 
-        BitmapDrawable drawable = (BitmapDrawable) mainTemp.getDrawable();
+        BitmapDrawable drawable = (BitmapDrawable) mainTempFront.getDrawable();
         Bitmap bitmap1 = drawable.getBitmap();
 
 
