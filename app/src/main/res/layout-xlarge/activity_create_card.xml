@@ -429,6 +429,7 @@
                     app:cardElevation="10dp"
                     >
                     <ImageView
+                        android:id="@+id/iv_lock_card"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"

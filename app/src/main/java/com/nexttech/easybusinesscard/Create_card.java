@@ -78,7 +78,7 @@ public class Create_card extends AppCompatActivity{
 
         ArrayList<Fragment> fragments=new ArrayList<>();
 
-        fragments.add(new ToolbarFragment());
+        fragments.add(new ToolbarFragment(this));
 
         mAdapter=new ViewpagerAdapter(getSupportFragmentManager(),fragments);
 
@@ -168,7 +168,10 @@ public class Create_card extends AppCompatActivity{
 
     }
 
+
     public static Bitmap loadBitmapFromView(View v) {
+
+
         Bitmap b = Bitmap.createBitmap(v.getWidth(), v.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas c = new Canvas(b);
         v.measure(0, 0);
