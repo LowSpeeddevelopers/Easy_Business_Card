@@ -88,6 +88,8 @@ public class ToolbarFragment extends Fragment {
             public void onClick(View v) {
                 Create_card.viewPager.setCurrentItem(2);
                 Create_card.mAdapter.notifyDataSetChanged();
+
+
             }
         });
 
