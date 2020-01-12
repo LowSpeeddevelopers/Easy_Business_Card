@@ -133,7 +133,6 @@
             android:id="@+id/absolute_layout_back"
             android:layout_width="match_parent"
             android:background="#fff"
-            android:visibility="gone"
             android:layout_height="match_parent">
 
             <ImageView

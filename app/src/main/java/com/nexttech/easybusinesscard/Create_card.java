@@ -76,6 +76,7 @@ public class Create_card extends AppCompatActivity{
         viewPager=findViewById(R.id.viewpager);
 
 
+        absoluteLayoutBack.setVisibility(View.GONE);
         ArrayList<Fragment> fragments=new ArrayList<>();
 
         fragments.add(new ToolbarFragment(this));
@@ -157,6 +158,7 @@ public class Create_card extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 Bitmap bitmapFront = loadBitmapFromView(absoluteLayoutFront);
+
                 Bitmap bitmapBack = loadBitmapFromView(absoluteLayoutBack);
 
                 if(isStoragePermissionGranted()){
@@ -172,7 +174,8 @@ public class Create_card extends AppCompatActivity{
     public static Bitmap loadBitmapFromView(View v) {
 
 
-        Bitmap b = Bitmap.createBitmap(v.getWidth(), v.getHeight(), Bitmap.Config.ARGB_8888);
+
+         Bitmap b = Bitmap.createBitmap(v.getWidth(), v.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas c = new Canvas(b);
         v.measure(0, 0);
         v.getMeasuredWidth();

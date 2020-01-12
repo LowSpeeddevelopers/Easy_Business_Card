@@ -2,6 +2,8 @@ package com.nexttech.easybusinesscard;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -50,6 +53,10 @@ public class ToolbarFragment extends Fragment {
         backside=vi.findViewById(R.id.backside);
         text2=vi.findViewById(R.id.text2);
         builder = new AlertDialog.Builder(context);
+
+
+
+
 
 
 
@@ -103,7 +110,19 @@ public class ToolbarFragment extends Fragment {
         preview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+                if (Create_card.absoluteLayoutFront.getVisibility()==View.VISIBLE){
+                    backside.setText("Front Side");
+                    Create_card.absoluteLayoutFront.setVisibility(View.GONE);
+                    Create_card.absoluteLayoutBack.setVisibility(View.VISIBLE);
+                } else{
+                    backside.setText("Back Side");
+                    Create_card.absoluteLayoutFront.setVisibility(View.VISIBLE);
+                    Create_card.absoluteLayoutBack.setVisibility(View.GONE);
+                }
                 ShowDialogebox();
+
             }
         });
 
@@ -111,8 +130,8 @@ public class ToolbarFragment extends Fragment {
         backside.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Create_card.viewPager.setCurrentItem(6);
-                Create_card.mAdapter.notifyDataSetChanged();
+
+
 
                 if (Create_card.absoluteLayoutFront.getVisibility()==View.VISIBLE){
                     backside.setText("Front Side");
@@ -152,14 +171,8 @@ public class ToolbarFragment extends Fragment {
        back=dialogueView.findViewById(R.id.back);
        imageView=dialogueView.findViewById(R.id.imageview);
 
-       if(Create_card.absoluteLayoutFront.getVisibility()==View.VISIBLE){
-           imageView.setImageBitmap(Create_card.loadBitmapFromView(Create_card.absoluteLayoutFront));
-       }else {
-           Create_card.absoluteLayoutFront.setVisibility(View.VISIBLE);
-           imageView.setImageBitmap(Create_card.loadBitmapFromView(Create_card.absoluteLayoutFront));
-       }
 
-
+        imageView.setImageBitmap(Create_card.loadBitmapFromView(Create_card.absoluteLayoutFront));
         front.setTypeface(null, Typeface.BOLD);
 
 
@@ -168,12 +181,7 @@ public class ToolbarFragment extends Fragment {
        front.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               if(Create_card.absoluteLayoutFront.getVisibility()==View.VISIBLE){
-                   imageView.setImageBitmap(Create_card.loadBitmapFromView(Create_card.absoluteLayoutFront));
-               }else {
-                   Create_card.absoluteLayoutFront.setVisibility(View.VISIBLE);
-                   imageView.setImageBitmap(Create_card.loadBitmapFromView(Create_card.absoluteLayoutFront));
-               }
+               imageView.setImageBitmap(Create_card.loadBitmapFromView(Create_card.absoluteLayoutFront));
                front.setTypeface(null, Typeface.BOLD);
                back.setTypeface(null, Typeface.NORMAL);
            }
@@ -182,12 +190,10 @@ public class ToolbarFragment extends Fragment {
        back.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               if(Create_card.absoluteLayoutBack.getVisibility()==View.VISIBLE){
-                   imageView.setImageBitmap(Create_card.loadBitmapFromView(Create_card.absoluteLayoutBack));
-               }else {
-                   Create_card.absoluteLayoutBack.setVisibility(View.VISIBLE);
-                   imageView.setImageBitmap(Create_card.loadBitmapFromView(Create_card.absoluteLayoutBack));
-               }
+               Create_card.absoluteLayoutFront.setVisibility(View.GONE);
+               Create_card.absoluteLayoutBack.setVisibility(View.VISIBLE);
+
+               imageView.setImageBitmap(Create_card.loadBitmapFromView(Create_card.absoluteLayoutBack));
                back.setTypeface(null, Typeface.BOLD);
                front.setTypeface(null, Typeface.NORMAL);
            }
@@ -198,6 +204,14 @@ public class ToolbarFragment extends Fragment {
         builder.setView(dialogueView);
         alertDialog=builder.create();
         alertDialog.setCanceledOnTouchOutside(true);
+
+        alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                Create_card.absoluteLayoutFront.setVisibility(View.VISIBLE);
+                Create_card.absoluteLayoutBack.setVisibility(View.GONE);
+            }
+        });
         alertDialogDismiss();
         alertDialog.show();
 
@@ -207,6 +221,8 @@ public class ToolbarFragment extends Fragment {
     private void alertDialogDismiss(){
         if (alertDialog.isShowing()){
             alertDialog.dismiss();
+
+
         }
     }
 }

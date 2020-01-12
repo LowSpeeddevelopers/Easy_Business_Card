@@ -134,7 +134,6 @@
             android:id="@+id/absolute_layout_back"
             android:layout_width="match_parent"
             android:background="#fff"
-            android:visibility="gone"
             android:layout_height="match_parent">
 
             <ImageView
@@ -142,20 +141,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="4dp"
-                android:src="@drawable/cardone" />
-
-
+                android:src="@drawable/rear" />
         </AbsoluteLayout>
-
-
-
-
     </LinearLayout>
-
-
-
-
-
 
     <androidx.cardview.widget.CardView
         android:layout_width="120dp"
