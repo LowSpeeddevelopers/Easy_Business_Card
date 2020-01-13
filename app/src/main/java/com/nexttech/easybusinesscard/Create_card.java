@@ -165,6 +165,15 @@ public class Create_card extends AppCompatActivity{
         ivLockCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if (absoluteLayoutFront.getVisibility()==View.VISIBLE){
+                    absoluteLayoutFront.setVisibility(View.GONE);
+                    absoluteLayoutBack.setVisibility(View.VISIBLE);
+                } else{
+                    absoluteLayoutFront.setVisibility(View.VISIBLE);
+                    absoluteLayoutBack.setVisibility(View.GONE);
+                }
+
                 Bitmap bitmapFront = loadBitmapFromView(absoluteLayoutFront);
 
                 Bitmap bitmapBack = loadBitmapFromView(absoluteLayoutBack);
@@ -181,9 +190,7 @@ public class Create_card extends AppCompatActivity{
 
     public static Bitmap loadBitmapFromView(View v) {
 
-
-
-         Bitmap b = Bitmap.createBitmap(v.getWidth(), v.getHeight(), Bitmap.Config.ARGB_8888);
+        Bitmap b = Bitmap.createBitmap(v.getWidth(), v.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas c = new Canvas(b);
         v.measure(0, 0);
         v.getMeasuredWidth();
@@ -259,47 +266,49 @@ public class Create_card extends AppCompatActivity{
         temp1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mainTempFront.setImageDrawable(getResources().getDrawable(R.drawable.cardone));
-                alertDialogDismiss();
+                setBackgroundImage(R.drawable.cardone);
             }
         });
         temp1rear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mainTempFront.setImageDrawable(getResources().getDrawable(R.drawable.rear));
-                alertDialogDismiss();
+                setBackgroundImage(R.drawable.rear);
             }
         });
         temp2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mainTempFront.setImageDrawable(getResources().getDrawable(R.drawable.temp2));
-                alertDialogDismiss();
+                setBackgroundImage(R.drawable.temp2);
             }
         });
         temp2rear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mainTempFront.setImageDrawable(getResources().getDrawable(R.drawable.temp2rear));
-                alertDialogDismiss();
+                setBackgroundImage(R.drawable.temp2rear);
 
             }
         });
         temp3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mainTempFront.setImageDrawable(getResources().getDrawable(R.drawable.temp3));
-                alertDialogDismiss();
+                setBackgroundImage(R.drawable.temp3);
             }
         });
         temp3rear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mainTempFront.setImageDrawable(getResources().getDrawable(R.drawable.temp3rear));
-                alertDialogDismiss();
+                setBackgroundImage(R.drawable.temp3rear);
             }
         });
 
+    }
+    private void setBackgroundImage(int imageResource){
+        if (absoluteLayoutFront.getVisibility()==View.VISIBLE){
+            mainTempFront.setImageDrawable(getResources().getDrawable(imageResource));
+        } else {
+            mainTempBack.setImageDrawable(getResources().getDrawable(imageResource));
+        }
+        alertDialogDismiss();
     }
     private void alertDialogDismiss(){
         if (alertDialog.isShowing()){
