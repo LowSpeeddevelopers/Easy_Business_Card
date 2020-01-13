@@ -68,8 +68,8 @@ public class ToolbarFragment extends Fragment {
                 textView.setText("type your text here");
                 textView.setOnLongClickListener(new LongPresslistener(context));
 
-                Create_card.viewPager.setCurrentItem(1);
-                Create_card.mAdapter.notifyDataSetChanged();
+//                Create_card.viewPager.setCurrentItem(1);
+//                Create_card.mAdapter.notifyDataSetChanged();
 
                 if (Create_card.absoluteLayoutFront.getVisibility()==View.VISIBLE){
                     Create_card.absoluteLayoutFront.addView(textView);
@@ -86,7 +86,7 @@ public class ToolbarFragment extends Fragment {
         icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Create_card.viewPager.setCurrentItem(2);
+                Create_card.viewPager.setCurrentItem(1);
                 Create_card.mAdapter.notifyDataSetChanged();
 
 
@@ -96,16 +96,16 @@ public class ToolbarFragment extends Fragment {
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Create_card.viewPager.setCurrentItem(3);
-                Create_card.mAdapter.notifyDataSetChanged();
+//                Create_card.viewPager.setCurrentItem(3);
+//                Create_card.mAdapter.notifyDataSetChanged();
             }
         });
 
         qrcode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Create_card.viewPager.setCurrentItem(4);
-                Create_card.mAdapter.notifyDataSetChanged();
+//                Create_card.viewPager.setCurrentItem(4);
+//                Create_card.mAdapter.notifyDataSetChanged();
             }
         });
 
@@ -152,8 +152,8 @@ public class ToolbarFragment extends Fragment {
         text2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Create_card.viewPager.setCurrentItem(7);
-                Create_card.mAdapter.notifyDataSetChanged();
+//                Create_card.viewPager.setCurrentItem(7);
+//                Create_card.mAdapter.notifyDataSetChanged();
             }
         });
         return vi;

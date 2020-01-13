@@ -1,5 +1,6 @@
 package com.nexttech.easybusinesscard;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -25,20 +26,26 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.DragEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsoluteLayout;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class Create_card extends AppCompatActivity{
+    private Button browseImage, save, cancle;
+    private ImageView viewimage;
+    private static final int IMAGE_REQUEST = 1;
     TextView importtemp,share,export,browse;
 
 
@@ -80,6 +87,7 @@ public class Create_card extends AppCompatActivity{
         ArrayList<Fragment> fragments=new ArrayList<>();
 
         fragments.add(new ToolbarFragment(this));
+        fragments.add(new IconFragment(this));
 
         mAdapter=new ViewpagerAdapter(getSupportFragmentManager(),fragments);
 
@@ -316,10 +324,78 @@ public class Create_card extends AppCompatActivity{
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
         String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
+
         return Uri.parse(path);
     }
+    public void iconDialoguebox(){
+
+        dialogueView=getLayoutInflater().inflate(R.layout.select_icon,null);
+        browseImage = dialogueView.findViewById(R.id.btn_browse_image);
+        save = dialogueView.findViewById(R.id.btn_save_image);
+        cancle = dialogueView.findViewById(R.id.btn_cancle);
+        viewimage = dialogueView.findViewById(R.id.image_view);
+
+        builder.setView(null);
+        builder.setView(dialogueView);
+        alertDialog=builder.create();
+        alertDialog.setCanceledOnTouchOutside(true);
+        alertDialogDismiss();
+        alertDialog.show();
 
 
+        browseImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent();
+                i.setType("image/*");
+                i.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(i, IMAGE_REQUEST);
+
+            }
+
+        });
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ImageView imageView=new ImageView(Create_card.this);
+                imageView.setImageDrawable(viewimage.getDrawable());
+                imageView.setOnLongClickListener(new LongPresslistener(Create_card.this));
+                if(absoluteLayoutFront.getVisibility()==View.VISIBLE){
+                    absoluteLayoutFront.addView(imageView);
 
 
+                }
+                else {
+                    absoluteLayoutBack.addView(imageView);
+                }
+
+                alertDialogDismiss();
+
+            }
+        });
+        cancle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialogDismiss();
+            }
+        });
+
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            Uri imageUri = data.getData();
+
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), imageUri);
+
+                viewimage.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
