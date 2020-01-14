@@ -1,12 +1,15 @@
 package com.nexttech.easybusinesscard;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,6 +61,33 @@ public class TextFragment extends Fragment {
             public void onClick(View v) {
                 Create_card.viewPager.setCurrentItem(3);
                 Create_card.mAdapter.notifyDataSetChanged();
+
+                PopupMenu popup = new PopupMenu(context, v);
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()){
+                            case R.id.default_font:
+
+                                return true;
+                            case R.id.cursive:
+
+                                return true;
+                            case R.id.aclonia:
+
+                                return true;
+                            case R.id.cutive:
+
+                                return true;
+                            default:
+
+                                return false;
+                        }
+                    }
+                });
+                MenuInflater inflater = popup.getMenuInflater();
+                inflater.inflate(R.menu.font_name_menu, popup.getMenu());
+                popup.show();
             }
         });
 

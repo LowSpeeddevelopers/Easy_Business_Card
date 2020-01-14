@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/default_font"
+        android:title="Default" />
+    <item android:id="@+id/cursive"
+        android:title="Cursive" />
+    <item android:id="@+id/aclonia"
+        android:title="Aclonia" />
+    <item android:id="@+id/cutive"
+        android:title="Cutive" />
+</menu>
