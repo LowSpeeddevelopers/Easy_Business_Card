@@ -34,6 +34,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -352,13 +356,14 @@ public class Create_card extends AppCompatActivity{
         alertDialog.show();
 
 
+
         browseImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent();
-                i.setType("image/*");
-                i.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(i, IMAGE_REQUEST);
+                CropImage.activity()
+                        .setAspectRatio(1,1)
+                        .setCropShape(CropImageView.CropShape.RECTANGLE)
+                        .start(Create_card.this);
 
             }
 
@@ -395,16 +400,22 @@ public class Create_card extends AppCompatActivity{
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            Uri imageUri = data.getData();
+
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK){
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+
+            Uri imageUri = result.getUri();
 
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), imageUri);
-
                 viewimage.setImageBitmap(bitmap);
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+        } else {
+            Toast.makeText(this, "Something went wrong!!!", Toast.LENGTH_SHORT).show();
         }
+
     }
 }

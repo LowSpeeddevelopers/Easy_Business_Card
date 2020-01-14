@@ -7,8 +7,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 public class TextFragment extends Fragment {
@@ -17,7 +19,7 @@ public class TextFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view =getLayoutInflater().inflate(R.layout.fragment_text, null);
+        final View view =getLayoutInflater().inflate(R.layout.fragment_text, null);
 
         text = view.findViewById(R.id.text);
         textSize = view.findViewById(R.id.textSize);
@@ -72,6 +74,29 @@ public class TextFragment extends Fragment {
             public void onClick(View v) {
                 Create_card.viewPager.setCurrentItem(5);
                 Create_card.mAdapter.notifyDataSetChanged();
+                PopupMenu popupMenu=new PopupMenu(context,v);
+                popupMenu.getMenuInflater().inflate(R.menu.popup_menu, popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()){
+                            case R.id.bold:
+
+                                return true;
+
+                            case R.id.normal:
+
+                                return true;
+
+                            case R.id.italic:
+                                return true;
+
+                                default:
+                                    return false;
+                        }
+
+                    }
+                });
             }
         });
 

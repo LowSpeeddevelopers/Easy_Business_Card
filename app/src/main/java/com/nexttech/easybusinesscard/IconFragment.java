@@ -10,10 +10,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
 
 public class IconFragment extends Fragment {
-    Button browse, size;
+    Button browse;
     Context context;
 
     public IconFragment(Context context){
@@ -26,19 +28,19 @@ public class IconFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = getLayoutInflater().inflate(R.layout.fragment_icon, null);
         browse=view.findViewById(R.id.btn_browse);
-        size=view.findViewById(R.id.btn_size);
+        //size=view.findViewById(R.id.btn_size);
         browse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ((Create_card)getActivity()).iconDialoguebox();
             }
         });
-        size.setOnClickListener(new View.OnClickListener() {
+        /*size.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(),"Size",Toast.LENGTH_LONG).show();
             }
-        });
+        });*/
         return view;
     }
 
