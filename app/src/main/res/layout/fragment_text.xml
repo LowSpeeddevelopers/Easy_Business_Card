@@ -26,18 +26,17 @@
                 app:cardCornerRadius="5dp"
                 app:cardElevation="10dp"
                 >
-                <TextView
+                <EditText
                     android:id="@+id/text"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textColor="#000"
-                    android:text="Text"
+                    android:hint="Text"
                     android:gravity="center"
                     android:foreground="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
                     android:textSize="20sp"
-
                     android:background="#EEEEEE"/>
             </androidx.cardview.widget.CardView>
 
@@ -54,12 +53,12 @@
                 app:cardCornerRadius="5dp"
                 app:cardElevation="10dp"
                 >
-                <TextView
+                <EditText
                     android:id="@+id/textSize"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textColor="#000"
-                    android:text="Icon"
+                    android:hint="Text Size"
                     android:gravity="center"
                     android:foreground="?attr/selectableItemBackground"
                     android:clickable="true"
@@ -80,18 +79,19 @@
                 app:cardCornerRadius="5dp"
                 app:cardElevation="10dp"
                 >
+
                 <TextView
                     android:id="@+id/textFont"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textColor="#000"
-                    android:text="Image"
-                    android:foreground="?attr/selectableItemBackground"
+                    android:background="#EEEEEE"
                     android:clickable="true"
                     android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
                     android:gravity="center"
-                    android:textSize="20sp"
-                    android:background="#EEEEEE"/>
+                    android:text="Text Font"
+                    android:textColor="#000"
+                    android:textSize="20sp" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -112,7 +112,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textColor="#000"
-                    android:text="QR Code"
+                    android:text="Text Color"
                     android:gravity="center"
                     android:foreground="?attr/selectableItemBackground"
                     android:clickable="true"
@@ -141,7 +141,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textColor="#000"
-                    android:text="Preview"
+                    android:text="Text Bsckground"
                     android:foreground="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
@@ -168,7 +168,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textColor="#000"
-                    android:text="Back Side"
+                    android:text="Text Style"
                     android:maxLines="1"
                     android:gravity="center"
                     android:foreground="?attr/selectableItemBackground"

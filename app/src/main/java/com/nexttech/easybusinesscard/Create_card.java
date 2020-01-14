@@ -8,8 +8,6 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import android.Manifest;
-import android.content.ClipData;
-import android.content.ClipDescription;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -43,10 +41,26 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
 public class Create_card extends AppCompatActivity{
+
+
+    @Override
+    public void onBackPressed() {
+
+
+        if(viewPager.getCurrentItem() == 0){
+            super.onBackPressed();
+        }else {
+            viewPager.setCurrentItem(0);
+        }
+
+
+    }
+
     private Button browseImage, save, cancle;
     private ImageView viewimage;
     private static final int IMAGE_REQUEST = 1;
@@ -67,6 +81,16 @@ public class Create_card extends AppCompatActivity{
     boolean b=false;
     int x;
     int y;
+
+    public static boolean isLayoutVisible(){
+        if(absoluteLayoutFront.getVisibility() == View.VISIBLE){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +115,7 @@ public class Create_card extends AppCompatActivity{
         ArrayList<Fragment> fragments=new ArrayList<>();
 
         fragments.add(new ToolbarFragment(this));
+        fragments.add(new TextFragment(this));
         fragments.add(new IconFragment(this));
 
         mAdapter=new ViewpagerAdapter(getSupportFragmentManager(),fragments);
@@ -193,6 +218,8 @@ public class Create_card extends AppCompatActivity{
 
 
     public static Bitmap loadBitmapFromView(View v) {
+
+
 
         Bitmap b = Bitmap.createBitmap(v.getWidth(), v.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas c = new Canvas(b);
@@ -337,7 +364,6 @@ public class Create_card extends AppCompatActivity{
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
         String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
-
         return Uri.parse(path);
     }
     public void iconDialoguebox(){
@@ -418,4 +444,23 @@ public class Create_card extends AppCompatActivity{
         }
 
     }
+
+
+
+   public static void setCurrentFragment(int i){
+        viewPager.setCurrentItem(i);
+        mAdapter.notifyDataSetChanged();
+    }
+
+    public static void setCurrentFragmentwithData(int position, HashMap<String,String> data){
+
+        dataSet = data;
+        isDataAvailable = true;
+
+        viewPager.setCurrentItem(position);
+        mAdapter.notifyDataSetChanged();
+    }
+
+    public static boolean isDataAvailable = false;
+    public static HashMap<String,String> dataSet;
 }

@@ -1,33 +1,22 @@
 package com.nexttech.easybusinesscard;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Bitmap;
 import android.graphics.Typeface;
-import android.net.Uri;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.Toolbar;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.tabs.TabLayout;
-
-import java.math.BigInteger;
-
+import java.util.HashMap;
 
 public class ToolbarFragment extends Fragment {
 
@@ -40,6 +29,8 @@ public class ToolbarFragment extends Fragment {
     AlertDialog alertDialog;
 
     TextView text,icon,image,qrcode,preview,backside,text2;
+
+    public static TextView textView;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -53,27 +44,49 @@ public class ToolbarFragment extends Fragment {
         backside=vi.findViewById(R.id.backside);
         text2=vi.findViewById(R.id.text2);
         builder = new AlertDialog.Builder(context);
-
-
-
-
-
+        textView=new TextView(context);
 
 
         text.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-                TextView textView=new TextView(context);
+
+
+                Create_card.setCurrentFragment(1);
+
+
+
                 textView.setTag("draggable textview");
                 textView.setText("type your text here");
                 textView.setOnLongClickListener(new LongPresslistener(context));
+                Typeface typeface=Typeface.create("Aclonia",Typeface.BOLD);
+                textView.setTypeface(typeface);
 
-//                Create_card.viewPager.setCurrentItem(1);
-//                Create_card.mAdapter.notifyDataSetChanged();
 
-                if (Create_card.absoluteLayoutFront.getVisibility()==View.VISIBLE){
+                textView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+//                        HashMap<String,String> datamap=new HashMap<>();
+//                        datamap.put("text",textView.getText().toString());
+//                        datamap.put("textSize",String.valueOf(Math.round(textView.getTextSize())));
+//                        datamap.put("colorCode",String.valueOf(textView.getCurrentTextColor()));
+//                        datamap.put("font",String.valueOf(textView.getTypeface()));
+
+
+                        Typeface typeface=textView.getTypeface();
+
+                        Log.e("typeface",String.valueOf(typeface.getStyle()));
+                        //datamap.put("backgroundColor",String.valueOf(textView.getBackground()));
+
+//                        Create_card.setCurrentFragmentwithData(1,datamap);
+                    }
+                });
+
+
+                if(Create_card.isLayoutVisible()){
                     Create_card.absoluteLayoutFront.addView(textView);
-                } else{
+                }else {
                     Create_card.absoluteLayoutBack.addView(textView);
                 }
 
@@ -158,6 +171,7 @@ public class ToolbarFragment extends Fragment {
         });
         return vi;
     }
+
 
     void ShowDialogebox()
     {
