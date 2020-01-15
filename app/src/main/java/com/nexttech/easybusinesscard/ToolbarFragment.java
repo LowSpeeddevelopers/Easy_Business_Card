@@ -20,17 +20,18 @@ import java.util.HashMap;
 
 public class ToolbarFragment extends Fragment {
 
-    Context context;
+    private Context context;
 
     public ToolbarFragment(Context context){
         this.context=context;
     }
-    AlertDialog.Builder builder;
-    AlertDialog alertDialog;
+    private AlertDialog.Builder builder;
+    private AlertDialog alertDialog;
 
-    TextView text,icon,image,qrcode,preview,backside,text2;
+    private TextView text,icon,image,qrcode,preview,backside,text2;
 
     public static TextView textView;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -90,6 +91,9 @@ public class ToolbarFragment extends Fragment {
                     Create_card.absoluteLayoutBack.addView(textView);
                 }
 
+                Create_card.viewPager.setCurrentItem(1);
+                Create_card.mAdapter.notifyDataSetChanged();
+
 
             }
         });
@@ -109,7 +113,7 @@ public class ToolbarFragment extends Fragment {
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 Create_card.viewPager.setCurrentItem(3);
+                Create_card.viewPager.setCurrentItem(3);
                 Create_card.mAdapter.notifyDataSetChanged();
             }
         });
@@ -118,7 +122,7 @@ public class ToolbarFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Create_card.viewPager.setCurrentItem(4);
-               Create_card.mAdapter.notifyDataSetChanged();
+                Create_card.mAdapter.notifyDataSetChanged();
             }
         });
 
@@ -165,8 +169,8 @@ public class ToolbarFragment extends Fragment {
         text2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Create_card.viewPager.setCurrentItem(7);
-//                Create_card.mAdapter.notifyDataSetChanged();
+                Create_card.viewPager.setCurrentItem(5);
+                Create_card.mAdapter.notifyDataSetChanged();
             }
         });
         return vi;

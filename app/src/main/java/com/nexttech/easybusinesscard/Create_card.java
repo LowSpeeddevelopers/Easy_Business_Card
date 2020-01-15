@@ -118,7 +118,6 @@ public class Create_card extends AppCompatActivity{
 
         fragments.add(new ToolbarFragment(this));
         fragments.add(new TextFragment(this));
-        fragments.add(new TextFragment(this));
         fragments.add(new IconFragment(this));
         fragments.add(new ImageFragment());
         fragments.add(new Qr_code(this));
