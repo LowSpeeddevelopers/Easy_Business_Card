@@ -23,6 +23,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.DragEvent;
@@ -66,6 +67,7 @@ public class Create_card extends AppCompatActivity{
     private Button selectIcon, saveIcon, cancleIcon, browseImage, saveImage, cancelImage;
     public static boolean isClick;
     private ImageView viewIcon,viewImage;
+    private Bitmap bitmapFront, bitmapBack;
     TextView importtemp,share,export,browse;
 
 
@@ -200,6 +202,23 @@ public class Create_card extends AppCompatActivity{
             @Override
             public void onClick(View v) {
 
+                TextView tvFront, tvBack, tvBoth, tvCancel;
+
+                dialogueView = getLayoutInflater().inflate(R.layout.save_image_dialog, null);
+
+                tvFront = dialogueView.findViewById(R.id.tv_front);
+                tvBack = dialogueView.findViewById(R.id.tv_back);
+                tvBoth = dialogueView.findViewById(R.id.tv_both);
+                tvCancel = dialogueView.findViewById(R.id.tv_cancel);
+
+                builder.setView(null);
+                builder.setView(dialogueView);
+                alertDialog=builder.create();
+                alertDialog.setCanceledOnTouchOutside(true);
+                alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                alertDialogDismiss();
+                alertDialog.show();
+
                 if (absoluteLayoutFront.getVisibility()==View.VISIBLE){
                     absoluteLayoutFront.setVisibility(View.GONE);
                     absoluteLayoutBack.setVisibility(View.VISIBLE);
@@ -208,14 +227,56 @@ public class Create_card extends AppCompatActivity{
                     absoluteLayoutBack.setVisibility(View.GONE);
                 }
 
-                Bitmap bitmapFront = loadBitmapFromView(absoluteLayoutFront);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bitmapFront = loadBitmapFromView(absoluteLayoutFront);
+                        bitmapBack = loadBitmapFromView(absoluteLayoutBack);
+                    }
+                }, 1000);
 
-                Bitmap bitmapBack = loadBitmapFromView(absoluteLayoutBack);
 
-                if(isStoragePermissionGranted()){
-                    SaveImage(bitmapFront, "Front");
-                    SaveImage(bitmapBack, "Back");
-                }
+
+                tvFront.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(isStoragePermissionGranted()){
+                            SaveImage(bitmapFront, "Front");
+                        }
+                    }
+                });
+
+                tvBack.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(isStoragePermissionGranted()){
+                            SaveImage(bitmapBack, "Back");
+                        }
+                    }
+                });
+
+                tvBoth.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(isStoragePermissionGranted()){
+                            SaveImage(bitmapFront, "Front");
+                            SaveImage(bitmapBack, "Back");
+                        }
+                    }
+                });
+
+                tvCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        alertDialogDismiss();
+                    }
+                });
+
+
+
+
+
+
             }
         });
 
@@ -223,8 +284,6 @@ public class Create_card extends AppCompatActivity{
 
 
     public static Bitmap loadBitmapFromView(View v) {
-
-
 
         Bitmap b = Bitmap.createBitmap(v.getWidth(), v.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas c = new Canvas(b);
@@ -277,8 +336,6 @@ public class Create_card extends AppCompatActivity{
             e.printStackTrace();
         }
     }
-
-
 
     void ShowDialogebox()
     {
@@ -405,6 +462,7 @@ public class Create_card extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 ImageView imageView=new ImageView(Create_card.this);
+                imageView.setTag("draggable iconview");
                 imageView.setImageDrawable(viewIcon.getDrawable());
                 imageView.setOnLongClickListener(new LongPresslistener(Create_card.this));
                 if(absoluteLayoutFront.getVisibility()==View.VISIBLE){
@@ -461,7 +519,8 @@ public class Create_card extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 ImageView imageView=new ImageView(Create_card.this);
-                imageView.setImageDrawable(viewIcon.getDrawable());
+                imageView.setTag("draggable imageview");
+                imageView.setImageDrawable(viewImage.getDrawable());
                 imageView.setOnLongClickListener(new LongPresslistener(Create_card.this));
                 if(absoluteLayoutFront.getVisibility()==View.VISIBLE){
                     absoluteLayoutFront.addView(imageView);
