@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import android.Manifest;
+import android.content.ClipData;
+import android.content.ClipDescription;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -116,7 +118,11 @@ public class Create_card extends AppCompatActivity{
 
         fragments.add(new ToolbarFragment(this));
         fragments.add(new TextFragment(this));
+        fragments.add(new TextFragment(this));
         fragments.add(new IconFragment(this));
+        fragments.add(new ImageFragment());
+        fragments.add(new Qr_code(this));
+
 
         mAdapter=new ViewpagerAdapter(getSupportFragmentManager(),fragments);
 
@@ -434,6 +440,7 @@ public class Create_card extends AppCompatActivity{
 
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), imageUri);
+
                 viewimage.setImageBitmap(bitmap);
             } catch (IOException e) {
                 e.printStackTrace();
