@@ -1,21 +1,37 @@
 package com.nexttech.easybusinesscard;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidmads.library.qrgenearator.QRGContents;
+import androidmads.library.qrgenearator.QRGEncoder;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.zxing.WriterException;
 
 
 public class Qr_code extends Fragment {
     TextView qr_size,qr_generate,qr_from_cv;
     Context context;
+    Bitmap bitmap;
+    String TAG="GenerateQRCode";
+    String input_value;
+    QRGEncoder qrgEncoder;
 
 
     public Qr_code(Context context) {
@@ -47,6 +63,60 @@ public class Qr_code extends Fragment {
         qr_generate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final Dialog dialog = new Dialog(context);
+                dialog.setContentView(R.layout.qr_code_generate_dialog);
+                dialog.setTitle("Generate QR Code");
+
+                final ImageView generated_qr = dialog.findViewById(R.id.qr);
+                final EditText qr_edit_text = dialog.findViewById(R.id.qr_ed_text);
+                TextView close_dailog =  dialog.findViewById(R.id.Close_dialog);
+                TextView setQR =  dialog.findViewById(R.id.Qr_set_dialog);
+                TextView generate_qr_code =  dialog.findViewById(R.id.Qr_generate_dialog);
+
+                close_dailog.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                generate_qr_code.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        input_value=qr_edit_text.getText().toString().trim();
+
+                        if (input_value.length()>0){
+                            WindowManager manager = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
+                            Display display=manager.getDefaultDisplay();
+                            Point point=new Point();
+                            display.getSize(point);
+                            int width=point.x;
+                            int height=point.y;
+                            int smallerDimenson=width<height?width:height;
+                            smallerDimenson=smallerDimenson*3/4;
+                            qrgEncoder=new QRGEncoder(input_value,null, QRGContents.Type.TEXT,smallerDimenson);
+                            try {
+                                bitmap=qrgEncoder.encodeAsBitmap();
+                                        generated_qr.setImageBitmap(bitmap);
+                            } catch (WriterException e) {
+                                Log.v(TAG,e.toString());
+                            }
+
+                        }
+                        else {
+                            qr_edit_text.setError("Required");
+                        }
+
+                    }
+                });
+
+
+
+                dialog.show();
+
+
+
+
                 Toast.makeText(getContext(), "Clicked On Generate QR", Toast.LENGTH_SHORT).show();
             }
         });
