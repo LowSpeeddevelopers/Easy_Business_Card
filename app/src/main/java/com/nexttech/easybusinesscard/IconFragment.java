@@ -15,7 +15,7 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 
 
 public class IconFragment extends Fragment {
-    Button browse;
+    Button select;
     Context context;
 
     public IconFragment(Context context){
@@ -27,9 +27,9 @@ public class IconFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = getLayoutInflater().inflate(R.layout.fragment_icon, null);
-        browse=view.findViewById(R.id.btn_browse);
+        select=view.findViewById(R.id.btn_select);
         //size=view.findViewById(R.id.btn_size);
-        browse.setOnClickListener(new View.OnClickListener() {
+        select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ((Create_card)getActivity()).iconDialoguebox();

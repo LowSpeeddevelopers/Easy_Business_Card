@@ -63,9 +63,9 @@ public class Create_card extends AppCompatActivity{
 
     }
 
-    private Button browseImage, save, cancle;
-    private ImageView viewimage;
-    private static final int IMAGE_REQUEST = 1;
+    private Button selectIcon, saveIcon, cancleIcon, browseImage, saveImage, cancelImage;
+    public static boolean isClick;
+    private ImageView viewIcon,viewImage;
     TextView importtemp,share,export,browse;
 
 
@@ -119,7 +119,7 @@ public class Create_card extends AppCompatActivity{
         fragments.add(new ToolbarFragment(this));
         fragments.add(new TextFragment(this));
         fragments.add(new IconFragment(this));
-        fragments.add(new ImageFragment());
+        fragments.add(new ImageFragment(this));
         fragments.add(new Qr_code(this));
 
 
@@ -373,11 +373,69 @@ public class Create_card extends AppCompatActivity{
     }
     public void iconDialoguebox(){
 
+        isClick=true;
+
         dialogueView=getLayoutInflater().inflate(R.layout.select_icon,null);
+        selectIcon= dialogueView.findViewById(R.id.btn_select_icon);
+        saveIcon = dialogueView.findViewById(R.id.btn_save_icon);
+        cancleIcon = dialogueView.findViewById(R.id.btn_cancel_icon);
+        viewIcon = dialogueView.findViewById(R.id.icon_view);
+
+        builder.setView(null);
+        builder.setView(dialogueView);
+        alertDialog=builder.create();
+        alertDialog.setCanceledOnTouchOutside(true);
+        alertDialogDismiss();
+        alertDialog.show();
+
+
+
+        selectIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CropImage.activity()
+                        .setAspectRatio(1,1)
+                        .setCropShape(CropImageView.CropShape.RECTANGLE)
+                        .start(Create_card.this);
+
+            }
+
+        });
+        saveIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ImageView imageView=new ImageView(Create_card.this);
+                imageView.setImageDrawable(viewIcon.getDrawable());
+                imageView.setOnLongClickListener(new LongPresslistener(Create_card.this));
+                if(absoluteLayoutFront.getVisibility()==View.VISIBLE){
+                    absoluteLayoutFront.addView(imageView);
+
+
+                }
+                else {
+                    absoluteLayoutBack.addView(imageView);
+                }
+
+                alertDialogDismiss();
+
+            }
+        });
+        cancleIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialogDismiss();
+            }
+        });
+
+
+    }
+    public void imageDialoguebox(){
+        isClick=false;
+        dialogueView=getLayoutInflater().inflate(R.layout.browse_image,null);
         browseImage = dialogueView.findViewById(R.id.btn_browse_image);
-        save = dialogueView.findViewById(R.id.btn_save_image);
-        cancle = dialogueView.findViewById(R.id.btn_cancle);
-        viewimage = dialogueView.findViewById(R.id.image_view);
+        saveImage= dialogueView.findViewById(R.id.btn_save_image);
+        cancelImage= dialogueView.findViewById(R.id.btn_cancel_image);
+        viewImage= dialogueView.findViewById(R.id.image_view);
 
         builder.setView(null);
         builder.setView(dialogueView);
@@ -399,11 +457,11 @@ public class Create_card extends AppCompatActivity{
             }
 
         });
-        save.setOnClickListener(new View.OnClickListener() {
+        saveImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ImageView imageView=new ImageView(Create_card.this);
-                imageView.setImageDrawable(viewimage.getDrawable());
+                imageView.setImageDrawable(viewIcon.getDrawable());
                 imageView.setOnLongClickListener(new LongPresslistener(Create_card.this));
                 if(absoluteLayoutFront.getVisibility()==View.VISIBLE){
                     absoluteLayoutFront.addView(imageView);
@@ -418,7 +476,7 @@ public class Create_card extends AppCompatActivity{
 
             }
         });
-        cancle.setOnClickListener(new View.OnClickListener() {
+        cancelImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 alertDialogDismiss();
@@ -430,6 +488,7 @@ public class Create_card extends AppCompatActivity{
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK){
@@ -440,7 +499,14 @@ public class Create_card extends AppCompatActivity{
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), imageUri);
 
-                viewimage.setImageBitmap(bitmap);
+                if(isClick){
+                    viewIcon.setImageBitmap(bitmap);
+                }
+                else
+                {
+                    viewImage.setImageBitmap(bitmap);
+                }
+
             } catch (IOException e) {
                 e.printStackTrace();
             }

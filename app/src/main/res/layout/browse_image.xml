@@ -12,15 +12,16 @@
         android:background="#fff">
 
         <Button
-            android:id="@+id/btn_select_icon"
+            android:id="@+id/btn_browse_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:layout_margin="4dp"
+            android:text="Browse Image"
             android:background="@drawable/round_button"
-            android:text="Select Icon"/>
+            />
         <ImageView
-            android:id="@+id/icon_view"
+            android:id="@+id/image_view"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -30,21 +31,22 @@
             android:orientation="horizontal"
             android:gravity="center">
             <Button
-                android:id="@+id/btn_save_icon"
+                android:id="@+id/btn_save_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:layout_margin="16dp"
+                android:text="Save Image"
                 android:background="@drawable/round_button"
-                android:text="Save Icon"/>
+                />
             <Button
-                android:id="@+id/btn_cancel_icon"
+                android:id="@+id/btn_cancel_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:layout_margin="16dp"
-                android:background="@drawable/round_button"
-                android:text="Cancel"/>
+                android:text="Cancel"
+                android:background="@drawable/round_button"/>
         </LinearLayout>
     </LinearLayout>
 
