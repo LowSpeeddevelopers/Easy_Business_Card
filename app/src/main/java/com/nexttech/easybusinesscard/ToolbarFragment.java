@@ -2,6 +2,7 @@ package com.nexttech.easybusinesscard;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ToolbarFragment extends Fragment {
@@ -30,7 +32,69 @@ public class ToolbarFragment extends Fragment {
 
     private TextView text,icon,image,qrcode,preview,backside,text2;
 
-    public static TextView textView;
+
+    int i=0;
+    int ii=0;
+
+    public static HashMap<String,TextView> textArrayFront;
+    public static HashMap<String,TextView> textArrayBack;
+
+
+
+
+    public void addTextView(){
+        final TextView mTextView = new TextView(context);
+        mTextView.setText("new Text");
+        if(Create_card.isLayoutVisible()){
+            mTextView.setTag(String.valueOf(i));
+        }else {
+            mTextView.setTag(String.valueOf(ii));
+        }
+
+        mTextView.setTextSize(25);
+        mTextView.setTextColor(Color.BLACK);
+        Typeface typeface =  Typeface.createFromAsset(context.getAssets(),new FrontTag().getFrontName("tag1"));
+        mTextView.setTypeface(typeface);
+        mTextView.setOnLongClickListener(new LongPresslistener(context));
+        mTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Create_card.setCurrentFragmentwithData(1,mTextView.getTag().toString());
+                Create_card.mAdapter.notifyDataSetChanged();
+
+            }
+        });
+
+
+
+        if (Create_card.isLayoutVisible()){
+            textArrayFront.put(String.valueOf(i),mTextView);
+            Create_card.setCurrentFragmentwithData(1,mTextView.getTag().toString());
+            Create_card.mAdapter.notifyDataSetChanged();
+
+            i++;
+        } else {
+            textArrayBack.put(String.valueOf(ii),mTextView);
+            Create_card.setCurrentFragmentwithData(1,mTextView.getTag().toString());
+            Create_card.mAdapter.notifyDataSetChanged();
+            ii++;
+        }
+
+    }
+    public void addView(View vi){
+        if(Create_card.isLayoutVisible()){
+            if(vi.getParent() != null) {
+                ((ViewGroup)vi.getParent()).removeView(vi); // <- fix
+            }
+            Create_card.absoluteLayoutFront.addView(vi);
+        }else {
+            if(vi.getParent() != null) {
+                ((ViewGroup)vi.getParent()).removeView(vi); // <- fix
+            }
+            Create_card.absoluteLayoutBack.addView(vi);
+        }
+    }
+
 
     @Nullable
     @Override
@@ -45,7 +109,8 @@ public class ToolbarFragment extends Fragment {
         backside=vi.findViewById(R.id.backside);
         text2=vi.findViewById(R.id.text2);
         builder = new AlertDialog.Builder(context);
-        textView=new TextView(context);
+        textArrayFront =new HashMap<>();
+        textArrayBack =new HashMap<>();
 
 
         text.setOnClickListener(new View.OnClickListener() {
@@ -53,46 +118,20 @@ public class ToolbarFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-
-                Create_card.setCurrentFragment(1);
-
-
-
-                textView.setTag("draggable textview");
-                textView.setText("type your text here");
-                textView.setOnLongClickListener(new LongPresslistener(context));
-                Typeface typeface=Typeface.create("Aclonia",Typeface.BOLD);
-                textView.setTypeface(typeface);
-
-
-                textView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-//                        HashMap<String,String> datamap=new HashMap<>();
-//                        datamap.put("text",textView.getText().toString());
-//                        datamap.put("textSize",String.valueOf(Math.round(textView.getTextSize())));
-//                        datamap.put("colorCode",String.valueOf(textView.getCurrentTextColor()));
-//                        datamap.put("font",String.valueOf(textView.getTypeface()));
-
-
-                        Typeface typeface=textView.getTypeface();
-
-                        Log.e("typeface",String.valueOf(typeface.getStyle()));
-                        //datamap.put("backgroundColor",String.valueOf(textView.getBackground()));
-
-//                        Create_card.setCurrentFragmentwithData(1,datamap);
+                addTextView();
+                if (Create_card.isLayoutVisible()){
+                    for(int j=0;j<textArrayFront.size();j++){
+                        if(textArrayFront.get(String.valueOf(j))!=null){
+                            addView(textArrayFront.get(String.valueOf(j)));
+                        }
                     }
-                });
-
-
-                if(Create_card.isLayoutVisible()){
-                    Create_card.absoluteLayoutFront.addView(textView);
-                }else {
-                    Create_card.absoluteLayoutBack.addView(textView);
+                } else {
+                    for(int j=0;j<textArrayBack.size();j++){
+                        if(textArrayBack.get(String.valueOf(j))!=null){
+                            addView(textArrayBack.get(String.valueOf(j)));
+                        }
+                    }
                 }
-
-                Create_card.viewPager.setCurrentItem(1);
-                Create_card.mAdapter.notifyDataSetChanged();
 
 
             }

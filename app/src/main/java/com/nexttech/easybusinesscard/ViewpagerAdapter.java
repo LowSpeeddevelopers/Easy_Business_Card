@@ -4,11 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewpagerAdapter extends FragmentPagerAdapter {
+public class ViewpagerAdapter extends FragmentStatePagerAdapter {
     public static int pos = 0;
 
     private ArrayList<Fragment> myFragments;

@@ -28,6 +28,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.DragEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsoluteLayout;
@@ -80,7 +81,7 @@ public class Create_card extends AppCompatActivity{
    public static AbsoluteLayout absoluteLayoutFront;
    public static AbsoluteLayout absoluteLayoutBack;
 
-   public static ViewPager viewPager;
+   public static CustomViewPager viewPager;
     public static ViewpagerAdapter mAdapter;
     boolean b=false;
     int x;
@@ -126,6 +127,8 @@ public class Create_card extends AppCompatActivity{
 
 
         mAdapter=new ViewpagerAdapter(getSupportFragmentManager(),fragments);
+
+     viewPager.setPagingEnabled(false);
 
         viewPager.setAdapter(mAdapter);
 
@@ -577,15 +580,9 @@ public class Create_card extends AppCompatActivity{
     }
 
 
+    public static void setCurrentFragmentwithData(int position,String tag){
 
-   public static void setCurrentFragment(int i){
-        viewPager.setCurrentItem(i);
-        mAdapter.notifyDataSetChanged();
-    }
-
-    public static void setCurrentFragmentwithData(int position, HashMap<String,String> data){
-
-        dataSet = data;
+        tageeee = tag;
         isDataAvailable = true;
 
         viewPager.setCurrentItem(position);
@@ -593,5 +590,5 @@ public class Create_card extends AppCompatActivity{
     }
 
     public static boolean isDataAvailable = false;
-    public static HashMap<String,String> dataSet;
+    public static String tageeee;
 }
