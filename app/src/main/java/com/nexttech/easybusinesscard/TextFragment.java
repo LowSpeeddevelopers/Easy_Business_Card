@@ -3,11 +3,15 @@ package com.nexttech.easybusinesscard;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.PopupMenu;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
@@ -21,7 +25,10 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.lang.reflect.Field;
 import java.util.HashMap;
+
+import yuku.ambilwarna.AmbilWarnaDialog;
 
 
 public class TextFragment extends Fragment {
@@ -37,8 +44,8 @@ public class TextFragment extends Fragment {
                        Create_card.isDataAvailable=false;
                       Create_card.dataSet=null;
 
-
                      // SetData();
+
                      }
                 }
             else {
@@ -58,6 +65,7 @@ public class TextFragment extends Fragment {
 
     TextView textFont, textColor, textStyle, textBackground;
     HashMap<String,String> dataSet;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -71,11 +79,7 @@ public class TextFragment extends Fragment {
         textStyle = view.findViewById(R.id.textStyle);
         textBackground = view.findViewById(R.id.textBsckground);
 
-
-
-
-
-
+        ToolbarFragment.textView.setBackgroundColor(156154);
 
         text.addTextChangedListener(new TextWatcher() {
             @Override
@@ -143,7 +147,7 @@ public class TextFragment extends Fragment {
         textColor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                openTextColorPicker(ToolbarFragment.textView.getCurrentTextColor());
             }
         });
 
@@ -179,13 +183,17 @@ public class TextFragment extends Fragment {
         textBackground.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ColorDrawable drawable = (ColorDrawable)ToolbarFragment.textView.getBackground();
 
+                int color = drawable.getColor();
+
+
+                openBackgroundColorPicker(color);
             }
         });
 
         return view;
     }
-
 
 
     void SetData(){
@@ -203,5 +211,39 @@ public class TextFragment extends Fragment {
             textFont.setText(text.getText());
 
             textBackground.setBackgroundColor(Color.parseColor(dataSet.get("backgroundColor")));
+    }
+
+    public void openTextColorPicker(int mDefaultColor) {
+
+
+        AmbilWarnaDialog colorPicker = new AmbilWarnaDialog(context, mDefaultColor, new AmbilWarnaDialog.OnAmbilWarnaListener() {
+            @Override
+            public void onCancel(AmbilWarnaDialog dialog) {
+
+            }
+
+            @Override
+            public void onOk(AmbilWarnaDialog dialog, int color) {
+                ToolbarFragment.textView.setTextColor(color);
+            }
+        });
+        colorPicker.show();
+    }
+
+    public void openBackgroundColorPicker(int mDefaultColor) {
+
+
+        AmbilWarnaDialog colorPicker = new AmbilWarnaDialog(context, mDefaultColor, new AmbilWarnaDialog.OnAmbilWarnaListener() {
+            @Override
+            public void onCancel(AmbilWarnaDialog dialog) {
+
+            }
+
+            @Override
+            public void onOk(AmbilWarnaDialog dialog, int color) {
+                ToolbarFragment.textView.setBackgroundColor(color);
+            }
+        });
+        colorPicker.show();
     }
 }
