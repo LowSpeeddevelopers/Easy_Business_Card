@@ -6,12 +6,18 @@
     android:orientation="vertical"
     tools:context=".IconFragment">
 
+   <EditText
+       android:layout_width="match_parent"
+       android:layout_height="?attr/actionBarSize"
+       android:id="@+id/iconsize"
+       android:hint="size"
+       />
     <Button
-        android:id="@+id/btn_select"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="Select"/>
+        android:layout_gravity="center"
+        android:text="save"
+        android:id="@+id/iconsave"/>
 
 
 </LinearLayout>

@@ -1,23 +1,12 @@
 package com.nexttech.easybusinesscard;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
-
 import android.Manifest;
-import android.content.ClipData;
-import android.content.ClipDescription;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Point;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
@@ -26,31 +15,29 @@ import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.DragEvent;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AbsoluteLayout;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+
 import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Random;
 
 public class Create_card extends AppCompatActivity{
-
 
     @Override
     public void onBackPressed() {
@@ -65,9 +52,8 @@ public class Create_card extends AppCompatActivity{
 
     }
 
-    private Button  browseImage, saveImage, cancelImage,selectIcon;
+
     public static boolean isClick;
-    private ImageView viewImage, icon_1,icon_2,icon_3,icon_4,icon_5,icon_6,icon_7,icon_8;
     private Bitmap bitmapFront, bitmapBack;
     TextView importtemp,share,export,browse;
 
@@ -114,6 +100,7 @@ public class Create_card extends AppCompatActivity{
         mainTempFront = findViewById(R.id.main_temp_front);
         mainTempBack= findViewById(R.id.main_temp_back);
         viewPager=findViewById(R.id.viewpager);
+
 
 
         absoluteLayoutBack.setVisibility(View.GONE);
@@ -431,147 +418,10 @@ public class Create_card extends AppCompatActivity{
         String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
         return Uri.parse(path);
     }
-    public void iconDialoguebox(){
-
-
-        isClick=true;
-
-        dialogueView=getLayoutInflater().inflate(R.layout.select_icon,null);
-        icon_1 = dialogueView.findViewById(R.id.icon1);
-        icon_2= dialogueView.findViewById(R.id.icon2);
-        icon_3= dialogueView.findViewById(R.id.icon3);
-        icon_4= dialogueView.findViewById(R.id.icon4);
-        icon_5= dialogueView.findViewById(R.id.icon5);
-        icon_6= dialogueView.findViewById(R.id.icon6);
-        icon_7= dialogueView.findViewById(R.id.icon7);
-        icon_8= dialogueView.findViewById(R.id.icon8);
-
-        icon_1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setImage(icon_1);
-            }
-        });
-        icon_2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setImage(icon_2);
-
-            }
-        });
-        icon_3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setImage(icon_3);
-
-            }
-        });
-        icon_4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setImage(icon_4);
-
-            }
-        });
-        icon_5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setImage(icon_5);
-            }
-        });
-        icon_6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setImage(icon_6);
-
-            }
-        });
-        icon_7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setImage(icon_7);
-
-            }
-        });
-        icon_8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setImage(icon_8);
-
-            }
-        });
-
-        builder.setView(null);
-        builder.setView(dialogueView);
-        alertDialog=builder.create();
-        alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-        alertDialog.setCanceledOnTouchOutside(true);
-        alertDialogDismiss();
-        alertDialog.show();
-
-    }
-    public void imageDialoguebox(){
-        isClick=false;
-        dialogueView=getLayoutInflater().inflate(R.layout.browse_image,null);
-        browseImage = dialogueView.findViewById(R.id.btn_browse_image);
-        saveImage= dialogueView.findViewById(R.id.btn_save_image);
-        cancelImage= dialogueView.findViewById(R.id.btn_cancel_image);
-        viewImage= dialogueView.findViewById(R.id.image_view);
-
-        builder.setView(null);
-        builder.setView(dialogueView);
-        alertDialog=builder.create();
-        alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-        alertDialog.setCanceledOnTouchOutside(true);
-        alertDialogDismiss();
-        alertDialog.show();
 
 
 
-        browseImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CropImage.activity()
-                        .setAspectRatio(1,1)
-                        .setCropShape(CropImageView.CropShape.RECTANGLE)
-                        .start(Create_card.this);
 
-            }
-
-        });
-        saveImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setImage(viewImage);
-
-            }
-        });
-        cancelImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                alertDialogDismiss();
-            }
-        });
-
-
-    }
-
-    private void setImage(ImageView image) {
-        ImageView imageView=new ImageView(Create_card.this);
-        imageView.setTag("draggable imageview");
-        imageView.setImageDrawable(image.getDrawable());
-        imageView.setOnLongClickListener(new LongPresslistener(Create_card.this));
-        if(absoluteLayoutFront.getVisibility()==View.VISIBLE){
-            absoluteLayoutFront.addView(imageView);
-
-
-        }
-        else {
-            absoluteLayoutBack.addView(imageView);
-        }
-
-        alertDialogDismiss();
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -591,7 +441,7 @@ public class Create_card extends AppCompatActivity{
                 }
                 else
                 {
-                    viewImage.setImageBitmap(bitmap);
+                    ImageFragment.viewImage.setImageBitmap(bitmap);
                 }
 
             } catch (IOException e) {
@@ -616,4 +466,5 @@ public class Create_card extends AppCompatActivity{
 
     public static boolean isDataAvailable = false;
     public static String tageeee;
+
 }

@@ -48,9 +48,6 @@ public class TextFragment extends Fragment {
 
 
                     }
-
-
-
                 }
             else {
             }

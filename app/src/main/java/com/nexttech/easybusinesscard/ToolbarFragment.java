@@ -20,7 +20,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ToolbarFragment extends Fragment {
+public class ToolbarFragment extends Fragment{
+
 
     private Context context;
 
@@ -29,6 +30,7 @@ public class ToolbarFragment extends Fragment {
     }
     private AlertDialog.Builder builder;
     private AlertDialog alertDialog;
+
 
     private TextView text,icon,image,qrcode,preview,backside,text2;
 
@@ -144,7 +146,6 @@ public class ToolbarFragment extends Fragment {
             public void onClick(View v) {
                 Create_card.viewPager.setCurrentItem(2);
                 Create_card.mAdapter.notifyDataSetChanged();
-
 
             }
         });
@@ -284,4 +285,6 @@ public class ToolbarFragment extends Fragment {
 
         }
     }
+
+
 }
