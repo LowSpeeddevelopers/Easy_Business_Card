@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class FrontTag {
     HashMap<String,String> FrontMap;
-    private static final String FrontName1 = "Normal";
+    private static final String FrontName1 = "normal.ttf";
     private static final String FrontName2 = "cursive.ttf";
     private static final String FrontName3 = "aclonia.ttf";
     private static final String FrontName4 = "cutive.ttf";

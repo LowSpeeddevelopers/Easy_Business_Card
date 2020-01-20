@@ -38,6 +38,31 @@
                     android:focusable="true"
                     android:textSize="20sp"
                     android:background="#EEEEEE"/>
+
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:gravity="center"
+                android:foregroundGravity="center"
+                app:cardBackgroundColor="#EEEEEE"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="10dp"
+                >
+                <TextView
+                    android:id="@+id/saveText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="20sp"
+                    android:text="save"
+                    android:textAlignment="center"
+                    android:gravity="center"/>
+
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -66,6 +91,33 @@
                     android:textSize="20sp"
                     android:background="#EEEEEE"/>
             </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:gravity="center"
+                android:foregroundGravity="center"
+                app:cardBackgroundColor="#EEEEEE"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="10dp"
+                >
+                <TextView
+                    android:id="@+id/saveSize"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="20sp"
+                    android:text="save"
+                    android:textAlignment="center"
+                    android:gravity="center"/>
+
+            </androidx.cardview.widget.CardView>
+
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
