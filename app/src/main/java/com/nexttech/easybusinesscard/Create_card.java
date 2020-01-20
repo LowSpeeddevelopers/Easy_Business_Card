@@ -64,9 +64,9 @@ public class Create_card extends AppCompatActivity{
 
     }
 
-    private Button selectIcon, saveIcon, cancleIcon, browseImage, saveImage, cancelImage;
+    private Button  browseImage, saveImage, cancelImage,selectIcon;
     public static boolean isClick;
-    private ImageView viewIcon,viewImage;
+    private ImageView viewImage, icon_1,icon_2,icon_3,icon_4,icon_5,icon_6,icon_7,icon_8;
     private Bitmap bitmapFront, bitmapBack;
     TextView importtemp,share,export,browse;
 
@@ -430,61 +430,81 @@ public class Create_card extends AppCompatActivity{
     }
     public void iconDialoguebox(){
 
+
         isClick=true;
 
         dialogueView=getLayoutInflater().inflate(R.layout.select_icon,null);
-        selectIcon= dialogueView.findViewById(R.id.btn_select_icon);
-        saveIcon = dialogueView.findViewById(R.id.btn_save_icon);
-        cancleIcon = dialogueView.findViewById(R.id.btn_cancel_icon);
-        viewIcon = dialogueView.findViewById(R.id.icon_view);
+        icon_1 = dialogueView.findViewById(R.id.icon1);
+        icon_2= dialogueView.findViewById(R.id.icon2);
+        icon_3= dialogueView.findViewById(R.id.icon3);
+        icon_4= dialogueView.findViewById(R.id.icon4);
+        icon_5= dialogueView.findViewById(R.id.icon5);
+        icon_6= dialogueView.findViewById(R.id.icon6);
+        icon_7= dialogueView.findViewById(R.id.icon7);
+        icon_8= dialogueView.findViewById(R.id.icon8);
+
+        icon_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setImage(icon_1);
+            }
+        });
+        icon_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setImage(icon_2);
+
+            }
+        });
+        icon_3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setImage(icon_3);
+
+            }
+        });
+        icon_4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setImage(icon_4);
+
+            }
+        });
+        icon_5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setImage(icon_5);
+            }
+        });
+        icon_6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setImage(icon_6);
+
+            }
+        });
+        icon_7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setImage(icon_7);
+
+            }
+        });
+        icon_8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setImage(icon_8);
+
+            }
+        });
 
         builder.setView(null);
         builder.setView(dialogueView);
         alertDialog=builder.create();
+        alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         alertDialog.setCanceledOnTouchOutside(true);
         alertDialogDismiss();
         alertDialog.show();
-
-
-
-        selectIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CropImage.activity()
-                        .setAspectRatio(1,1)
-                        .setCropShape(CropImageView.CropShape.RECTANGLE)
-                        .start(Create_card.this);
-
-            }
-
-        });
-        saveIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ImageView imageView=new ImageView(Create_card.this);
-                imageView.setTag("draggable iconview");
-                imageView.setImageDrawable(viewIcon.getDrawable());
-                imageView.setOnLongClickListener(new LongPresslistener(Create_card.this));
-                if(absoluteLayoutFront.getVisibility()==View.VISIBLE){
-                    absoluteLayoutFront.addView(imageView);
-
-
-                }
-                else {
-                    absoluteLayoutBack.addView(imageView);
-                }
-
-                alertDialogDismiss();
-
-            }
-        });
-        cancleIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                alertDialogDismiss();
-            }
-        });
-
 
     }
     public void imageDialoguebox(){
@@ -498,6 +518,7 @@ public class Create_card extends AppCompatActivity{
         builder.setView(null);
         builder.setView(dialogueView);
         alertDialog=builder.create();
+        alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         alertDialog.setCanceledOnTouchOutside(true);
         alertDialogDismiss();
         alertDialog.show();
@@ -518,20 +539,7 @@ public class Create_card extends AppCompatActivity{
         saveImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ImageView imageView=new ImageView(Create_card.this);
-                imageView.setTag("draggable imageview");
-                imageView.setImageDrawable(viewImage.getDrawable());
-                imageView.setOnLongClickListener(new LongPresslistener(Create_card.this));
-                if(absoluteLayoutFront.getVisibility()==View.VISIBLE){
-                    absoluteLayoutFront.addView(imageView);
-
-
-                }
-                else {
-                    absoluteLayoutBack.addView(imageView);
-                }
-
-                alertDialogDismiss();
+                setImage(viewImage);
 
             }
         });
@@ -543,6 +551,23 @@ public class Create_card extends AppCompatActivity{
         });
 
 
+    }
+
+    private void setImage(ImageView image) {
+        ImageView imageView=new ImageView(Create_card.this);
+        imageView.setTag("draggable imageview");
+        imageView.setImageDrawable(image.getDrawable());
+        imageView.setOnLongClickListener(new LongPresslistener(Create_card.this));
+        if(absoluteLayoutFront.getVisibility()==View.VISIBLE){
+            absoluteLayoutFront.addView(imageView);
+
+
+        }
+        else {
+            absoluteLayoutBack.addView(imageView);
+        }
+
+        alertDialogDismiss();
     }
 
     @Override
@@ -559,7 +584,7 @@ public class Create_card extends AppCompatActivity{
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), imageUri);
 
                 if(isClick){
-                    viewIcon.setImageBitmap(bitmap);
+                    //viewIcon.setImageBitmap(bitmap);
                 }
                 else
                 {
