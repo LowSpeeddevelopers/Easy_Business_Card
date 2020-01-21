@@ -7,27 +7,28 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 
-public class IconFragment extends Fragment {
-    Button save;
-    EditText size;
+public class IconFragment extends Fragment implements showDialogue {
+    private TextView save,select;
+    private EditText size;
     Context context;
     private ImageView  icon_1,icon_2,icon_3,icon_4,icon_5,icon_6,icon_7,icon_8;
 
-    AlertDialog.Builder builder;
-    AlertDialog alertDialog;
-    View dialogueView;
+    private AlertDialog alertDialog;
+
 
     public IconFragment(Context context){
         this.context=context;
@@ -36,13 +37,20 @@ public class IconFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = getLayoutInflater().inflate(R.layout.fragment_icon, null);
+        View view = getLayoutInflater().inflate(R.layout.fragment_icon, container,false);
         size=view.findViewById(R.id.iconsize);
         save=view.findViewById(R.id.iconsave);
+        select=view.findViewById(R.id.select);
+        select.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        builder = new AlertDialog.Builder(context);
 
-        iconDialoguebox();
+            }
+        });
+
+
+
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,9 +72,10 @@ public class IconFragment extends Fragment {
     }
 
 
-    public void iconDialoguebox(){
+    private int iconDialogueboxxxxxxxxxxxxxxxxxxxx(){
+       AlertDialog.Builder builder =new AlertDialog.Builder(context);
 
-        dialogueView=getLayoutInflater().inflate(R.layout.select_icon,null);
+        View dialogueView=getLayoutInflater().inflate(R.layout.select_icon,null);
         icon_1 = dialogueView.findViewById(R.id.icon1);
         icon_2= dialogueView.findViewById(R.id.icon2);
         icon_3= dialogueView.findViewById(R.id.icon3);
@@ -138,6 +147,8 @@ public class IconFragment extends Fragment {
         alertDialog.setCanceledOnTouchOutside(true);
         alertDialogDismiss();
         alertDialog.show();
+
+        return 12;
     }
     private void setImage(ImageView image) {
         ImageView imageView=new ImageView(context);
@@ -146,8 +157,6 @@ public class IconFragment extends Fragment {
         imageView.setOnLongClickListener(new LongPresslistener(context));
         if(Create_card.absoluteLayoutFront.getVisibility()==View.VISIBLE){
             Create_card.absoluteLayoutFront.addView(imageView);
-
-
         }
         else {
             Create_card.absoluteLayoutBack.addView(imageView);
@@ -160,5 +169,11 @@ public class IconFragment extends Fragment {
         if (alertDialog.isShowing()){
             alertDialog.dismiss();
         }
+    }
+
+    @Override
+    public void BuildDialogue(Context context) {
+        iconDialogueboxxxxxxxxxxxxxxxxxxxx();
+        Toast.makeText(context,"hi",Toast.LENGTH_SHORT).show();
     }
 }

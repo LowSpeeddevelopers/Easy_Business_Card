@@ -6,15 +6,30 @@
     android:orientation="vertical"
     tools:context=".IconFragment">
 
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textAlignment="center"
+
+        android:text="select"
+        android:id="@+id/select"/>
+
    <EditText
+       android:layout_margin="8dp"
        android:layout_width="match_parent"
        android:layout_height="?attr/actionBarSize"
        android:id="@+id/iconsize"
        android:hint="size"
        />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textSize="20sp"
         android:layout_gravity="center"
         android:text="save"
         android:id="@+id/iconsave"/>
