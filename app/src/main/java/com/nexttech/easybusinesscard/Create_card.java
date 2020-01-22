@@ -48,15 +48,11 @@ public class Create_card extends AppCompatActivity{
         }else {
             viewPager.setCurrentItem(0);
         }
-
-
     }
-
 
     public static boolean isClick;
     private Bitmap bitmapFront, bitmapBack;
     TextView importtemp,share,export,browse;
-
 
     View v1,v2,v3,v5;
     View focusview, dialogueView;
@@ -81,7 +77,6 @@ public class Create_card extends AppCompatActivity{
         }
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,7 +95,6 @@ public class Create_card extends AppCompatActivity{
         mainTempFront = findViewById(R.id.main_temp_front);
         mainTempBack= findViewById(R.id.main_temp_back);
         viewPager=findViewById(R.id.viewpager);
-
 
 
         absoluteLayoutBack.setVisibility(View.GONE);
@@ -261,10 +255,6 @@ public class Create_card extends AppCompatActivity{
                         alertDialogDismiss();
                     }
                 });
-
-
-
-
 
 
             }

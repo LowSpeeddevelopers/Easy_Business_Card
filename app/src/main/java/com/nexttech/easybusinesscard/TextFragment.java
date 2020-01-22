@@ -78,7 +78,6 @@ public class TextFragment extends Fragment {
         textFont = view.findViewById(R.id.textFont);
         textColor = view.findViewById(R.id.textColor);
         textStyle = view.findViewById(R.id.textStyle);
-        textBackground = view.findViewById(R.id.textBsckground);
         savetext=view.findViewById(R.id.saveText);
         savesize=view.findViewById(R.id.saveSize);
 
@@ -110,7 +109,6 @@ public class TextFragment extends Fragment {
 
           }
       });
-
 
 
         textSize.setOnClickListener(new View.OnClickListener() {
@@ -235,17 +233,8 @@ public class TextFragment extends Fragment {
         });
 
 
-        textBackground.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
         return view;
     }
-
-
 
 
     public void openTextColorPicker(int mDefaultColor) {
