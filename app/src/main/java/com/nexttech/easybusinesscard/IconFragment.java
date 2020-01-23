@@ -11,9 +11,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsoluteLayout;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +28,8 @@ public class IconFragment extends Fragment {
     private EditText size;
     Context context;
     private ImageView  icon_1,icon_2,icon_3,icon_4,icon_5,icon_6,icon_7,icon_8;
-
+    private SeekBar seekBar;
+    private ImageView imageView;
     private AlertDialog alertDialog;
 
 
@@ -38,9 +41,8 @@ public class IconFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = getLayoutInflater().inflate(R.layout.fragment_icon, container,false);
-        size=view.findViewById(R.id.iconsize);
-        save=view.findViewById(R.id.iconsave);
         select=view.findViewById(R.id.select);
+        seekBar=view.findViewById(R.id.seekbar);
         select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,19 +50,24 @@ public class IconFragment extends Fragment {
 
             }
         });
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String iconsize = size.getText().toString();
-                if(TextUtils.isEmpty(iconsize)){
-                    size.setError("Field empty!");
-                    size.requestFocus();
-                }else {
 
-                }
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                AbsoluteLayout.LayoutParams imageParams2 = new AbsoluteLayout.LayoutParams(progress, progress, imageView.getScrollX(), imageView.getScrollY());
+                imageView.setLayoutParams(imageParams2);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
             }
         });
-
 
         return view;
     }
@@ -78,7 +85,6 @@ public class IconFragment extends Fragment {
         icon_6= dialogueView.findViewById(R.id.icon6);
         icon_7= dialogueView.findViewById(R.id.icon7);
         icon_8= dialogueView.findViewById(R.id.icon8);
-
         icon_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,7 +151,8 @@ public class IconFragment extends Fragment {
         return 12;
     }
     private void setImage(ImageView image) {
-        ImageView imageView=new ImageView(context);
+        imageView=new ImageView(context);
+        seekBar.setProgress(imageView.getHeight());
         imageView.setTag(String.valueOf(ToolbarFragment.imageiconcounter));
         ToolbarFragment.imageiconcounter++;
         imageView.setImageDrawable(image.getDrawable());
@@ -153,9 +160,12 @@ public class IconFragment extends Fragment {
 
         ToolbarFragment.addView(imageView);
         ToolbarFragment.addIconView(imageView);
+        Create_card.viewPager.setCurrentItem(2);
+        Create_card.mAdapter.notifyDataSetChanged();
 
         alertDialogDismiss();
     }
+
 
     private void alertDialogDismiss(){
         if (alertDialog.isShowing()){

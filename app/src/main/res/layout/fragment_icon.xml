@@ -13,26 +13,20 @@
         android:gravity="center"
         android:textSize="20sp"
         android:textAlignment="center"
-
         android:text="select"
         android:id="@+id/select"/>
 
-   <EditText
-       android:layout_margin="8dp"
-       android:layout_width="match_parent"
-       android:layout_height="?attr/actionBarSize"
-       android:id="@+id/iconsize"
-       android:hint="size"
-       />
-    <TextView
+    <SeekBar
+        android:id="@+id/seekbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:gravity="center"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:layout_gravity="center"
-        android:text="save"
-        android:id="@+id/iconsave"/>
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:min="50"
+        android:max="500"
+        android:progress="100"/>
+
 
 
 </LinearLayout>
