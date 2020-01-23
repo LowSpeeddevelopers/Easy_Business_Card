@@ -127,6 +127,13 @@
                 android:layout_marginBottom="4dp"
                 android:src="@drawable/cardone" />
 
+            <ImageView
+                android:id="@+id/deleteiconfront"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/delete"
+                android:visibility="gone" />
+
 
         </AbsoluteLayout>
 
@@ -142,6 +149,13 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="4dp"
                 android:src="@drawable/rear" />
+
+            <ImageView
+                android:id="@+id/deleteiconback"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:visibility="gone"
+                android:src="@drawable/delete" />
         </AbsoluteLayout>
     </LinearLayout>
 

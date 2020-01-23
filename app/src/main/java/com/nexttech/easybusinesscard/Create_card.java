@@ -8,17 +8,21 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.AbsoluteLayout;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,8 +45,6 @@ public class Create_card extends AppCompatActivity{
 
     @Override
     public void onBackPressed() {
-
-
         if(viewPager.getCurrentItem() == 0){
             super.onBackPressed();
         }else {
@@ -56,19 +58,26 @@ public class Create_card extends AppCompatActivity{
 
     View v1,v2,v3,v5;
     View focusview, dialogueView;
+    LinearLayout mainlayout;
     AlertDialog.Builder builder;
     AlertDialog alertDialog;
     ImageView mainTempFront, mainTempBack, ivLockCard;
+
+    public static ImageView deltebuttonfront,deltebuttonback;
 
    public static AbsoluteLayout absoluteLayoutFront;
    public static AbsoluteLayout absoluteLayoutBack;
 
    public static CustomViewPager viewPager;
     public static ViewpagerAdapter mAdapter;
-    boolean b=false;
-    int x;
-    int y;
+    float fontxandfontvalue = 0;
+    float fontyandfontvalue = 0;
 
+
+    public static float xvalue;
+    public static float yvalue;
+
+    boolean b=false;
     public static boolean isLayoutVisible(){
         if(absoluteLayoutFront.getVisibility() == View.VISIBLE){
             return true;
@@ -95,29 +104,42 @@ public class Create_card extends AppCompatActivity{
         mainTempFront = findViewById(R.id.main_temp_front);
         mainTempBack= findViewById(R.id.main_temp_back);
         viewPager=findViewById(R.id.viewpager);
+        deltebuttonfront=findViewById(R.id.deleteiconfront);
+        deltebuttonback=findViewById(R.id.deleteiconback);
 
+
+        mainlayout=findViewById(R.id.mainlayout);
+
+
+
+
+        ViewTreeObserver vto = absoluteLayoutFront.getViewTreeObserver();
+        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                fontxandfontvalue = absoluteLayoutFront.getX()+absoluteLayoutFront.getWidth();
+                fontyandfontvalue = absoluteLayoutFront.getY()+absoluteLayoutFront.getHeight();
+
+                ViewTreeObserver obs = absoluteLayoutFront.getViewTreeObserver();
+                obs.removeOnGlobalLayoutListener(this);
+
+
+            }
+
+        });
 
         absoluteLayoutBack.setVisibility(View.GONE);
         ArrayList<Fragment> fragments=new ArrayList<>();
-
         fragments.add(new ToolbarFragment(this));
         fragments.add(new TextFragment(this));
         fragments.add(new IconFragment(this));
         fragments.add(new ImageFragment(this));
         fragments.add(new Qr_code(this));
-
-
         mAdapter=new ViewpagerAdapter(getSupportFragmentManager(),fragments);
-
-     viewPager.setPagingEnabled(false);
-
+        viewPager.setPagingEnabled(false);
         viewPager.setAdapter(mAdapter);
-
-
         absoluteLayoutFront.setOnDragListener(new LongPresslistener(this));
         absoluteLayoutBack.setOnDragListener(new LongPresslistener(this));
-
-
         builder = new AlertDialog.Builder(Create_card.this);
         importtemp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -259,12 +281,9 @@ public class Create_card extends AppCompatActivity{
 
             }
         });
-
     }
 
-
     public static Bitmap loadBitmapFromView(View v) {
-
         Bitmap b = Bitmap.createBitmap(v.getWidth(), v.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas c = new Canvas(b);
         v.measure(0, 0);
@@ -273,8 +292,6 @@ public class Create_card extends AppCompatActivity{
         v.draw(c);
         return b;
     }
-
-
     public boolean isStoragePermissionGranted() {
         if (Build.VERSION.SDK_INT >= 23) {
             if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -316,7 +333,6 @@ public class Create_card extends AppCompatActivity{
             e.printStackTrace();
         }
     }
-
     void ShowDialogebox()
     {
         ImageView temp1, temp1rear, temp2,temp2rear, temp3, temp3rear;
@@ -392,15 +408,11 @@ public class Create_card extends AppCompatActivity{
 
         BitmapDrawable drawable = (BitmapDrawable) mainTempFront.getDrawable();
         Bitmap bitmap1 = drawable.getBitmap();
-
-
-
         Intent share = new Intent(Intent.ACTION_SEND);
         share.setType("image/*");
         share.putExtra(Intent.EXTRA_STREAM, getImageUri(this,bitmap1));
         startActivity(Intent.createChooser(share,"Share via"));
     }
-
 
     public Uri getImageUri(Context inContext, Bitmap inImage) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
@@ -408,11 +420,6 @@ public class Create_card extends AppCompatActivity{
         String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
         return Uri.parse(path);
     }
-
-
-
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 
@@ -446,15 +453,20 @@ public class Create_card extends AppCompatActivity{
 
 
     public static void setCurrentFragmentwithData(int position,String tag){
-
         tageeee = tag;
         isDataAvailable = true;
-
         viewPager.setCurrentItem(position);
         mAdapter.notifyDataSetChanged();
     }
-
     public static boolean isDataAvailable = false;
     public static String tageeee;
+
+
+
+
+
+
+
+
 
 }

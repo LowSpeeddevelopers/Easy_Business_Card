@@ -42,6 +42,35 @@ public class LongPresslistener implements View.OnLongClickListener,View.OnDragLi
     // This is the method that the system calls when it dispatches a drag event to the listener.
     @Override
     public boolean onDrag(View v, DragEvent event) {
+
+
+
+        int restrectedpointx;
+        int restrectedpointy;
+        int restrectedpointxend;
+        int restrectedpointyend;
+        if(Create_card.isLayoutVisible()){
+            Create_card.deltebuttonfront.setVisibility(View.VISIBLE);
+            Create_card.deltebuttonfront.setX(Create_card.xvalue);
+            Create_card.deltebuttonfront.setY(Create_card.yvalue);
+
+            restrectedpointx=Math.round(Create_card.deltebuttonfront.getX());
+            restrectedpointy = Math.round(Create_card.deltebuttonfront.getY());
+            restrectedpointxend=restrectedpointx+Create_card.deltebuttonfront.getWidth();
+            restrectedpointyend=restrectedpointy+Create_card.deltebuttonfront.getHeight();
+
+        }else {
+            Create_card.deltebuttonback.setVisibility(View.VISIBLE);
+            restrectedpointx=Math.round(Create_card.deltebuttonback.getX());
+            restrectedpointy = Math.round(Create_card.deltebuttonback.getY());
+            restrectedpointxend=restrectedpointx+Create_card.deltebuttonfront.getWidth();
+            restrectedpointyend=restrectedpointy+Create_card.deltebuttonfront.getHeight();
+
+
+        }
+
+
+
         // Defines a variable to store the action type for the incoming event
         int action = event.getAction();
         // Handles each of the expected events
@@ -117,13 +146,35 @@ public class LongPresslistener implements View.OnLongClickListener,View.OnDragLi
                 Log.e("set y",Float.toString(vw.getY()));
 
 
+
+
                 AbsoluteLayout container = (AbsoluteLayout) v;
                 container.addView(vw);//Add the dragged view
                 vw.setVisibility(View.VISIBLE);//finally set Visibility to VISIBLE
                 // Returns true. DragEvent.getResult() will return true.
+
+
+
+
+                if(x>restrectedpointx && x<restrectedpointxend && y>restrectedpointy && y<restrectedpointyend){
+                    container.removeView(vw);
+                    if(Create_card.isLayoutVisible()){
+                        ToolbarFragment.textArrayFront.remove(vw.getTag());
+                    }else {
+                        ToolbarFragment.textArrayBack.remove(vw.getTag());
+                    }
+                }
+
                 return true;
 
+
             case DragEvent.ACTION_DRAG_ENDED:
+
+                if(Create_card.isLayoutVisible()){
+                    Create_card.deltebuttonfront.setVisibility(View.INVISIBLE);
+                }else {
+                    Create_card.deltebuttonback.setVisibility(View.INVISIBLE);
+                }
                 // Turns off any color tinting
                 v.getBackground().clearColorFilter();
                 // Invalidates the view to force a redraw

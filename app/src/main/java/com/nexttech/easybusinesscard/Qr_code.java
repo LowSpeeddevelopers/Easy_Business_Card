@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,9 +39,6 @@ public class Qr_code extends Fragment {
         this.context=context;
         // Required empty public constructor
     }
-
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -79,12 +77,26 @@ public class Qr_code extends Fragment {
                         dialog.dismiss();
                     }
                 });
+                setQR.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ImageView imageView = new ImageView(context);
+                        imageView.setTag(String.valueOf(ToolbarFragment.qrimagecounter));
+                        ToolbarFragment.qrimagecounter++;
+                        imageView.setOnLongClickListener(new LongPresslistener(context));
+                        imageView.setImageBitmap(bitmap);
+                        ViewGroup.LayoutParams layoutParams = new LinearLayout.LayoutParams(280,280);
+                        imageView.setLayoutParams(layoutParams);
+                        ToolbarFragment.addView(imageView);
+                        ToolbarFragment.addqrcodeView(imageView);
+                        dialog.dismiss();
+                    }
+                });
 
                 generate_qr_code.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         input_value=qr_edit_text.getText().toString().trim();
-
                         if (input_value.length()>0){
                             WindowManager manager = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
                             Display display=manager.getDefaultDisplay();
@@ -97,30 +109,22 @@ public class Qr_code extends Fragment {
                             qrgEncoder=new QRGEncoder(input_value,null, QRGContents.Type.TEXT,smallerDimenson);
                             try {
                                 bitmap=qrgEncoder.encodeAsBitmap();
-                                        generated_qr.setImageBitmap(bitmap);
+                                generated_qr.setImageBitmap(bitmap);
+
+
                             } catch (WriterException e) {
                                 Log.v(TAG,e.toString());
                             }
-
                         }
                         else {
                             qr_edit_text.setError("Required");
                         }
-
                     }
                 });
-
-
-
                 dialog.show();
-
-
-
-
                 Toast.makeText(getContext(), "Clicked On Generate QR", Toast.LENGTH_SHORT).show();
             }
         });
-
         qr_from_cv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

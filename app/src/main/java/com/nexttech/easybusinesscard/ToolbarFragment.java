@@ -5,19 +5,18 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.Fragment;
-
-import android.util.Log;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
+
 import java.util.HashMap;
 
 public class ToolbarFragment extends Fragment{
@@ -37,9 +36,31 @@ public class ToolbarFragment extends Fragment{
 
     int i=0;
     int ii=0;
+    static int iii = 0;
+    static int iiii= 0;
+    static int iiiii=0;
+    static int iiiiii=0;
+    static int iiiiiii=0;
+    static int iiiiiiii=0;
+
+    public static int imagetagcounter = 0;
+    public static int imageiconcounter = 0;
+    public static int qrimagecounter = 0;
+
 
     public static HashMap<String,TextView> textArrayFront;
     public static HashMap<String,TextView> textArrayBack;
+
+    public static HashMap<String,ImageView> imageViewHashMapfront;
+    public static HashMap<String,ImageView> imageViewHashMapback;
+
+    public static HashMap<String,ImageView> iconHashmapfront;
+    public static HashMap<String,ImageView> iconHashmapback;
+
+    public static HashMap<String,ImageView> qrcodeHashmapfront;
+    public static HashMap<String,ImageView> qrcodeHashmapBack;
+
+
 
 
 
@@ -66,14 +87,10 @@ public class ToolbarFragment extends Fragment{
 
             }
         });
-
-
-
         if (Create_card.isLayoutVisible()){
             textArrayFront.put(String.valueOf(i),mTextView);
             Create_card.setCurrentFragmentwithData(1,mTextView.getTag().toString());
             Create_card.mAdapter.notifyDataSetChanged();
-
             i++;
         } else {
             textArrayBack.put(String.valueOf(ii),mTextView);
@@ -81,9 +98,8 @@ public class ToolbarFragment extends Fragment{
             Create_card.mAdapter.notifyDataSetChanged();
             ii++;
         }
-
     }
-    public void addView(View vi){
+    public static void addView(View vi){
         if(Create_card.isLayoutVisible()){
             if(vi.getParent() != null) {
                 ((ViewGroup)vi.getParent()).removeView(vi); // <- fix
@@ -96,6 +112,57 @@ public class ToolbarFragment extends Fragment{
             Create_card.absoluteLayoutBack.addView(vi);
         }
     }
+
+
+    public static void addIconView(View vi){
+
+        if (Create_card.isLayoutVisible()){
+            iconHashmapfront.put(String.valueOf(iii),(ImageView) vi);
+            Create_card.setCurrentFragmentwithData(1,vi.getTag().toString());
+            Create_card.mAdapter.notifyDataSetChanged();
+            iii++;
+        } else {
+            iconHashmapback.put(String.valueOf(iiii),(ImageView)vi);
+            Create_card.setCurrentFragmentwithData(1,vi.getTag().toString());
+            Create_card.mAdapter.notifyDataSetChanged();
+            iiii++;
+        }
+    }
+
+
+    public static void addImageView(View vi){
+
+        if (Create_card.isLayoutVisible()){
+            imageViewHashMapfront.put(String.valueOf(iiiii),(ImageView) vi);
+            Create_card.setCurrentFragmentwithData(1,vi.getTag().toString());
+            Create_card.mAdapter.notifyDataSetChanged();
+            iiiii++;
+        } else {
+            imageViewHashMapback.put(String.valueOf(iiiiii),(ImageView)vi);
+            Create_card.setCurrentFragmentwithData(1,vi.getTag().toString());
+            Create_card.mAdapter.notifyDataSetChanged();
+            iiiiii++;
+        }
+    }
+
+
+    public static void addqrcodeView(View vi){
+
+        if (Create_card.isLayoutVisible()){
+            qrcodeHashmapfront.put(String.valueOf(iiiiiii),(ImageView) vi);
+            Create_card.setCurrentFragmentwithData(1,vi.getTag().toString());
+            Create_card.mAdapter.notifyDataSetChanged();
+            iiiiiii++;
+        } else {
+            qrcodeHashmapBack.put(String.valueOf(iiiiiiii),(ImageView)vi);
+            Create_card.setCurrentFragmentwithData(1,vi.getTag().toString());
+            Create_card.mAdapter.notifyDataSetChanged();
+            iiiiiiii++;
+        }
+    }
+
+
+
 
 
     @Nullable
@@ -113,6 +180,14 @@ public class ToolbarFragment extends Fragment{
         builder = new AlertDialog.Builder(context);
         textArrayFront =new HashMap<>();
         textArrayBack =new HashMap<>();
+        iconHashmapfront=new HashMap<>();
+        iconHashmapback=new HashMap<>();
+
+        imageViewHashMapfront=new HashMap<>();
+        imageViewHashMapback=new HashMap<>();
+        qrcodeHashmapBack=new HashMap<>();
+        qrcodeHashmapfront=new HashMap<>();
+
 
 
         text.setOnClickListener(new View.OnClickListener() {
@@ -134,8 +209,6 @@ public class ToolbarFragment extends Fragment{
                         }
                     }
                 }
-
-
             }
         });
 

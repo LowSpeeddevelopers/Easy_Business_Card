@@ -108,7 +108,6 @@
                         android:id="@+id/view5"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-
                         android:layout_weight="1"/>
                 </LinearLayout>
             </LinearLayout>
@@ -128,6 +127,14 @@
                 android:src="@drawable/cardone" />
 
 
+            <ImageView
+                android:id="@+id/deleteiconfront"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:src="@drawable/delete"
+                android:visibility="gone" />
+
+
         </AbsoluteLayout>
 
         <AbsoluteLayout
@@ -142,6 +149,13 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="4dp"
                 android:src="@drawable/rear" />
+
+            <ImageView
+                android:id="@+id/deleteiconback"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:visibility="gone"
+                android:src="@drawable/delete" />
         </AbsoluteLayout>
     </LinearLayout>
 

@@ -21,7 +21,7 @@ import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 
-public class IconFragment extends Fragment implements showDialogue {
+public class IconFragment extends Fragment {
     private TextView save,select;
     private EditText size;
     Context context;
@@ -44,20 +44,14 @@ public class IconFragment extends Fragment implements showDialogue {
         select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                iconDialoguebox();
 
             }
         });
-
-
-
-
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String iconsize = size.getText().toString();
-
-
                 if(TextUtils.isEmpty(iconsize)){
                     size.setError("Field empty!");
                     size.requestFocus();
@@ -72,7 +66,7 @@ public class IconFragment extends Fragment implements showDialogue {
     }
 
 
-    private int iconDialogueboxxxxxxxxxxxxxxxxxxxx(){
+    private int iconDialoguebox(){
        AlertDialog.Builder builder =new AlertDialog.Builder(context);
 
         View dialogueView=getLayoutInflater().inflate(R.layout.select_icon,null);
@@ -152,15 +146,13 @@ public class IconFragment extends Fragment implements showDialogue {
     }
     private void setImage(ImageView image) {
         ImageView imageView=new ImageView(context);
-        imageView.setTag("draggable imageview");
+        imageView.setTag(String.valueOf(ToolbarFragment.imageiconcounter));
+        ToolbarFragment.imageiconcounter++;
         imageView.setImageDrawable(image.getDrawable());
         imageView.setOnLongClickListener(new LongPresslistener(context));
-        if(Create_card.absoluteLayoutFront.getVisibility()==View.VISIBLE){
-            Create_card.absoluteLayoutFront.addView(imageView);
-        }
-        else {
-            Create_card.absoluteLayoutBack.addView(imageView);
-        }
+
+        ToolbarFragment.addView(imageView);
+        ToolbarFragment.addIconView(imageView);
 
         alertDialogDismiss();
     }
@@ -169,11 +161,5 @@ public class IconFragment extends Fragment implements showDialogue {
         if (alertDialog.isShowing()){
             alertDialog.dismiss();
         }
-    }
-
-    @Override
-    public void BuildDialogue(Context context) {
-        iconDialogueboxxxxxxxxxxxxxxxxxxxx();
-        Toast.makeText(context,"hi",Toast.LENGTH_SHORT).show();
     }
 }

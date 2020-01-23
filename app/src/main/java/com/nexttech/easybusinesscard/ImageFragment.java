@@ -55,10 +55,6 @@ public class ImageFragment extends Fragment {
             }
         });
 
-
-
-
-
         //size=view.findViewById(R.id.btn_size);
 
         /*size.setOnClickListener(new View.OnClickListener() {
@@ -76,7 +72,7 @@ public class ImageFragment extends Fragment {
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-       View dialogueView=getLayoutInflater().inflate(R.layout.browse_image,null);
+        View dialogueView=getLayoutInflater().inflate(R.layout.browse_image,null);
         browseImage = dialogueView.findViewById(R.id.btn_browse_image);
         saveImage= dialogueView.findViewById(R.id.btn_save_image);
         cancelImage= dialogueView.findViewById(R.id.btn_cancel_image);
@@ -124,21 +120,13 @@ public class ImageFragment extends Fragment {
 
     private void setImage(ImageView image) {
         ImageView imageView=new ImageView(context);
-        imageView.setTag("draggable imageview");
+        imageView.setTag(String.valueOf(ToolbarFragment.imagetagcounter));
+        ToolbarFragment.imagetagcounter++;
         imageView.setImageDrawable(image.getDrawable());
         imageView.setOnLongClickListener(new LongPresslistener(context));
-        if(Create_card.absoluteLayoutFront.getVisibility()==View.VISIBLE){
-            Create_card.absoluteLayoutFront.addView(imageView);
-
-
-        }
-        else {
-            Create_card.absoluteLayoutBack.addView(imageView);
-        }
-
+        ToolbarFragment.addView(imageView);
+        ToolbarFragment.addImageView(imageView);
         alertDialogDismiss();
-
-
     }
 
     private void alertDialogDismiss(){
