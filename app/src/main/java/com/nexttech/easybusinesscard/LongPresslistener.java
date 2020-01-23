@@ -158,10 +158,13 @@ public class LongPresslistener implements View.OnLongClickListener,View.OnDragLi
 
                 if(x>restrectedpointx && x<restrectedpointxend && y>restrectedpointy && y<restrectedpointyend){
                     container.removeView(vw);
+                    vw.setVisibility(View.GONE);
+                    Create_card.viewPager.setCurrentItem(0);
+                    Create_card.mAdapter.notifyDataSetChanged();
                     if(Create_card.isLayoutVisible()){
-                        ToolbarFragment.textArrayFront.remove(vw.getTag());
+                        //ToolbarFragment.textArrayFront.remove(vw.getTag());
                     }else {
-                        ToolbarFragment.textArrayBack.remove(vw.getTag());
+                        //ToolbarFragment.textArrayBack.remove(vw.getTag());
                     }
                 }
 
