@@ -14,19 +14,12 @@
         android:layout_height="?attr/actionBarSize"
         android:padding="10dp"
         android:text="browse"/>
-
-    <EditText
+    <SeekBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="size"
-        android:id="@+id/imagesize"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:text="save"/>
-
+        android:min="100"
+        android:max="500"
+        android:id="@+id/seekbar"/>
 
 
 </LinearLayout>

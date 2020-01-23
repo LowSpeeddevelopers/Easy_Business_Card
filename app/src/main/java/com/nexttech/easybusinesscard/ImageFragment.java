@@ -17,8 +17,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsoluteLayout;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,9 +35,12 @@ public class ImageFragment extends Fragment {
     public static ImageView viewImage;
 
     private Button  browseImage, saveImage, cancelImage,selectIcon;
+    SeekBar seekBar;
 
 
     AlertDialog alertDialog;
+
+    ImageView imageView;
 
 
 
@@ -47,11 +52,31 @@ public class ImageFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = getLayoutInflater().inflate(R.layout.fragment_image, container,false);
         browse=view.findViewById(R.id.btn_browse);
+        seekBar=view.findViewById(R.id.seekbar);
+
 
         browse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 imageDialoguebox();
+            }
+        });
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
+                AbsoluteLayout.LayoutParams imageParams=new AbsoluteLayout.LayoutParams(progress,progress,imageView.getScrollX(),imageView.getScrollY());
+                imageView.setLayoutParams(imageParams);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
             }
         });
 
@@ -64,8 +89,8 @@ public class ImageFragment extends Fragment {
             }
         });*/
         return view;
-    }
 
+    }
 
 
     private boolean imageDialoguebox(){
@@ -119,7 +144,7 @@ public class ImageFragment extends Fragment {
 
 
     private void setImage(ImageView image) {
-        ImageView imageView=new ImageView(context);
+        imageView=new ImageView(context);
         imageView.setTag(String.valueOf(ToolbarFragment.imagetagcounter));
         ToolbarFragment.imagetagcounter++;
         imageView.setImageDrawable(image.getDrawable());
@@ -134,9 +159,6 @@ public class ImageFragment extends Fragment {
             alertDialog.dismiss();
         }
     }
-
-
-
 
 
 }
