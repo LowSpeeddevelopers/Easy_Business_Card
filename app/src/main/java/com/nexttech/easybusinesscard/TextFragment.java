@@ -23,8 +23,6 @@ import yuku.ambilwarna.AmbilWarnaDialog;
 
 public class TextFragment extends Fragment {
 
-
-
         @Override
         public void setUserVisibleHint(boolean isVisibleToUser) {
             super.setUserVisibleHint(isVisibleToUser);
@@ -53,15 +51,12 @@ public class TextFragment extends Fragment {
         }
 
 
-
     Context context;
     public TextFragment(Context context){
         this.context=context;
     }
 
     EditText text,textSize;
-
-
 
     TextView textFont, textColor, textStyle, textBackground,savetext,savesize;
 
@@ -80,7 +75,7 @@ public class TextFragment extends Fragment {
         savetext=view.findViewById(R.id.saveText);
         savesize=view.findViewById(R.id.saveSize);
 
-      savetext.setOnClickListener(new View.OnClickListener() {
+        savetext.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
               String ttext=text.getText().toString();
@@ -230,8 +225,6 @@ public class TextFragment extends Fragment {
                 popupMenu.show();
             }
         });
-
-
         return view;
     }
 
@@ -252,7 +245,6 @@ public class TextFragment extends Fragment {
                 } else {
                     ToolbarFragment.textArrayBack.get(Create_card.tageeee).setTextColor(color);
                 }
-
             }
         });
         colorPicker.show();

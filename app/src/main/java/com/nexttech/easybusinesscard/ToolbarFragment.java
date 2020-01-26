@@ -191,8 +191,6 @@ public class ToolbarFragment extends Fragment{
         bitmapfront = ((BitmapDrawable) Create_card.mainTempFront.getDrawable()).getBitmap();
         bitmapback = ((BitmapDrawable)Create_card.mainTempBack.getDrawable()).getBitmap();
 
-
-
         text.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -210,7 +208,6 @@ public class ToolbarFragment extends Fragment{
             public void onClick(View v) {
                 Create_card.viewPager.setCurrentItem(2);
                 Create_card.mAdapter.notifyDataSetChanged();
-
             }
         });
 
@@ -230,10 +227,10 @@ public class ToolbarFragment extends Fragment{
             }
         });
 
+
         preview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
 
                 if (Create_card.absoluteLayoutFront.getVisibility()==View.VISIBLE){
                     backside.setText("Front Side");
@@ -245,7 +242,6 @@ public class ToolbarFragment extends Fragment{
                     Create_card.absoluteLayoutBack.setVisibility(View.GONE);
                 }
                 ShowDialogebox();
-
             }
         });
 
@@ -253,8 +249,6 @@ public class ToolbarFragment extends Fragment{
         backside.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
 
                 if (Create_card.absoluteLayoutFront.getVisibility()==View.VISIBLE){
                     backside.setText("Front Side");
@@ -265,8 +259,6 @@ public class ToolbarFragment extends Fragment{
                     Create_card.absoluteLayoutFront.setVisibility(View.VISIBLE);
                     Create_card.absoluteLayoutBack.setVisibility(View.GONE);
                 }
-
-
             }
         });
 
@@ -298,7 +290,6 @@ public class ToolbarFragment extends Fragment{
 
         imageView.setImageBitmap(Create_card.loadBitmapFromView(Create_card.absoluteLayoutFront));
         front.setTypeface(null, Typeface.BOLD);
-
 
 
 
@@ -339,8 +330,6 @@ public class ToolbarFragment extends Fragment{
         alertDialogDismiss();
         alertDialog.show();
 
-
-
     }
     private void alertDialogDismiss(){
         if (alertDialog.isShowing()){
@@ -349,6 +338,4 @@ public class ToolbarFragment extends Fragment{
 
         }
     }
-
-
 }

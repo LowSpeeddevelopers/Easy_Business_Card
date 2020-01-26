@@ -38,8 +38,6 @@
                     android:focusable="true"
                     android:textSize="20sp"
                     android:background="#EEEEEE"/>
-
-
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -104,8 +102,7 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
                 app:cardCornerRadius="5dp"
-                app:cardElevation="10dp"
-                >
+                app:cardElevation="10dp">
                 <TextView
                     android:id="@+id/saveSize"
                     android:layout_width="match_parent"
@@ -116,8 +113,6 @@
                     android:gravity="center"/>
 
             </androidx.cardview.widget.CardView>
-
-
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
@@ -129,8 +124,7 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
                 app:cardCornerRadius="5dp"
-                app:cardElevation="10dp"
-                >
+                app:cardElevation="10dp">
 
                 <TextView
                     android:id="@+id/textFont"
@@ -172,7 +166,6 @@
                     android:textSize="20sp"
                     android:background="#EEEEEE"/>
             </androidx.cardview.widget.CardView>
-
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
@@ -200,9 +193,6 @@
                     android:textSize="20sp"
                     android:background="#EEEEEE"/>
             </androidx.cardview.widget.CardView>
-
-
-
         </LinearLayout>
     </ScrollView>
 </FrameLayout>

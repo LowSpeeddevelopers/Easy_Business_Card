@@ -40,7 +40,6 @@
 
                     android:background="#EEEEEE"/>
             </androidx.cardview.widget.CardView>
-
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
@@ -120,8 +119,6 @@
                     android:textSize="20sp"
                     android:background="#EEEEEE"/>
             </androidx.cardview.widget.CardView>
-
-
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -203,9 +200,6 @@
                     android:textSize="20sp"
                     android:background="#EEEEEE"/>
             </androidx.cardview.widget.CardView>
-
-
-
         </LinearLayout>
     </ScrollView>
 

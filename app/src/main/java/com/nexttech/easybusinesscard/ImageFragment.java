@@ -32,14 +32,13 @@ import java.io.IOException;
 public class ImageFragment extends Fragment {
     TextView browse;
     Context context;
+    public static ImageView viewImage;
 
+    private Button  browseImage, saveImage, cancelImage,selectIcon;
 
     AlertDialog alertDialog;
     SeekBar seekBar;
-    public static ImageView imageView;
-
-
-
+    ImageView imageView;
 
     public ImageFragment(Context context){
         this.context=context;
@@ -50,6 +49,14 @@ public class ImageFragment extends Fragment {
         View view = getLayoutInflater().inflate(R.layout.fragment_image, container,false);
         browse=view.findViewById(R.id.btn_browse);
         seekBar=view.findViewById(R.id.seekbar);
+
+        browse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imageDialoguebox();
+            }
+        });
+
         //size=view.findViewById(R.id.btn_size);
 
         /*size.setOnClickListener(new View.OnClickListener() {
@@ -58,18 +65,6 @@ public class ImageFragment extends Fragment {
                 Toast.makeText(getContext(),"Size",Toast.LENGTH_LONG).show();
             }
         });*/
-        browse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                CropImage.activity()
-                        .setCropShape(CropImageView.CropShape.RECTANGLE)
-                        .start(((Activity)context));
-
-
-            }
-
-        });
 
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -92,11 +87,60 @@ public class ImageFragment extends Fragment {
 
         return view;
     }
-public static void callfunction(){
 
-}
 
-    public void setImage(ImageView image) {
+    private boolean imageDialoguebox(){
+
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        View dialogueView=getLayoutInflater().inflate(R.layout.browse_image,null);
+        browseImage = dialogueView.findViewById(R.id.btn_browse_image);
+        saveImage= dialogueView.findViewById(R.id.btn_save_image);
+        cancelImage= dialogueView.findViewById(R.id.btn_cancel_image);
+        viewImage= dialogueView.findViewById(R.id.image_view);
+
+        builder.setView(null);
+        builder.setView(dialogueView);
+        alertDialog=builder.create();
+        alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+        alertDialog.setCanceledOnTouchOutside(true);
+        alertDialogDismiss();
+        alertDialog.show();
+
+
+
+        browseImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                CropImage.activity()
+                        .setCropShape(CropImageView.CropShape.RECTANGLE)
+                        .start(((Activity)context));
+
+
+            }
+
+        });
+        saveImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setImage(viewImage);
+
+            }
+        });
+        cancelImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialogDismiss();
+            }
+        });
+
+        return true;
+    }
+
+
+    private void setImage(ImageView image) {
         imageView=new ImageView(context);
         seekBar.setProgress(imageView.getHeight());
         imageView.setTag(String.valueOf(ToolbarFragment.imagetagcounter));
@@ -119,4 +163,5 @@ public static void callfunction(){
             alertDialog.dismiss();
         }
     }
+
 }
