@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -34,12 +35,20 @@ public class ImageFragment extends Fragment {
     Context context;
 
 
-    AlertDialog alertDialog;
-    SeekBar seekBar;
-    public static ImageView imageView;
+
+    static SeekBar seekBar;
+    public static ImageView imageViev = null;
 
 
-
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(isVisibleToUser){
+            imageViev=new ImageView(context);
+            imageViev.setOnLongClickListener(new LongPresslistener(context));
+            imageViev.setTag(String.valueOf(ToolbarFragment.imagetagcounter));
+        }
+    }
 
     public ImageFragment(Context context){
         this.context=context;
@@ -50,14 +59,7 @@ public class ImageFragment extends Fragment {
         View view = getLayoutInflater().inflate(R.layout.fragment_image, container,false);
         browse=view.findViewById(R.id.btn_browse);
         seekBar=view.findViewById(R.id.seekbar);
-        //size=view.findViewById(R.id.btn_size);
 
-        /*size.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(),"Size",Toast.LENGTH_LONG).show();
-            }
-        });*/
         browse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,7 +77,10 @@ public class ImageFragment extends Fragment {
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                ImageView imageView = (ImageView) Create_card.absoluteLayoutFront.findViewWithTag(imageViev.getTag().toString());
+                Log.e("imagetag",imageView.getTag().toString());
                 AbsoluteLayout.LayoutParams imageParams2 = new AbsoluteLayout.LayoutParams(3*progress, 3*progress, imageView.getScrollX(), imageView.getScrollY());
+
                 imageView.setLayoutParams(imageParams2);
             }
 
@@ -92,31 +97,23 @@ public class ImageFragment extends Fragment {
 
         return view;
     }
-public static void callfunction(){
 
-}
 
-    public void setImage(ImageView image) {
-        imageView=new ImageView(context);
-        seekBar.setProgress(imageView.getHeight());
-        imageView.setTag(String.valueOf(ToolbarFragment.imagetagcounter));
+    public static void setImage(Bitmap image) {
+
+        seekBar.setProgress(45);
+
         ToolbarFragment.imagetagcounter++;
-        imageView.setImageDrawable(image.getDrawable());
-        imageView.setOnLongClickListener(new LongPresslistener(context));
-        imageView.setOnClickListener(new View.OnClickListener() {
+        imageViev.setImageBitmap(image);
+        imageViev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Create_card.setCurrentFragmentwithData(3,imageView.getTag().toString());
+                Create_card.setCurrentFragmentwithData(3,imageViev.getTag().toString());
             }
         });
-        ToolbarFragment.addView(imageView);
-        ToolbarFragment.addImageView(imageView);
-        alertDialogDismiss();
+        ToolbarFragment.addView(imageViev);
+        ToolbarFragment.addImageView(imageViev);
+
     }
 
-    private void alertDialogDismiss(){
-        if (alertDialog.isShowing()){
-            alertDialog.dismiss();
-        }
-    }
 }
