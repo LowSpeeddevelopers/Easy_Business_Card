@@ -61,7 +61,7 @@ public class Create_card extends AppCompatActivity{
     LinearLayout mainlayout;
     AlertDialog.Builder builder;
     AlertDialog alertDialog;
-    ImageView mainTempFront, mainTempBack, ivLockCard;
+    public static ImageView mainTempFront, mainTempBack, ivLockCard;
 
     public static ImageView deltebuttonfront,deltebuttonback;
 
@@ -109,6 +109,9 @@ public class Create_card extends AppCompatActivity{
 
 
         mainlayout=findViewById(R.id.mainlayout);
+        mainTempFront.setImageDrawable(getResources().getDrawable(R.drawable.cardone));
+        mainTempBack.setImageDrawable(getResources().getDrawable(R.drawable.rear));
+
 
 
 

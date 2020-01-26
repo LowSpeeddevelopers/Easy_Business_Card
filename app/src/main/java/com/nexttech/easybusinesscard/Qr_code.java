@@ -5,21 +5,25 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
 import androidx.fragment.app.Fragment;
 
+import android.text.style.AbsoluteSizeSpan;
 import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.AbsoluteLayout;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,13 +31,15 @@ import com.google.zxing.WriterException;
 
 
 public class Qr_code extends Fragment {
-    TextView qr_size,qr_generate,qr_from_cv;
+    TextView qr_generate,qr_from_cv;
     Context context;
     Bitmap bitmap;
     String TAG="GenerateQRCode";
     String input_value;
     QRGEncoder qrgEncoder;
 
+    SeekBar seekBar;
+    ImageView imageView;
 
     public Qr_code(Context context) {
         this.context=context;
@@ -45,18 +51,30 @@ public class Qr_code extends Fragment {
         //return inflater.inflate(R.layout.fragment_qr_code, container, false);
         View view = getLayoutInflater().inflate(R.layout.fragment_qr_code, null);
 
-        qr_size=view.findViewById(R.id.qrcode_size);
+        seekBar=view.findViewById(R.id.seekbar);
         qr_generate=view.findViewById(R.id.qrcode_generate);
         qr_from_cv=view.findViewById(R.id.qrcode_from_cv);
 
 
-
-        qr_size.setOnClickListener(new View.OnClickListener() {
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(), "clicked on Size", Toast.LENGTH_SHORT).show();
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                AbsoluteLayout.LayoutParams imageParams2 = new AbsoluteLayout.LayoutParams(5*progress, 5*progress,imageView.getScrollX(),imageView.getScrollY());
+                Log.e("progress",String.valueOf(seekBar.getProgress()));
+                imageView.setLayoutParams(imageParams2);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
             }
         });
+
 
         qr_generate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,10 +98,17 @@ public class Qr_code extends Fragment {
                 setQR.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        ImageView imageView = new ImageView(context);
+                         imageView = new ImageView(context);
                         imageView.setTag(String.valueOf(ToolbarFragment.qrimagecounter));
                         ToolbarFragment.qrimagecounter++;
+                        seekBar.setProgress(imageView.getHeight());
                         imageView.setOnLongClickListener(new LongPresslistener(context));
+                        imageView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Create_card.setCurrentFragmentwithData(4,imageView.getTag().toString());
+                            }
+                        });
                         imageView.setImageBitmap(bitmap);
                         ViewGroup.LayoutParams layoutParams = new LinearLayout.LayoutParams(280,280);
                         imageView.setLayoutParams(layoutParams);

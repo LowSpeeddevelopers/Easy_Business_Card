@@ -73,7 +73,7 @@ public class ImageFragment extends Fragment {
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                AbsoluteLayout.LayoutParams imageParams2 = new AbsoluteLayout.LayoutParams(progress, progress, imageView.getScrollX(), imageView.getScrollY());
+                AbsoluteLayout.LayoutParams imageParams2 = new AbsoluteLayout.LayoutParams(3*progress, 3*progress, imageView.getScrollX(), imageView.getScrollY());
                 imageView.setLayoutParams(imageParams2);
             }
 

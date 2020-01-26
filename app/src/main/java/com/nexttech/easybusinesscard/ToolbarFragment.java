@@ -2,8 +2,10 @@ package com.nexttech.easybusinesscard;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.LayoutInflater;
@@ -22,38 +24,8 @@ import java.util.HashMap;
 public class ToolbarFragment extends Fragment{
 
 
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if(isVisibleToUser){
-            if (Create_card.isLayoutVisible()){
 
-                Create_card.absoluteLayoutFront.removeAllViews();
 
-                for(int j=0;j<textArrayFront.size();j++){
-                    if(textArrayFront.get(String.valueOf(j))!=null){
-                        addView(textArrayFront.get(String.valueOf(j)));
-                    }
-                }
-                //textviewdone
-                //do for icon
-                //do for image
-                //do for qrcode
-            } else {
-                Create_card.absoluteLayoutBack.removeAllViews();
-                for(int j=0;j<textArrayBack.size();j++){
-                    if(textArrayBack.get(String.valueOf(j))!=null){
-                        addView(textArrayBack.get(String.valueOf(j)));
-                    }
-                }
-                //textviewdone
-                //do for icon
-                //do for image
-                //do for qrcode
-
-            }
-        }
-    }
 
     private Context context;
 
@@ -87,6 +59,9 @@ public class ToolbarFragment extends Fragment{
     public static HashMap<String,ImageView> iconHashmapback;
     public static HashMap<String,ImageView> qrcodeHashmapfront;
     public static HashMap<String,ImageView> qrcodeHashmapBack;
+    public static Bitmap bitmapfront;
+    public static Bitmap bitmapback;
+
 
 
     public void addTextView() {
@@ -113,11 +88,13 @@ public class ToolbarFragment extends Fragment{
         });
         if (Create_card.isLayoutVisible()){
             textArrayFront.put(String.valueOf(i),mTextView);
+            addView(mTextView);
             Create_card.setCurrentFragmentwithData(1,mTextView.getTag().toString());
             Create_card.mAdapter.notifyDataSetChanged();
             i++;
         } else {
             textArrayBack.put(String.valueOf(ii),mTextView);
+            addView(mTextView);
             Create_card.setCurrentFragmentwithData(1,mTextView.getTag().toString());
             Create_card.mAdapter.notifyDataSetChanged();
             ii++;
@@ -206,11 +183,13 @@ public class ToolbarFragment extends Fragment{
         textArrayBack =new HashMap<>();
         iconHashmapfront=new HashMap<>();
         iconHashmapback=new HashMap<>();
-
         imageViewHashMapfront=new HashMap<>();
         imageViewHashMapback=new HashMap<>();
         qrcodeHashmapBack=new HashMap<>();
         qrcodeHashmapfront=new HashMap<>();
+
+        bitmapfront = ((BitmapDrawable) Create_card.mainTempFront.getDrawable()).getBitmap();
+        bitmapback = ((BitmapDrawable)Create_card.mainTempBack.getDrawable()).getBitmap();
 
 
 
