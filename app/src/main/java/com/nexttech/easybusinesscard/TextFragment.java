@@ -29,7 +29,6 @@ public class TextFragment extends Fragment {
         public void setUserVisibleHint(boolean isVisibleToUser) {
             super.setUserVisibleHint(isVisibleToUser);
                 if (isVisibleToUser) {
-
                     if (Create_card.isLayoutVisible()){
                         TextView tv = ToolbarFragment.textArrayFront.get(Create_card.tageeee);
                         Log.e("page tag",Create_card.tageeee);

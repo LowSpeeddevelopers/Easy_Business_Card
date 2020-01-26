@@ -22,6 +22,39 @@ import java.util.HashMap;
 public class ToolbarFragment extends Fragment{
 
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(isVisibleToUser){
+            if (Create_card.isLayoutVisible()){
+
+                Create_card.absoluteLayoutFront.removeAllViews();
+
+                for(int j=0;j<textArrayFront.size();j++){
+                    if(textArrayFront.get(String.valueOf(j))!=null){
+                        addView(textArrayFront.get(String.valueOf(j)));
+                    }
+                }
+                //textviewdone
+                //do for icon
+                //do for image
+                //do for qrcode
+            } else {
+                Create_card.absoluteLayoutBack.removeAllViews();
+                for(int j=0;j<textArrayBack.size();j++){
+                    if(textArrayBack.get(String.valueOf(j))!=null){
+                        addView(textArrayBack.get(String.valueOf(j)));
+                    }
+                }
+                //textviewdone
+                //do for icon
+                //do for image
+                //do for qrcode
+
+            }
+        }
+    }
+
     private Context context;
 
     public ToolbarFragment(Context context){
@@ -46,31 +79,22 @@ public class ToolbarFragment extends Fragment{
     public static int imagetagcounter = 0;
     public static int imageiconcounter = 0;
     public static int qrimagecounter = 0;
-
-
     public static HashMap<String,TextView> textArrayFront;
     public static HashMap<String,TextView> textArrayBack;
-
     public static HashMap<String,ImageView> imageViewHashMapfront;
     public static HashMap<String,ImageView> imageViewHashMapback;
-
     public static HashMap<String,ImageView> iconHashmapfront;
     public static HashMap<String,ImageView> iconHashmapback;
-
     public static HashMap<String,ImageView> qrcodeHashmapfront;
     public static HashMap<String,ImageView> qrcodeHashmapBack;
 
 
-
-
-
-
-    public void addTextView(){
+    public void addTextView() {
         final TextView mTextView = new TextView(context);
         mTextView.setText("new Text");
-        if(Create_card.isLayoutVisible()){
+        if (Create_card.isLayoutVisible()) {
             mTextView.setTag(String.valueOf(i));
-        }else {
+        } else {
             mTextView.setTag(String.valueOf(ii));
         }
 
@@ -196,19 +220,7 @@ public class ToolbarFragment extends Fragment{
             public void onClick(View view) {
 
                 addTextView();
-                if (Create_card.isLayoutVisible()){
-                    for(int j=0;j<textArrayFront.size();j++){
-                        if(textArrayFront.get(String.valueOf(j))!=null){
-                            addView(textArrayFront.get(String.valueOf(j)));
-                        }
-                    }
-                } else {
-                    for(int j=0;j<textArrayBack.size();j++){
-                        if(textArrayBack.get(String.valueOf(j))!=null){
-                            addView(textArrayBack.get(String.valueOf(j)));
-                        }
-                    }
-                }
+
             }
         });
 

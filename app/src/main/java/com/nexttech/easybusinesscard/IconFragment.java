@@ -154,6 +154,12 @@ public class IconFragment extends Fragment {
         imageView=new ImageView(context);
         seekBar.setProgress(imageView.getHeight());
         imageView.setTag(String.valueOf(ToolbarFragment.imageiconcounter));
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         ToolbarFragment.imageiconcounter++;
         imageView.setImageDrawable(image.getDrawable());
         imageView.setOnLongClickListener(new LongPresslistener(context));
