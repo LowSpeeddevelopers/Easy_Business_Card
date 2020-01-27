@@ -432,7 +432,7 @@ public class Create_card extends AppCompatActivity{
                 else
                 {
 
-                    ImageFragment.setImage().setImageBitmap(bitmap);
+                    ImageFragment.setImage(bitmap);
                 }
 
             } catch (IOException e) {
