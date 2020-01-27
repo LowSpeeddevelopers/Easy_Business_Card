@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -34,7 +35,7 @@ public class TextFragment extends Fragment {
                         Log.e("page tag",Create_card.tageeee);
                         if(tv!=null){
                             text.setText(tv.getText());
-                            textSize.setText(String.valueOf(Math.round(tv.getTextSize())));
+                            seekbarTextSize.setProgress(Math.round(tv.getTextSize()));
                         }
 
                     } else {
@@ -42,7 +43,7 @@ public class TextFragment extends Fragment {
                         Log.e("page tag",Create_card.tageeee);
                         if(tv!=null){
                             text.setText(tv.getText());
-                            textSize.setText(String.valueOf(Math.round(tv.getTextSize())));
+                            seekbarTextSize.setProgress(Math.round(tv.getTextSize()));
                         }
 
 
@@ -59,11 +60,11 @@ public class TextFragment extends Fragment {
         this.context=context;
     }
 
-    EditText text,textSize;
+    EditText text;
 
+    SeekBar seekbarTextSize;
 
-
-    TextView textFont, textColor, textStyle, textBackground,savetext,savesize;
+    TextView textFont, textColor, textStyle, savetext;
 
 
     @Nullable
@@ -73,12 +74,11 @@ public class TextFragment extends Fragment {
 
 
         text = view.findViewById(R.id.text);
-        textSize = view.findViewById(R.id.textSize);
+        seekbarTextSize = view.findViewById(R.id.seekbarTextSize);
         textFont = view.findViewById(R.id.textFont);
         textColor = view.findViewById(R.id.textColor);
         textStyle = view.findViewById(R.id.textStyle);
         savetext=view.findViewById(R.id.saveText);
-        savesize=view.findViewById(R.id.saveSize);
 
       savetext.setOnClickListener(new View.OnClickListener() {
           @Override
@@ -96,26 +96,27 @@ public class TextFragment extends Fragment {
           }
       });
 
-      savesize.setOnClickListener(new View.OnClickListener() {
+      seekbarTextSize.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
           @Override
-          public void onClick(View v) {
-              String tSize = textSize.getText().toString();
+          public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
               if (Create_card.isLayoutVisible()){
-                  ToolbarFragment.textArrayFront.get(Create_card.tageeee).setTextSize(TypedValue.COMPLEX_UNIT_PX,Float.parseFloat(tSize));
+                  ToolbarFragment.textArrayFront.get(Create_card.tageeee).setTextSize(TypedValue.COMPLEX_UNIT_PX,progress);
               } else {
-                  ToolbarFragment.textArrayBack.get(Create_card.tageeee).setTextSize(TypedValue.COMPLEX_UNIT_PX,Float.parseFloat(tSize));
+                  ToolbarFragment.textArrayBack.get(Create_card.tageeee).setTextSize(TypedValue.COMPLEX_UNIT_PX,progress);
               }
+          }
 
+          @Override
+          public void onStartTrackingTouch(SeekBar seekBar) {
+
+          }
+
+
+              @Override
+              public void onStopTrackingTouch(SeekBar seekBar) {
           }
       });
 
-
-        textSize.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
 
         textFont.setOnClickListener(new View.OnClickListener() {
             @Override
