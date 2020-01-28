@@ -8,36 +8,29 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.AbsoluteLayout;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
-import com.theartofdev.edmodo.cropper.CropImage;
-
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -351,48 +344,45 @@ public class Create_card extends AppCompatActivity{
         temp1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setBackgroundImage(R.drawable.cardone);
+                setBackgroundImage(R.drawable.cardone, R.drawable.rear);
             }
         });
         temp1rear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setBackgroundImage(R.drawable.rear);
+                setBackgroundImage(R.drawable.cardone, R.drawable.rear);
             }
         });
         temp2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setBackgroundImage(R.drawable.temp2);
+                setBackgroundImage(R.drawable.temp2, R.drawable.temp2rear);
             }
         });
         temp2rear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setBackgroundImage(R.drawable.temp2rear);
+                setBackgroundImage(R.drawable.temp2, R.drawable.temp2rear);
 
             }
         });
         temp3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setBackgroundImage(R.drawable.temp3);
+                setBackgroundImage(R.drawable.temp3, R.drawable.temp3rear);
             }
         });
         temp3rear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setBackgroundImage(R.drawable.temp3rear);
+                setBackgroundImage(R.drawable.temp3, R.drawable.temp3rear);
             }
         });
 
     }
-    private void setBackgroundImage(int imageResource){
-        if (absoluteLayoutFront.getVisibility()==View.VISIBLE){
-            mainTempFront.setImageDrawable(getResources().getDrawable(imageResource));
-        } else {
-            mainTempBack.setImageDrawable(getResources().getDrawable(imageResource));
-        }
+    private void setBackgroundImage(int imageResourceFront, int imageResourceBack){
+        mainTempFront.setImageDrawable(getResources().getDrawable(imageResourceFront));
+        mainTempBack.setImageDrawable(getResources().getDrawable(imageResourceBack));
         alertDialogDismiss();
     }
     private void alertDialogDismiss(){
