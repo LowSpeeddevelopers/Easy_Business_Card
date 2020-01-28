@@ -199,7 +199,7 @@ public class Create_card extends AppCompatActivity{
 
             }
         });
-        ivLockCard.setOnClickListener(new View.OnClickListener() {
+        export.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

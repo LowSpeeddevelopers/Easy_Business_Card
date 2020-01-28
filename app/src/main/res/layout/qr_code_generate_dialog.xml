@@ -48,19 +48,6 @@
                 android:textStyle="bold"
                 android:gravity="center" />
             <TextView
-                android:id="@+id/Qr_set_dialog"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-
-                android:clickable="true"
-                android:textColor="#000"
-                android:focusable="true"
-                android:background="#EEEEEE"
-                android:layout_height="match_parent"
-                android:text="Set"
-                android:textStyle="bold"
-                android:gravity="center"/>
-            <TextView
                 android:id="@+id/Qr_generate_dialog"
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -72,7 +59,19 @@
                 android:text="Generate"
                 android:textStyle="bold"
                 android:gravity="center"/>
+            <TextView
+                android:id="@+id/Qr_set_dialog"
+                android:layout_width="0dp"
+                android:layout_weight="1"
 
+                android:clickable="true"
+                android:textColor="#000"
+                android:focusable="true"
+                android:background="#EEEEEE"
+                android:layout_height="match_parent"
+                android:text="Done"
+                android:textStyle="bold"
+                android:gravity="center"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
