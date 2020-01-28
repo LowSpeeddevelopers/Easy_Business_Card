@@ -84,6 +84,4 @@
             android:textColor="@android:color/holo_blue_dark"/>
 
     </LinearLayout>
-
-
 </androidx.cardview.widget.CardView>

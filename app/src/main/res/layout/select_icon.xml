@@ -90,9 +90,6 @@
                 android:src="@drawable/facebook" />
 
         </LinearLayout>
-
-
-
     </LinearLayout>
 </ScrollView>
 </androidx.cardview.widget.CardView>

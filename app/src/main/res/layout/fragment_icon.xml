@@ -6,7 +6,6 @@
     android:orientation="vertical"
     tools:context=".IconFragment">
 
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -26,7 +25,5 @@
         android:min="50"
         android:max="500"
         android:progress="100"/>
-
-
 
 </LinearLayout>

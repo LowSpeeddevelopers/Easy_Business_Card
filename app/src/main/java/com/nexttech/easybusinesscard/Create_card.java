@@ -82,7 +82,6 @@ public class Create_card extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_card);
         importtemp=findViewById(R.id.importtemp);
-        ivLockCard=findViewById(R.id.iv_lock_card);
         share=findViewById(R.id.share);
         export=findViewById(R.id.export);
         browse=findViewById(R.id.browse);
@@ -193,7 +192,7 @@ public class Create_card extends AppCompatActivity{
 
             }
         });
-        ivLockCard.setOnClickListener(new View.OnClickListener() {
+        export.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

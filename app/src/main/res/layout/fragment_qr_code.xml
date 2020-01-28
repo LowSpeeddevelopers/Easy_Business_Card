@@ -85,9 +85,6 @@
                     android:textSize="20sp"
                     android:background="#EEEEEE"/>
             </androidx.cardview.widget.CardView>
-
-
         </LinearLayout>
     </ScrollView>
-
 </FrameLayout>

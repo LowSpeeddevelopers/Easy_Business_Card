@@ -65,11 +65,7 @@ public class LongPresslistener implements View.OnLongClickListener,View.OnDragLi
             restrectedpointy = Math.round(Create_card.deltebuttonback.getY());
             restrectedpointxend=restrectedpointx+Create_card.deltebuttonfront.getWidth();
             restrectedpointyend=restrectedpointy+Create_card.deltebuttonfront.getHeight();
-
-
         }
-
-
 
         // Defines a variable to store the action type for the incoming event
         int action = event.getAction();
@@ -110,7 +106,6 @@ public class LongPresslistener implements View.OnLongClickListener,View.OnDragLi
                 Log.e("x",Integer.toString(x));
                 Log.e("y",Integer.toString(y));
 
-
                 return true;
 
             case DragEvent.ACTION_DRAG_EXITED:
@@ -146,14 +141,10 @@ public class LongPresslistener implements View.OnLongClickListener,View.OnDragLi
                 Log.e("set y",Float.toString(vw.getY()));
 
 
-
-
                 AbsoluteLayout container = (AbsoluteLayout) v;
                 container.addView(vw);//Add the dragged view
                 vw.setVisibility(View.VISIBLE);//finally set Visibility to VISIBLE
                 // Returns true. DragEvent.getResult() will return true.
-
-
 
 
                 if(x>restrectedpointx && x<restrectedpointxend && y>restrectedpointy && y<restrectedpointyend){
