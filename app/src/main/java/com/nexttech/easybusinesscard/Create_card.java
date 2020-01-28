@@ -48,8 +48,6 @@ public class Create_card extends AppCompatActivity{
             viewPager.setCurrentItem(0);
         }
     }
-
-    public static boolean isClick;
     private Bitmap bitmapFront, bitmapBack;
     TextView importtemp,share,export,browse;
 
@@ -58,7 +56,7 @@ public class Create_card extends AppCompatActivity{
     LinearLayout mainlayout;
     AlertDialog.Builder builder;
     AlertDialog alertDialog;
-    public static ImageView mainTempFront, mainTempBack, ivLockCard;
+    public static ImageView mainTempFront, mainTempBack;
 
     public static ImageView deltebuttonfront,deltebuttonback;
 
@@ -88,7 +86,6 @@ public class Create_card extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_card);
         importtemp=findViewById(R.id.importtemp);
-        ivLockCard=findViewById(R.id.iv_lock_card);
         share=findViewById(R.id.share);
         export=findViewById(R.id.export);
         browse=findViewById(R.id.browse);
@@ -104,11 +101,9 @@ public class Create_card extends AppCompatActivity{
         deltebuttonfront=findViewById(R.id.deleteiconfront);
         deltebuttonback=findViewById(R.id.deleteiconback);
 
-
         mainlayout=findViewById(R.id.mainlayout);
         mainTempFront.setImageDrawable(getResources().getDrawable(R.drawable.cardone));
         mainTempBack.setImageDrawable(getResources().getDrawable(R.drawable.rear));
-
 
         ViewTreeObserver vto = absoluteLayoutFront.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -413,37 +408,7 @@ public class Create_card extends AppCompatActivity{
         String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
         return Uri.parse(path);
     }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK){
-            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-
-            Uri imageUri = result.getUri();
-
-            try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), imageUri);
-
-                if(isClick){
-                    //viewIcon.setImageBitmap(bitmap);
-                }
-                else
-                {
-
-                    ImageFragment.setImage(bitmap);
-                }
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        } else {
-            Toast.makeText(this, "Something went wrong!!!", Toast.LENGTH_SHORT).show();
-        }
-
-    }
 
     public static void setCurrentFragmentwithData(int position,String tag){
         tageeee = tag;
