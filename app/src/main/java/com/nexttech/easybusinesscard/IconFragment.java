@@ -15,6 +15,7 @@ import android.widget.AbsoluteLayout;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -152,7 +153,6 @@ public class IconFragment extends Fragment {
     }
     private void setImage(ImageView image) {
         imageView=new ImageView(context);
-        seekBar.setProgress(imageView.getHeight());
         imageView.setTag(String.valueOf(ToolbarFragment.imageiconcounter));
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,6 +163,9 @@ public class IconFragment extends Fragment {
 
             }
         });
+        ViewGroup.LayoutParams imageParams = new LinearLayout.LayoutParams(30, 30);
+        imageView.setLayoutParams(imageParams);
+        seekBar.setProgress(30);
         ToolbarFragment.imageiconcounter++;
         imageView.setImageDrawable(image.getDrawable());
         imageView.setOnLongClickListener(new LongPresslistener(context));

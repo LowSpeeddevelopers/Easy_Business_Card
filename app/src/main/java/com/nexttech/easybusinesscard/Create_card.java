@@ -20,6 +20,7 @@ import android.view.ViewTreeObserver;
 import android.widget.AbsoluteLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,9 +29,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
+import com.itextpdf.text.BadElementException;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.PdfWriter;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -52,6 +63,9 @@ public class Create_card extends AppCompatActivity{
     LinearLayout mainlayout;
     AlertDialog.Builder builder;
     AlertDialog alertDialog;
+
+    RadioButton radioPicture, radioPdf;
+
     public static ImageView mainTempFront, mainTempBack, ivLockCard;
 
     public static ImageView deltebuttonfront,deltebuttonback;
@@ -160,21 +174,6 @@ public class Create_card extends AppCompatActivity{
                 showShareDialougeBox();
             }
         });
-        export.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(b){
-                    focusview.setBackgroundColor(Color.WHITE);
-                    v3.setBackgroundColor(Color.BLACK);
-                    focusview=v3;
-                    b=true;
-                }else {
-                    v3.setBackgroundColor(Color.BLACK);
-                    focusview=v3;
-                    b=true;
-                }
-            }
-        });
         browse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -195,16 +194,25 @@ public class Create_card extends AppCompatActivity{
         export.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(b){
+                    focusview.setBackgroundColor(Color.WHITE);
+                    v3.setBackgroundColor(Color.BLACK);
+                    focusview=v3;
+                    b=true;
+                }else {
+                    v3.setBackgroundColor(Color.BLACK);
+                    focusview=v3;
+                    b=true;
+                }
 
                 TextView tvFront, tvBack, tvBoth, tvCancel;
-
                 dialogueView = getLayoutInflater().inflate(R.layout.save_image_dialog, null);
-
                 tvFront = dialogueView.findViewById(R.id.tv_front);
                 tvBack = dialogueView.findViewById(R.id.tv_back);
                 tvBoth = dialogueView.findViewById(R.id.tv_both);
                 tvCancel = dialogueView.findViewById(R.id.tv_cancel);
-
+                radioPicture = dialogueView.findViewById(R.id.radio_picture);
+                radioPdf = dialogueView.findViewById(R.id.radio_pdf);
                 builder.setView(null);
                 builder.setView(dialogueView);
                 alertDialog=builder.create();
@@ -235,7 +243,11 @@ public class Create_card extends AppCompatActivity{
                     @Override
                     public void onClick(View v) {
                         if(isStoragePermissionGranted()){
-                            SaveImage(bitmapFront, "Front");
+                            if (radioPicture.isSelected()){
+                                SaveImage(bitmapFront, "Front");
+                            } else {
+                                savePDF(bitmapFront, "Front");
+                            }
                         }
                     }
                 });
@@ -244,7 +256,12 @@ public class Create_card extends AppCompatActivity{
                     @Override
                     public void onClick(View v) {
                         if(isStoragePermissionGranted()){
-                            SaveImage(bitmapBack, "Back");
+                            if (radioPicture.isSelected()){
+                                SaveImage(bitmapBack, "Back");
+                            } else {
+                                savePDF(bitmapBack, "Back");
+                            }
+
                         }
                     }
                 });
@@ -253,8 +270,14 @@ public class Create_card extends AppCompatActivity{
                     @Override
                     public void onClick(View v) {
                         if(isStoragePermissionGranted()){
-                            SaveImage(bitmapFront, "Front");
-                            SaveImage(bitmapBack, "Back");
+                            if (radioPicture.isSelected()){
+                                SaveImage(bitmapFront, "Front");
+                                SaveImage(bitmapBack, "Back");
+                            } else {
+                                savePDF(bitmapFront, "Front");
+                                savePDF(bitmapBack, "Back");
+                            }
+
                         }
                     }
                 });
@@ -303,24 +326,93 @@ public class Create_card extends AppCompatActivity{
 
         String root = Environment.getExternalStorageDirectory().toString();
 
-        String saveDirectoryName = "Business Cards";
+        String saveDirectoryName = "Business Cards/Picture";
 
         File myDir = new File(root + "/"+saveDirectoryName);
         myDir.mkdirs();
-        Random generator = new Random();
-        String fname = System.currentTimeMillis()+" "+ name +".jpg";
+        String fname = System.currentTimeMillis()+" "+ name +".png";
         File file = new File (myDir, fname);
         if (file.exists ()) file.delete ();
         try {
             FileOutputStream out = new FileOutputStream(file);
-            finalBitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+            finalBitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
             out.flush();
             out.close();
             Toast.makeText(this, "Save to "+saveDirectoryName, Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
+
+
+    private void savePDF(Bitmap bitmap, String name){
+        String root = Environment.getExternalStorageDirectory().toString();
+
+        String saveDirectoryName = "Business Cards/PDF";
+
+        File myDir = new File(root + "/"+saveDirectoryName);
+        myDir.mkdirs();
+        String fname = System.currentTimeMillis()+" "+ name +".pdf";
+        File file = new File (myDir, fname);
+
+        try
+        {
+            Document document = new Document(new Rectangle(bitmap.getWidth(), bitmap.getHeight()),0, 0, 0, 0);
+
+            PdfWriter.getInstance(document, new FileOutputStream(file));
+            document.open();
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            byte[] byteArray = stream.toByteArray();
+            addImage(document,byteArray);
+            document.close();
+
+            Toast.makeText(this, "Save to "+saveDirectoryName, Toast.LENGTH_SHORT).show();
+        }
+
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    private static void addImage(Document document,byte[] byteArray)
+    {
+        Image image = null;
+        try
+        {
+            image = Image.getInstance(byteArray);
+            float scaler = ((document.getPageSize().getWidth() - document.leftMargin()
+                    - document.rightMargin() - 0) / image.getWidth()) * 100; // 0 means you have no indentation. If you have any, change it.
+            image.scalePercent(scaler);
+            image.setAlignment(Image.ALIGN_CENTER | Image.ALIGN_TOP);
+        }
+        catch (BadElementException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        catch (MalformedURLException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        catch (IOException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        // image.scaleAbsolute(150f, 150f);
+        try
+        {
+            document.add(image);
+        } catch (DocumentException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
     void ShowDialogebox()
     {
         ImageView temp1, temp1rear, temp2,temp2rear, temp3, temp3rear;
@@ -403,7 +495,7 @@ public class Create_card extends AppCompatActivity{
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
         String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
-        return Uri.parse(path);
+         return Uri.parse(path);
     }
 
 

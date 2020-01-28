@@ -100,9 +100,13 @@ public class TextFragment extends Fragment {
           @Override
           public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
               if (Create_card.isLayoutVisible()){
-                  ToolbarFragment.textArrayFront.get(Create_card.tageeee).setTextSize(TypedValue.COMPLEX_UNIT_PX,progress);
+                  if(ToolbarFragment.textArrayFront.get(Create_card.tageeee)!=null){
+                      ToolbarFragment.textArrayFront.get(Create_card.tageeee).setTextSize(TypedValue.COMPLEX_UNIT_PX,progress);
+                  }
               } else {
-                  ToolbarFragment.textArrayBack.get(Create_card.tageeee).setTextSize(TypedValue.COMPLEX_UNIT_PX,progress);
+                  if(ToolbarFragment.textArrayBack.get(Create_card.tageeee)!=null){
+                      ToolbarFragment.textArrayBack.get(Create_card.tageeee).setTextSize(TypedValue.COMPLEX_UNIT_PX,progress);
+                  }
               }
           }
 
