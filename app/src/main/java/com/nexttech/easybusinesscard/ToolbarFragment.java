@@ -135,12 +135,12 @@ public class ToolbarFragment extends Fragment{
 
         if (Create_card.isLayoutVisible()){
             imageViewHashMapfront.put(String.valueOf(iiiii),(ImageView) vi);
-            Create_card.setCurrentFragmentwithData(1,vi.getTag().toString());
+            Create_card.setCurrentFragmentwithData(3,vi.getTag().toString());
             Create_card.mAdapter.notifyDataSetChanged();
             iiiii++;
         } else {
             imageViewHashMapback.put(String.valueOf(iiiiii),(ImageView)vi);
-            Create_card.setCurrentFragmentwithData(1,vi.getTag().toString());
+            Create_card.setCurrentFragmentwithData(3,vi.getTag().toString());
             Create_card.mAdapter.notifyDataSetChanged();
             iiiiii++;
         }
@@ -151,12 +151,12 @@ public class ToolbarFragment extends Fragment{
 
         if (Create_card.isLayoutVisible()){
             qrcodeHashmapfront.put(String.valueOf(iiiiiii),(ImageView) vi);
-            Create_card.setCurrentFragmentwithData(1,vi.getTag().toString());
+            Create_card.setCurrentFragmentwithData(4,vi.getTag().toString());
             Create_card.mAdapter.notifyDataSetChanged();
             iiiiiii++;
         } else {
             qrcodeHashmapBack.put(String.valueOf(iiiiiiii),(ImageView)vi);
-            Create_card.setCurrentFragmentwithData(1,vi.getTag().toString());
+            Create_card.setCurrentFragmentwithData(4,vi.getTag().toString());
             Create_card.mAdapter.notifyDataSetChanged();
             iiiiiiii++;
         }
