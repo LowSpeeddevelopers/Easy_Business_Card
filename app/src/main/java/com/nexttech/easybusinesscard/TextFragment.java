@@ -3,6 +3,8 @@ package com.nexttech.easybusinesscard;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -78,23 +80,46 @@ public class TextFragment extends Fragment {
         textFont = view.findViewById(R.id.textFont);
         textColor = view.findViewById(R.id.textColor);
         textStyle = view.findViewById(R.id.textStyle);
-        savetext=view.findViewById(R.id.saveText);
+        //savetext=view.findViewById(R.id.saveText);
 
-      savetext.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-              String ttext=text.getText().toString();
+        text.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-              Log.e("tagggggggggg",Create_card.tageeee);
+            }
 
-              if (Create_card.isLayoutVisible()){
-                  ToolbarFragment.textArrayFront.get(Create_card.tageeee).setText(ttext);
-              } else {
-                  ToolbarFragment.textArrayBack.get(Create_card.tageeee).setText(ttext);
-              }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-          }
-      });
+                if (Create_card.isLayoutVisible()){
+                    ToolbarFragment.textArrayFront.get(Create_card.tageeee).setText(s);
+                } else {
+                    ToolbarFragment.textArrayBack.get(Create_card.tageeee).setText(s);
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+//      savetext.setOnClickListener(new View.OnClickListener() {
+//          @Override
+//          public void onClick(View v) {
+//              String ttext=text.getText().toString();
+//
+//              Log.e("tagggggggggg",Create_card.tageeee);
+//
+//              if (Create_card.isLayoutVisible()){
+//                  ToolbarFragment.textArrayFront.get(Create_card.tageeee).setText(ttext);
+//              } else {
+//                  ToolbarFragment.textArrayBack.get(Create_card.tageeee).setText(ttext);
+//              }
+//
+//          }
+//      });
 
       seekbarTextSize.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
           @Override
