@@ -177,7 +177,7 @@ public class ToolbarFragment extends Fragment{
         qrcode=vi.findViewById(R.id.qrcode);
         preview=vi.findViewById(R.id.preview);
         backside=vi.findViewById(R.id.backside);
-        text2=vi.findViewById(R.id.text2);
+        //text2=vi.findViewById(R.id.text2);
         builder = new AlertDialog.Builder(context);
         textArrayFront =new HashMap<>();
         textArrayBack =new HashMap<>();
@@ -262,13 +262,13 @@ public class ToolbarFragment extends Fragment{
             }
         });
 
-        text2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Create_card.viewPager.setCurrentItem(5);
-                Create_card.mAdapter.notifyDataSetChanged();
-            }
-        });
+//        text2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Create_card.viewPager.setCurrentItem(5);
+//                Create_card.mAdapter.notifyDataSetChanged();
+//            }
+//        });
         return vi;
     }
 
