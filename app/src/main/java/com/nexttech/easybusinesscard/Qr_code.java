@@ -10,6 +10,8 @@ import android.os.Bundle;
 
 import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
+
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.text.style.AbsoluteSizeSpan;
@@ -37,7 +39,7 @@ public class Qr_code extends Fragment {
     String TAG="GenerateQRCode";
     String input_value;
     QRGEncoder qrgEncoder;
-
+    CardView card_seekBar;
     SeekBar seekBar;
     ImageView imageView;
 
@@ -54,6 +56,7 @@ public class Qr_code extends Fragment {
         seekBar=view.findViewById(R.id.seekbar);
         qr_generate=view.findViewById(R.id.qrcode_generate);
         qr_from_cv=view.findViewById(R.id.qrcode_from_cv);
+        card_seekBar=view.findViewById(R.id.card_seekBar);
 
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -83,6 +86,7 @@ public class Qr_code extends Fragment {
                 dialog.setContentView(R.layout.qr_code_generate_dialog);
                 dialog.setTitle("Generate QR Code");
 
+
                 final ImageView generated_qr = dialog.findViewById(R.id.qr);
                 final EditText qr_edit_text = dialog.findViewById(R.id.qr_ed_text);
                 TextView close_dailog =  dialog.findViewById(R.id.Close_dialog);
@@ -93,6 +97,7 @@ public class Qr_code extends Fragment {
                     @Override
                     public void onClick(View v) {
                         dialog.dismiss();
+
                     }
                 });
                 setQR.setOnClickListener(new View.OnClickListener() {
@@ -107,6 +112,10 @@ public class Qr_code extends Fragment {
                             @Override
                             public void onClick(View v) {
                                 Create_card.setCurrentFragmentwithData(4,imageView.getTag().toString());
+                                if (card_seekBar.getVisibility() == View.GONE){
+                                    card_seekBar.setVisibility(View.VISIBLE);
+                                }
+
                             }
                         });
                         imageView.setImageBitmap(bitmap);
@@ -114,6 +123,8 @@ public class Qr_code extends Fragment {
                         imageView.setLayoutParams(layoutParams);
                         ToolbarFragment.addView(imageView);
                         ToolbarFragment.addqrcodeView(imageView);
+                        card_seekBar.setVisibility(View.VISIBLE);
+
                         dialog.dismiss();
                     }
                 });
@@ -132,6 +143,7 @@ public class Qr_code extends Fragment {
                             int smallerDimenson=width<height?width:height;
                             smallerDimenson=smallerDimenson*3/4;
                             qrgEncoder=new QRGEncoder(input_value,null, QRGContents.Type.TEXT,smallerDimenson);
+
                             try {
                                 bitmap=qrgEncoder.encodeAsBitmap();
                                 generated_qr.setImageBitmap(bitmap);
@@ -147,6 +159,7 @@ public class Qr_code extends Fragment {
                     }
                 });
                 dialog.show();
+
                 Toast.makeText(getContext(), "Clicked On Generate QR", Toast.LENGTH_SHORT).show();
             }
         });

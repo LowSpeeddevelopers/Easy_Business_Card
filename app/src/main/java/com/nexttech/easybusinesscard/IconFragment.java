@@ -157,6 +157,9 @@ public class IconFragment extends Fragment {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (seekBar.getVisibility() == View.GONE){
+                    seekBar.setVisibility(View.VISIBLE);
+                }
 
             }
         });
@@ -166,6 +169,7 @@ public class IconFragment extends Fragment {
 
         ToolbarFragment.addView(imageView);
         ToolbarFragment.addIconView(imageView);
+        seekBar.setVisibility(View.VISIBLE);
         Create_card.viewPager.setCurrentItem(2);
         Create_card.mAdapter.notifyDataSetChanged();
 
