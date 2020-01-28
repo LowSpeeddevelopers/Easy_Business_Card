@@ -243,9 +243,9 @@ public class Create_card extends AppCompatActivity{
                     @Override
                     public void onClick(View v) {
                         if(isStoragePermissionGranted()){
-                            if (radioPicture.isSelected()){
+                            if (radioPicture.isChecked()){
                                 SaveImage(bitmapFront, "Front");
-                            } else {
+                            } else{
                                 savePDF(bitmapFront, "Front");
                             }
                         }
@@ -256,7 +256,7 @@ public class Create_card extends AppCompatActivity{
                     @Override
                     public void onClick(View v) {
                         if(isStoragePermissionGranted()){
-                            if (radioPicture.isSelected()){
+                            if (radioPicture.isChecked()){
                                 SaveImage(bitmapBack, "Back");
                             } else {
                                 savePDF(bitmapBack, "Back");
@@ -270,7 +270,7 @@ public class Create_card extends AppCompatActivity{
                     @Override
                     public void onClick(View v) {
                         if(isStoragePermissionGranted()){
-                            if (radioPicture.isSelected()){
+                            if (radioPicture.isChecked()){
                                 SaveImage(bitmapFront, "Front");
                                 SaveImage(bitmapBack, "Back");
                             } else {
