@@ -259,7 +259,7 @@ public class ToolbarFragment extends Fragment{
                     Create_card.absoluteLayoutFront.setVisibility(View.VISIBLE);
                     Create_card.absoluteLayoutBack.setVisibility(View.GONE);
                 }
-            }
+              }
         });
 
 //        text2.setOnClickListener(new View.OnClickListener() {

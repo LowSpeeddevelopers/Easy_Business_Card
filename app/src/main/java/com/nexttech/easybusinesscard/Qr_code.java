@@ -103,27 +103,33 @@ public class Qr_code extends Fragment {
                 setQR.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                         imageView = new ImageView(context);
-                        imageView.setTag(String.valueOf(ToolbarFragment.qrimagecounter));
-                        ToolbarFragment.qrimagecounter++;
-                        seekBar.setProgress(imageView.getHeight());
-                        imageView.setOnLongClickListener(new LongPresslistener(context));
-                        imageView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Create_card.setCurrentFragmentwithData(4,imageView.getTag().toString());
-                                if (card_seekBar.getVisibility() == View.GONE){
-                                    card_seekBar.setVisibility(View.VISIBLE);
-                                }
+                        if(bitmap!= null) {
+                            imageView = new ImageView(context);
+                            imageView.setTag(String.valueOf(ToolbarFragment.qrimagecounter));
+                            ToolbarFragment.qrimagecounter++;
+                            seekBar.setProgress(imageView.getHeight());
+                            imageView.setOnLongClickListener(new LongPresslistener(context));
+                            imageView.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Create_card.setCurrentFragmentwithData(4, imageView.getTag().toString());
+                                    if (card_seekBar.getVisibility() == View.GONE) {
+                                        card_seekBar.setVisibility(View.VISIBLE);
+                                    }
 
-                            }
-                        });
-                        imageView.setImageBitmap(bitmap);
-                        ViewGroup.LayoutParams layoutParams = new LinearLayout.LayoutParams(280,280);
-                        imageView.setLayoutParams(layoutParams);
-                        ToolbarFragment.addView(imageView);
-                        ToolbarFragment.addqrcodeView(imageView);
-                        card_seekBar.setVisibility(View.VISIBLE);
+                                }
+                            });
+                            imageView.setImageBitmap(bitmap);
+                            ViewGroup.LayoutParams layoutParams = new LinearLayout.LayoutParams(280, 280);
+                            imageView.setLayoutParams(layoutParams);
+                            ToolbarFragment.addView(imageView);
+                            ToolbarFragment.addqrcodeView(imageView);
+                            card_seekBar.setVisibility(View.VISIBLE);
+                            bitmap = null;
+                        }
+                        else {
+                            Toast.makeText(getContext(), "not working", Toast.LENGTH_SHORT).show();
+                        }
 
                         dialog.dismiss();
                     }
