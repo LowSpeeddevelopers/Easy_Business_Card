@@ -92,9 +92,13 @@ public class TextFragment extends Fragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
                 if (Create_card.isLayoutVisible()){
-                    ToolbarFragment.textArrayFront.get(Create_card.tageeee).setText(s);
+                    if (ToolbarFragment.textArrayFront.size()>0) {
+                        ToolbarFragment.textArrayFront.get(Create_card.tageeee).setText(s);
+                    }
                 } else {
-                    ToolbarFragment.textArrayBack.get(Create_card.tageeee).setText(s);
+                    if (ToolbarFragment.textArrayBack.size()>0) {
+                        ToolbarFragment.textArrayBack.get(Create_card.tageeee).setText(s);
+                    }
                 }
 
             }
