@@ -1,6 +1,8 @@
 package com.nexttech.easybusinesscard;
 
 import android.Manifest;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -9,6 +11,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Binder;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -24,9 +27,11 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
 import com.itextpdf.text.BadElementException;
@@ -39,10 +44,13 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Random;
 
 public class Create_card extends AppCompatActivity{
@@ -130,6 +138,12 @@ public class Create_card extends AppCompatActivity{
 
         });
 
+
+
+        String appId = BuildConfig.APPLICATION_ID;
+        Log.e("applicaton id",appId);
+
+
         absoluteLayoutBack.setVisibility(View.GONE);
         ArrayList<Fragment> fragments=new ArrayList<>();
         fragments.add(new ToolbarFragment(this));
@@ -171,7 +185,103 @@ public class Create_card extends AppCompatActivity{
                     focusview=v2;
                     b=true;
                 }
-                showShareDialougeBox();
+
+
+
+
+
+
+
+
+
+
+
+
+                TextView tvFront, tvBack, tvBoth, tvCancel;
+                dialogueView = getLayoutInflater().inflate(R.layout.save_image_dialog, null);
+                tvFront = dialogueView.findViewById(R.id.tv_front);
+                tvBack = dialogueView.findViewById(R.id.tv_back);
+                tvBoth = dialogueView.findViewById(R.id.tv_both);
+                tvCancel = dialogueView.findViewById(R.id.tv_cancel);
+                radioPicture = dialogueView.findViewById(R.id.radio_picture);
+                radioPdf = dialogueView.findViewById(R.id.radio_pdf);
+                builder.setView(null);
+                builder.setView(dialogueView);
+                alertDialog=builder.create();
+                alertDialog.setCanceledOnTouchOutside(true);
+                alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                alertDialogDismiss();
+                alertDialog.show();
+
+                if (absoluteLayoutFront.getVisibility()==View.VISIBLE){
+                    absoluteLayoutFront.setVisibility(View.GONE);
+                    absoluteLayoutBack.setVisibility(View.VISIBLE);
+                } else{
+                    absoluteLayoutFront.setVisibility(View.VISIBLE);
+                    absoluteLayoutBack.setVisibility(View.GONE);
+                }
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bitmapFront = loadBitmapFromView(absoluteLayoutFront);
+                        bitmapBack = loadBitmapFromView(absoluteLayoutBack);
+                    }
+                }, 1000);
+
+
+
+                tvFront.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(isStoragePermissionGranted()){
+                            if (radioPicture.isChecked()){
+                                showShareDialougeBox(bitmapFront);
+                            } else{
+                                showSharePdfSingle(bitmapFront,"Front");
+                            }
+                        }
+                    }
+                });
+
+                tvBack.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(isStoragePermissionGranted()){
+                            if (radioPicture.isChecked()){
+                               showShareDialougeBox(bitmapBack);
+                            } else {
+                                showSharePdfSingle(bitmapBack,"Back");
+                            }
+
+                        }
+                    }
+                });
+
+                tvBoth.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(isStoragePermissionGranted()){
+                            if (radioPicture.isChecked()){
+                                showMultipleImageDialogueBox(bitmapFront,bitmapBack);
+                            } else {
+                                showShareMultiplePdf(bitmapFront,"Front",bitmapBack,"Back");
+                            }
+
+                        }
+                    }
+                });
+
+                tvCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        alertDialogDismiss();
+                    }
+                });
+
+
+
+
             }
         });
         browse.setOnClickListener(new View.OnClickListener() {
@@ -244,9 +354,13 @@ public class Create_card extends AppCompatActivity{
                     public void onClick(View v) {
                         if(isStoragePermissionGranted()){
                             if (radioPicture.isChecked()){
-                                SaveImage(bitmapFront, "Front");
+                                try {
+                                    saveImage(bitmapFront, "Front");
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
                             } else{
-                                savePDF(bitmapFront, "Front");
+                                savePDF(bitmapFront, "Front",false);
                             }
                         }
                     }
@@ -257,9 +371,13 @@ public class Create_card extends AppCompatActivity{
                     public void onClick(View v) {
                         if(isStoragePermissionGranted()){
                             if (radioPicture.isChecked()){
-                                SaveImage(bitmapBack, "Back");
+                                try {
+                                    saveImage(bitmapBack, "Back");
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
                             } else {
-                                savePDF(bitmapBack, "Back");
+                                savePDF(bitmapBack, "Back",false);
                             }
 
                         }
@@ -271,11 +389,16 @@ public class Create_card extends AppCompatActivity{
                     public void onClick(View v) {
                         if(isStoragePermissionGranted()){
                             if (radioPicture.isChecked()){
-                                SaveImage(bitmapFront, "Front");
-                                SaveImage(bitmapBack, "Back");
+                                try {
+                                    saveImage(bitmapFront, "Front");
+                                    saveImage(bitmapBack, "Back");
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+
                             } else {
-                                savePDF(bitmapFront, "Front");
-                                savePDF(bitmapBack, "Back");
+                                savePDF(bitmapFront, "Front",false);
+                                savePDF(bitmapBack, "Back",false);
                             }
 
                         }
@@ -322,43 +445,129 @@ public class Create_card extends AppCompatActivity{
         }
     }
 
-    private void SaveImage(Bitmap finalBitmap, String name) {
 
-        String root = Environment.getExternalStorageDirectory().toString();
 
-        String saveDirectoryName = "Business Cards/Picture";
 
-        File myDir = new File(root + "/"+saveDirectoryName);
-        myDir.mkdirs();
-        String fname = System.currentTimeMillis()+" "+ name +".png";
-        File file = new File (myDir, fname);
-        if (file.exists ()) file.delete ();
-        try {
-            FileOutputStream out = new FileOutputStream(file);
-            finalBitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
-            out.flush();
-            out.close();
-            Toast.makeText(this, "Save to "+saveDirectoryName, Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
-            e.printStackTrace();
+
+
+
+    private void saveImage(Bitmap bitmap, @NonNull String name) throws IOException {
+        boolean saved;
+        OutputStream fos;
+
+        String path = Environment.getExternalStorageDirectory().getAbsolutePath()+"/Easy Business Card/";
+
+
+
+
+        File pathfile = new File(path);
+        if(!pathfile.exists()){
+            pathfile.mkdir();
         }
 
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            ContentResolver resolver = this.getContentResolver();
+            ContentValues contentValues = new ContentValues();
+//            contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, name);
+//            contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/png");
+//            contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, "Easy Business Card/" + "Folder");
+
+            contentValues.put(MediaStore.Images.Media.TITLE, "title");
+            contentValues.put(MediaStore.Images.Media.DESCRIPTION, "description");
+
+
+            contentValues.put(MediaStore.Images.ImageColumns.BUCKET_ID, pathfile.toString().toLowerCase(Locale.US).hashCode());
+            contentValues.put(MediaStore.Images.ImageColumns.BUCKET_DISPLAY_NAME, pathfile.getName().toLowerCase(Locale.US));
+            contentValues.put("_data", pathfile.getAbsolutePath());
+
+
+
+            Uri imageUri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
+            fos = resolver.openOutputStream(imageUri);
+        } else {
+            String imagesDir = path + File.separator + "Folder";
+            File file = new File(imagesDir);
+            if (!file.exists()) {
+                file.mkdir();
+            }
+            File image = new File(imagesDir, name + ".png");
+            fos = new FileOutputStream(image);
+
+        }
+
+        saved = bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
+        if(saved){
+            Toast.makeText(this,"saved",Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(this,"failed",Toast.LENGTH_SHORT).show();
+        }
+
+        fos.flush();
+        fos.close();
+
+
+        Log.e("path",pathfile.getAbsolutePath());
     }
 
 
-    private void savePDF(Bitmap bitmap, String name){
-        String root = Environment.getExternalStorageDirectory().toString();
 
+
+
+
+
+
+
+//    private void SaveImage(Bitmap finalBitmap, String name) {
+//
+//        String root = Environment.getExternalStorageDirectory().toString();
+//        Log.e("data Dir",root);
+//
+//        String saveDirectoryName = "Business Cards/Picture";
+//
+//        File myDir = new File(root + "/"+saveDirectoryName);
+//
+//        Log.e("directory",String.valueOf(myDir.mkdirs()));
+//        String fname = System.currentTimeMillis()+" "+ name +".png";
+//        File file = new File (myDir, fname);
+//        if (file.exists ()){
+//            file.delete ();
+//        }
+//        try {
+//            FileOutputStream out = new FileOutputStream(file);
+//            finalBitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
+//            out.flush();
+//            out.close();
+//            Toast.makeText(this, "Save to "+saveDirectoryName, Toast.LENGTH_SHORT).show();
+//        } catch (Exception e) {
+//            Log.e("error saving pdf",e.getLocalizedMessage() +"\n"+ e.getMessage()+"\n"+e.getCause()+"\n"+e.getStackTrace());
+//        }
+//    }
+    File mydir;
+    String fname;
+    private void savePDF(Bitmap bitmap, String name,boolean isShare){
+        String root = Environment.getExternalStorageDirectory().toString();
         String saveDirectoryName = "Business Cards/PDF";
 
-        File myDir = new File(root + "/"+saveDirectoryName);
-        myDir.mkdirs();
-        String fname = System.currentTimeMillis()+" "+ name +".pdf";
-        File file = new File (myDir, fname);
+        mydir = new File(root + "/"+saveDirectoryName);
+        mydir.mkdirs();
+        if(isShare){
+            fname = name+".pdf";
+        }else {
+            fname = System.currentTimeMillis()+" "+ name +".pdf";
+        }
+
+
+        File file;
+        file = new File (mydir, fname);
+
+
 
         try
         {
             Document document = new Document(new Rectangle(bitmap.getWidth(), bitmap.getHeight()),0, 0, 0, 0);
+
+            Log.e("filepath",file.getAbsolutePath());
 
             PdfWriter.getInstance(document, new FileOutputStream(file));
             document.open();
@@ -481,13 +690,64 @@ public class Create_card extends AppCompatActivity{
             alertDialog.dismiss();
         }
     }
-    void showShareDialougeBox(){
 
-        BitmapDrawable drawable = (BitmapDrawable) mainTempFront.getDrawable();
-        Bitmap bitmap1 = drawable.getBitmap();
+
+    void showSharePdfSingle(Bitmap bitmap,String name){
+
+
+        Intent share = new Intent();
+        share.setAction(Intent.ACTION_SEND);
+        share.setType("application/pdf");
+        share.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        share.setFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+
+        savePDF(bitmap,name,true);
+        share.putExtra(Intent.EXTRA_STREAM, getUriFromPdf(mydir,fname));
+
+
+
+        startActivity(Intent.createChooser(share,"Share via"));
+    }
+    void showShareMultiplePdf(Bitmap front,String frontname,Bitmap back,String backname){
+        Intent share = new Intent();
+        share.setAction(Intent.ACTION_SEND_MULTIPLE);
+        share.setType("application/pdf");
+        share.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        share.setFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+
+        ArrayList<Uri> arrayList =new ArrayList<>();
+
+        savePDF(front,frontname,true);
+        arrayList.add(getUriFromPdf(mydir,fname));
+        savePDF(back,backname,true);
+        arrayList.add(getUriFromPdf(mydir,fname));
+        share.putParcelableArrayListExtra(Intent.EXTRA_STREAM, arrayList);
+
+        startActivity(Intent.createChooser(share,"Share via"));
+    }
+     Uri getUriFromPdf(File file,String name){
+        String check = file.getAbsolutePath()+"/"+name;
+        File outputFile = new File(check);
+
+
+        Uri uri;
+        try{
+             uri = FileProvider
+                    .getUriForFile(this, getApplicationContext().getPackageName() + ".provider", outputFile);
+        }catch (Exception e){
+             uri = Uri.fromFile(outputFile);
+        }
+
+         Log.e("uri",uri.toString());
+        return uri  ;
+    }
+
+    void showShareDialougeBox(Bitmap bitmap){
+
+
         Intent share = new Intent(Intent.ACTION_SEND);
         share.setType("image/*");
-        share.putExtra(Intent.EXTRA_STREAM, getImageUri(this,bitmap1));
+        share.putExtra(Intent.EXTRA_STREAM, getImageUri(this,bitmap));
         startActivity(Intent.createChooser(share,"Share via"));
     }
 
@@ -495,9 +755,29 @@ public class Create_card extends AppCompatActivity{
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
         String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
-         return Uri.parse(path);
+        Uri uri = Uri.parse(path);
+
+        grantUriPermission("com.nexttech.easybusinesscard", uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+//revoke permisions
+        revokeUriPermission(uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+         return uri;
     }
 
+
+    void showMultipleImageDialogueBox(Bitmap front,Bitmap back){
+
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_SEND_MULTIPLE);
+        intent.setType("image/*"); /* This example is sharing jpeg images. */
+
+        ArrayList<Uri> files = new ArrayList<Uri>();
+
+        files.add(getImageUri(this,front));
+        files.add(getImageUri(this,back));
+        intent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, files);
+        startActivity(Intent.createChooser(intent,"Share via"));
+    }
 
 
     public static void setCurrentFragmentwithData(int position,String tag){
