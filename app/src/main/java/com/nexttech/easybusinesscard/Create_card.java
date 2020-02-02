@@ -119,6 +119,8 @@ public class Create_card extends AppCompatActivity{
         deltebuttonfront=findViewById(R.id.deleteiconfront);
         deltebuttonback=findViewById(R.id.deleteiconback);
 
+
+
         mainlayout=findViewById(R.id.mainlayout);
         mainTempFront.setImageDrawable(getResources().getDrawable(R.drawable.cardone));
         mainTempBack.setImageDrawable(getResources().getDrawable(R.drawable.rear));
@@ -416,6 +418,8 @@ public class Create_card extends AppCompatActivity{
             }
         });
     }
+
+
 
     public static Bitmap loadBitmapFromView(View v) {
         Bitmap b = Bitmap.createBitmap(v.getWidth(), v.getHeight(), Bitmap.Config.ARGB_8888);

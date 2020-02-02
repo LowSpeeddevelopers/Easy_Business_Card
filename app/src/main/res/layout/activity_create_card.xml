@@ -132,11 +132,11 @@
 
             <ImageView
                 android:id="@+id/deleteiconfront"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+
                 android:src="@drawable/delete"
-                android:visibility="gone"
-                 />
+                android:visibility="gone" />
 
 
         </AbsoluteLayout>
@@ -155,8 +155,8 @@
                 android:src="@drawable/rear" />
             <ImageView
                 android:id="@+id/deleteiconback"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:visibility="gone"
                 android:src="@drawable/delete" />
         </AbsoluteLayout>

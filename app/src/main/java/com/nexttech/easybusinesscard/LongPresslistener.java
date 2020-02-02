@@ -50,6 +50,7 @@ public class LongPresslistener implements View.OnLongClickListener,View.OnDragLi
         int restrectedpointxend;
         int restrectedpointyend;
         if(Create_card.isLayoutVisible()){
+            //Create_card.deltebuttonfront.setg
             Create_card.deltebuttonfront.setVisibility(View.VISIBLE);
             Create_card.deltebuttonfront.setX(Create_card.xvalue);
             Create_card.deltebuttonfront.setY(Create_card.yvalue);
