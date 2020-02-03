@@ -49,7 +49,7 @@
                     android:id="@+id/imageview1"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:src="@drawable/Group_110" />
+                    android:src="@drawable/employee" />
 
 
 
@@ -84,7 +84,7 @@
                     android:id="@+id/imageview2"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:src="@drawable/Group_111"
+                    android:src="@drawable/employer"
                     />
                 <TextView
                     android:layout_width="match_parent"

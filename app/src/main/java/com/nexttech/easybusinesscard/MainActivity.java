@@ -1,11 +1,13 @@
 package com.nexttech.easybusinesscard;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
-import android.content.Intent;
+
+import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.TextView;
 
-import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,6 +15,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        startActivity(new Intent(this, Create_card.class));
+
+        setSupportActionBar(null);
+        Toolbar toolbar = findViewById(R.id.toolbarMainActivity);
+
+        TextView toolbartext = toolbar.findViewById(R.id.toolbartext);
+        toolbartext.setText("LOG IN");
+
+
     }
 }
