@@ -5,4 +5,5 @@
     <color name="colorAccent">#D81B60</color>
     <color name="buttonbackground">#5DBCD2</color>
     <color name="qrbackground">#FFFFFF</color>
+    <color name="buttonColor">#3B5998</color>
 </resources>
