@@ -1,6 +1,7 @@
 package com.nexttech.easybusinesscard;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Editable;
@@ -83,6 +84,7 @@ public class TextFragment extends Fragment {
         //savetext=view.findViewById(R.id.saveText);
 
         text.addTextChangedListener(new TextWatcher() {
+
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
