@@ -188,17 +188,6 @@ public class Create_card extends AppCompatActivity{
                     b=true;
                 }
 
-
-
-
-
-
-
-
-
-
-
-
                 TextView tvFront, tvBack, tvBoth, tvCancel;
                 dialogueView = getLayoutInflater().inflate(R.layout.save_image_dialog, null);
                 tvFront = dialogueView.findViewById(R.id.tv_front);

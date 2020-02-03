@@ -68,6 +68,17 @@ public class LongPresslistener implements View.OnLongClickListener,View.OnDragLi
             restrectedpointyend=restrectedpointy+Create_card.deltebuttonfront.getHeight();
         }
 
+
+        float minX = Math.round(Create_card.mainTempFront.getX());
+        float minY = Math.round(Create_card.mainTempFront.getY());
+        float maxX= Math.round(minX+Create_card.mainTempFront.getWidth());
+        float maxY = Math.round(minY+Create_card.mainTempFront.getHeight());
+
+        Log.e("minx",String.valueOf(minX));
+        Log.e("miny",String.valueOf(minY));
+        Log.e("maxx",String.valueOf(maxX));
+        Log.e("maxy",String.valueOf(maxY));
+
         // Defines a variable to store the action type for the incoming event
         int action = event.getAction();
         // Handles each of the expected events
@@ -134,8 +145,17 @@ public class LongPresslistener implements View.OnLongClickListener,View.OnDragLi
                 ViewGroup owner = (ViewGroup) vw.getParent();
                 owner.removeView(vw); //remove the dragged view
                 //caste the view into LinearLayout as our drag acceptable layout is LinearLayout
-                vw.setX(x-vw.getWidth()/2);
-                vw.setY(y-vw.getHeight()/2);
+
+
+                if( x< maxX-((vw.getWidth())/2) && y<maxY-((vw.getHeight()/2)) && x>((vw.getWidth())/2) && y>((vw.getHeight()/2))){
+                    Toast.makeText(context, "Cant Place There!", Toast.LENGTH_SHORT).show();
+                    vw.setX(x-vw.getWidth()/2);
+                    vw.setY(y-vw.getHeight()/2);
+                }
+
+
+
+
 
 
                 Log.e("set x",Float.toString(vw.getX()));
