@@ -6,4 +6,9 @@
     <color name="borderColor">#395A9C</color>
     <color name="buttonbackground">#5DBCD2</color>
     <color name="qrbackground">#FFFFFF</color>
+
+    <color name="mainbackgroundcolor">#3B5998</color>
+    <color name="textColor">#484444</color>
+
+    <color name="buttonColor">#3B5998</color>
 </resources>
