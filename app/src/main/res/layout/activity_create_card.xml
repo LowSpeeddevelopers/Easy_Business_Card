@@ -124,8 +124,8 @@
 
             <ImageView
                 android:id="@+id/main_temp_front"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="3.5in"
+                android:layout_height="2in"
                 android:layout_marginBottom="4dp"
                 android:src="@drawable/cardone" />
 
@@ -149,8 +149,8 @@
 
             <ImageView
                 android:id="@+id/main_temp_back"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="3.5in"
+                android:layout_height="2in"
                 android:layout_marginBottom="4dp"
                 android:src="@drawable/rear" />
             <ImageView

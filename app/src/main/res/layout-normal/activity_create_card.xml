@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    android:id="@+id/mainlayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -19,7 +21,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:foregroundGravity="center"
-            app:cardElevation="10dp">
+            app:cardElevation="10dp"
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -121,17 +124,20 @@
 
             <ImageView
                 android:id="@+id/main_temp_front"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="3.5in"
+                android:layout_height="2in"
                 android:layout_marginBottom="4dp"
                 android:src="@drawable/cardone" />
 
+
             <ImageView
                 android:id="@+id/deleteiconfront"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+
                 android:src="@drawable/delete"
                 android:visibility="gone" />
+
 
         </AbsoluteLayout>
 
@@ -143,15 +149,14 @@
 
             <ImageView
                 android:id="@+id/main_temp_back"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="3.5in"
+                android:layout_height="2in"
                 android:layout_marginBottom="4dp"
                 android:src="@drawable/rear" />
-
             <ImageView
                 android:id="@+id/deleteiconback"
-                android:layout_width="10dp"
-                android:layout_height="10dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:visibility="gone"
                 android:src="@drawable/delete" />
         </AbsoluteLayout>
@@ -163,13 +168,13 @@
         android:gravity="center"
         android:foregroundGravity="center"
         app:cardBackgroundColor="@color/buttonbackground"
-        app:cardElevation="10dp">
+        app:cardElevation="10dp"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
@@ -186,7 +191,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"/>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

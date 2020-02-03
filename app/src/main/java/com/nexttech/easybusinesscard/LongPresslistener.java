@@ -79,6 +79,11 @@ public class LongPresslistener implements View.OnLongClickListener,View.OnDragLi
         Log.e("maxx",String.valueOf(maxX));
         Log.e("maxy",String.valueOf(maxY));
 
+        Log.e("absoluteheight",String.valueOf(Create_card.absoluteLayoutFront.getHeight()));
+        Log.e("absoluteheight",String.valueOf(Create_card.absoluteLayoutFront.getWidth()));
+        Log.e("imageHeight",String.valueOf(Create_card.mainTempFront.getHeight()));
+        Log.e("imagewidth",String.valueOf(Create_card.mainTempFront.getWidth()));
+
         // Defines a variable to store the action type for the incoming event
         int action = event.getAction();
         // Handles each of the expected events

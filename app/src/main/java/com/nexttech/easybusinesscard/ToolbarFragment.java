@@ -48,19 +48,19 @@ public class ToolbarFragment extends Fragment{
     static int iiiiiii=0;
     static int iiiiiiii=0;
 
-    public static int imagetagcounter = 0;
-    public static int imageiconcounter = 0;
-    public static int qrimagecounter = 0;
-    public static HashMap<String,TextView> textArrayFront;
-    public static HashMap<String,TextView> textArrayBack;
-    public static HashMap<String,ImageView> imageViewHashMapfront;
-    public static HashMap<String,ImageView> imageViewHashMapback;
-    public static HashMap<String,ImageView> iconHashmapfront;
-    public static HashMap<String,ImageView> iconHashmapback;
-    public static HashMap<String,ImageView> qrcodeHashmapfront;
-    public static HashMap<String,ImageView> qrcodeHashmapBack;
-    public static Bitmap bitmapfront;
-    public static Bitmap bitmapback;
+    static int imagetagcounter = 0;
+    static int imageiconcounter = 0;
+    static int qrimagecounter = 0;
+    static HashMap<String,TextView> textArrayFront;
+    static HashMap<String,TextView> textArrayBack;
+    static HashMap<String,ImageView> imageViewHashMapfront;
+    static HashMap<String,ImageView> imageViewHashMapback;
+    static HashMap<String,ImageView> iconHashmapfront;
+    static HashMap<String,ImageView> iconHashmapback;
+    static HashMap<String,ImageView> qrcodeHashmapfront;
+    static HashMap<String,ImageView> qrcodeHashmapBack;
+    static Bitmap bitmapfront;
+    static Bitmap bitmapback;
 
 
 

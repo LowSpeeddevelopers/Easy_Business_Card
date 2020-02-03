@@ -6,6 +6,13 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <supports-screens
+        android:xlargeScreens="true"
+        android:smallScreens="false"
+        android:normalScreens="true"
+        android:largeScreens="true"
+        android:anyDensity="true"/>
+
 
     <application
         android:allowBackup="true"
