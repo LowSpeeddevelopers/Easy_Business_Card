@@ -24,5 +24,4 @@
         android:layout_marginTop="8dp"
         android:visibility="gone"
         android:max="150"/>
-
 </LinearLayout>

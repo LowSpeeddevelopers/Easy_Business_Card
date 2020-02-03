@@ -31,7 +31,6 @@ import android.widget.Toast;
 
 import com.google.zxing.WriterException;
 
-
 public class Qr_code extends Fragment {
     TextView qr_generate,qr_from_cv;
     Context context;
