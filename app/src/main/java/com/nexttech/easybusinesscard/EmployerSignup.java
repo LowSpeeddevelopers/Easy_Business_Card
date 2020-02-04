@@ -15,9 +15,9 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link EmployeeSignUp.OnFragmentInteractionListener} interface
+ * {@link EmployerSignup.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link EmployeeSignUp#newInstance} factory method to
+ * Use the {@link EmployerSignup#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class EmployerSignup extends Fragment {
