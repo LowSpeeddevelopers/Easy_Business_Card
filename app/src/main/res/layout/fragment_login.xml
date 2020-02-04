@@ -143,16 +143,17 @@
                         android:layout_height="wrap_content"
                         android:textColor="#000"
                         android:gravity="center"
-                        android:text="Do You have Account? | "/>
+                        android:text="Don't have an Account? | "/>
 
 
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:textColor="#000"
+                        android:textColor="@color/buttonColor"
                         android:gravity="center"
-                        android:text="  Forget Password ?"/>
+                        android:textStyle="bold"
+                        android:text="  Sign UP?"/>
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
