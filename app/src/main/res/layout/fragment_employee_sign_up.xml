@@ -143,14 +143,22 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
                         <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/employee_checkbox"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                         <TextView
-                            android:id="@+id/employee_checkbox"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="10sp"
-                            android:text="I have read understood, and agree to the terms and policies"/>
+                            android:text="I have read understood, and agree to the "/>
+                        <TextView
+                            android:id="@+id/employee_terms"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/buttonColor"
+                            android:textStyle="bold"
+                            android:textSize="10sp"
+                            android:text="terms and policies"/>
                     </LinearLayout>
                     <Button
                         android:id="@+id/btn_employee_signUp"
@@ -189,11 +197,12 @@
                             android:layout_width="20dp"
                             android:layout_height="wrap_content"/>
                         <TextView
-                            android:id="@+id/emploee_logIn"
+                            android:id="@+id/employee_logIn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="#174255"
+                            android:textColor="@color/buttonColor"
                             android:textSize="16sp"
+                            android:textStyle="bold"
                             android:text="Log In"/>
                     </LinearLayout>
             </LinearLayout>
