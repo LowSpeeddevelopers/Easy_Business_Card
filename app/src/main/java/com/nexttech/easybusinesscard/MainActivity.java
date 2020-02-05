@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public Fragment getItem(int pos) {
 
-            return new EmployeeSignUp(MainActivity.this);
+            return new signUp_Type(MainActivity.this);
         }
 
         @Override

@@ -4,33 +4,30 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f7fcff"
-    android:padding="16dp"
+    android:background="#fff"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".Login_fragment">
 
 
     <View
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:foregroundGravity="center"
             app:cardBackgroundColor="#FFF"
-            android:layout_margin="8dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
             card_view:cardCornerRadius="5dp"
             card_view:contentPadding="25dp"
-            card_view:cardElevation="5dp"
+            card_view:cardElevation="20dp"
             >
             <LinearLayout
                 android:layout_width="match_parent"
@@ -39,15 +36,14 @@
 
 
                 <EditText
-                    android:drawableStart="@drawable/mail_icon"
+                    android:drawableStart="@drawable/email"
                     android:id="@+id/login_email"
-
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:drawablePadding="16dp"
                     android:padding="10dp"
                     android:textColor="#000"
-                    android:hint="     Email"
-
+                    android:hint="Email"
                     android:textSize="20sp"
                     android:background="@drawable/edit_text_border"/>
 
@@ -63,7 +59,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="10dp"
-                    android:hint="     Password"
+                    android:hint="Password"
+                    android:drawablePadding="16dp"
                     android:textColor="#000"
                     android:textSize="20sp"
                     android:background="@drawable/edit_text_border"/>
@@ -166,11 +163,10 @@
 
 
 
-    </LinearLayout>
 
     <View
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_weight="1" />
 
 

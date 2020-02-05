@@ -1,6 +1,7 @@
 package com.nexttech.easybusinesscard;
 
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -16,7 +17,7 @@ import android.view.ViewGroup;
 public class signUp_Type extends Fragment {
 
 
-    public signUp_Type() {
+    public signUp_Type(Context context) {
         // Required empty public constructor
     }
 
