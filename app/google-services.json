@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "776469917337",
+    "firebase_url": "https://easy-business-card.firebaseio.com",
+    "project_id": "easy-business-card",
+    "storage_bucket": "easy-business-card.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:776469917337:android:a80c2806244bda84499208",
+        "android_client_info": {
+          "package_name": "com.nexttech.easybusinesscard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "776469917337-r20k5qcrkr14n5b52h70i5beua94vpfk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nexttech.easybusinesscard",
+            "certificate_hash": "ac67399d0266ee6b33681a37ff488b5b4878f0ed"
+          }
+        },
+        {
+          "client_id": "776469917337-erol6oesel4of54vqfc9fofti9inhet2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFWSAh-LYwdY2LvJum6iBcJVLloBfx8OM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "776469917337-erol6oesel4of54vqfc9fofti9inhet2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

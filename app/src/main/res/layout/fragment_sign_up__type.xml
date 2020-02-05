@@ -48,22 +48,39 @@
                 android:orientation="vertical">
 
 
-
-                <ImageView
-                    android:id="@+id/imageview1"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:src="@drawable/employee" />
-
-
-
-                <TextView
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="I'm an employee i want to work"
-                    android:textSize="11sp"
-                    android:textColor="@color/buttonColor"
-                    android:textAlignment="center"/>
+                    card_view:cardCornerRadius="5dp"
+                    card_view:cardElevation="5dp"
+                    android:layout_margin="5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <ImageView
+                            android:id="@+id/imageview1"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/employee" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="I'm an employee i want to work"
+                            android:textSize="11sp"
+                            android:textColor="@color/buttonColor"
+                            android:textAlignment="center"/>
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+
+
+
 
                 <Button
                     android:id="@+id/button1"
@@ -85,19 +102,42 @@
                 android:padding="5dp"
                 android:gravity="center"
                 android:orientation="vertical">
-                <ImageView
-                    android:id="@+id/imageview2"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:src="@drawable/employer"
-                    />
-                <TextView
+
+
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="I'm an employer i want to post jobs"
-                    android:textSize="11sp"
-                    android:textColor="@color/buttonColor"
-                    android:textAlignment="center"/>
+                    card_view:cardCornerRadius="5dp"
+                    card_view:cardElevation="5dp"
+                    android:layout_margin="5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+
+                        <ImageView
+                            android:id="@+id/imageview2"
+                            android:layout_width="150dp"
+                            android:layout_gravity="center"
+                            android:layout_height="150dp"
+                            android:src="@drawable/employer"
+                            />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="I'm an employer i want to post jobs"
+                            android:textSize="11sp"
+                            android:layout_gravity="center"
+                            android:textColor="@color/buttonColor"
+                            android:textAlignment="center"/>
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+
 
                 <Button
                     android:id="@+id/button2"
