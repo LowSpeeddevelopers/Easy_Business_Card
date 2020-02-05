@@ -28,10 +28,11 @@ public class EmployeeSignUp extends Fragment {
     Button empSignUp;
     CheckBox empCheckbox;
     TextView empLogIn, terms;
+    View view;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
-        final View view = getLayoutInflater().inflate(R.layout.fragment_employee_sign_up, null);
+        view = inflater.inflate(R.layout.fragment_employee_sign_up, container,false);
 
         empFirstName = view.findViewById(R.id.employee_firstName);
         empLastName = view.findViewById(R.id.employee_lastName);
@@ -45,6 +46,8 @@ public class EmployeeSignUp extends Fragment {
         terms = view.findViewById(R.id.employee_terms);
 
         empCheckbox = view.findViewById(R.id.employee_checkbox);
+
+        empSignUp = view.findViewById(R.id.btn_employee_signUp);
 
         empSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
