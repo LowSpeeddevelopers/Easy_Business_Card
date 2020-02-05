@@ -1,5 +1,9 @@
 package com.nexttech.easybusinesscard;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -7,19 +11,13 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-
-import android.content.Intent;
-import android.graphics.Color;
-import android.os.Bundle;
-import android.widget.TextView;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    ViewPager viewPager;
+    public static ViewPager viewPager;
 
     FirebaseAuth firebaseAuth;
     String userId;
@@ -57,14 +55,18 @@ public class MainActivity extends AppCompatActivity {
                    return new Login_fragment(MainActivity.this);
                 case 1:
                     return new signUp_Type(MainActivity.this);
-                default:
+                case 2:
+                    return new EmployerSignup(MainActivity.this);
+                case 3:
                     return new EmployeeSignUp(MainActivity.this);
+                default:
+                    return new Login_fragment(MainActivity.this);
             }
         }
 
         @Override
         public int getCount() {
-            return 2;
+            return 4;
         }
     }
 
