@@ -275,7 +275,8 @@ public class Create_card extends AppCompatActivity{
 
             }
         });
-        browse.setOnClickListener(new View.OnClickListener() {
+        browse.setOnClickListener
+                (new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(b){
