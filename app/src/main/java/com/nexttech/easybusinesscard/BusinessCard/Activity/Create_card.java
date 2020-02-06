@@ -1,4 +1,4 @@
-package com.nexttech.easybusinesscard;
+package com.nexttech.easybusinesscard.BusinessCard.Activity;
 
 import android.Manifest;
 import android.content.ContentResolver;
@@ -9,9 +9,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
-import android.os.Binder;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -38,20 +36,27 @@ import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Image;
-import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.nexttech.easybusinesscard.BuildConfig;
+import com.nexttech.easybusinesscard.BusinessCard.Utils.CustomViewPager;
+import com.nexttech.easybusinesscard.BusinessCard.Fragments.IconFragment;
+import com.nexttech.easybusinesscard.BusinessCard.Fragments.ImageFragment;
+import com.nexttech.easybusinesscard.BusinessCard.Utils.LongPresslistener;
+import com.nexttech.easybusinesscard.BusinessCard.Fragments.Qr_code;
+import com.nexttech.easybusinesscard.R;
+import com.nexttech.easybusinesscard.BusinessCard.Fragments.TextFragment;
+import com.nexttech.easybusinesscard.BusinessCard.Fragments.ToolbarFragment;
+import com.nexttech.easybusinesscard.BusinessCard.Adapter.ViewpagerAdapter;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Locale;
-import java.util.Random;
 
 public class Create_card extends AppCompatActivity{
 
@@ -355,6 +360,7 @@ public class Create_card extends AppCompatActivity{
                                 savePDF(bitmapFront, "Front",false);
                             }
                         }
+                        alertDialogDismiss();
                     }
                 });
 
@@ -371,8 +377,8 @@ public class Create_card extends AppCompatActivity{
                             } else {
                                 savePDF(bitmapBack, "Back",false);
                             }
-
                         }
+                        alertDialogDismiss();
                     }
                 });
 
@@ -392,8 +398,8 @@ public class Create_card extends AppCompatActivity{
                                 savePDF(bitmapFront, "Front",false);
                                 savePDF(bitmapBack, "Back",false);
                             }
-
                         }
+                        alertDialogDismiss();
                     }
                 });
 

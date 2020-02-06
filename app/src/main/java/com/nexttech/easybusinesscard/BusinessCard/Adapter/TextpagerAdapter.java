@@ -1,37 +1,32 @@
-package com.nexttech.easybusinesscard;
+package com.nexttech.easybusinesscard.BusinessCard.Adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class ViewpagerAdapter extends FragmentStatePagerAdapter {
+public class TextpagerAdapter extends FragmentPagerAdapter {
+
     public static int pos = 0;
 
     private ArrayList<Fragment> myFragments;
 
-    public ViewpagerAdapter(FragmentManager fm, ArrayList<Fragment> myFrags) {
+    public TextpagerAdapter(FragmentManager fm, ArrayList<Fragment> myFrags) {
         super(fm);
         myFragments = myFrags;
     }
 
     @Override
     public Fragment getItem(int position) {
-
-        return myFragments.get(position);
-
+        return null;
     }
 
     @Override
     public int getCount() {
-
-        return myFragments.size();
+        return 0;
     }
-
     @Override
     public CharSequence getPageTitle(int position) {
 
@@ -45,19 +40,19 @@ public class ViewpagerAdapter extends FragmentStatePagerAdapter {
                 PageTitle = "Text";
                 break;
             case 1:
-                PageTitle = "Icon";
+                PageTitle = "Text Size";
                 break;
             case 2:
-                PageTitle = "Image";
+                PageTitle = "Text Font";
                 break;
             case 3:
-                PageTitle = "QR Code";
+                PageTitle = "Text color";
                 break;
             case 4:
-                PageTitle = "Preview";
+                PageTitle = "Text Background";
                 break;
             case 5:
-                PageTitle = "Back Side";
+                PageTitle = "Text Style";
                 break;
 
         }

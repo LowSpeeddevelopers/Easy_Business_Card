@@ -1,14 +1,12 @@
-package com.nexttech.easybusinesscard;
+package com.nexttech.easybusinesscard.BusinessCard.Fragments;
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +17,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+
+import com.nexttech.easybusinesscard.BusinessCard.Activity.Create_card;
+import com.nexttech.easybusinesscard.BusinessCard.Utils.FrontTag;
+import com.nexttech.easybusinesscard.BusinessCard.Utils.LongPresslistener;
+import com.nexttech.easybusinesscard.R;
 
 import java.util.HashMap;
 

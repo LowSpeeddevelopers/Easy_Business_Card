@@ -7,13 +7,13 @@
     android:layout_width="match_parent"
     android:background="#3E5A88"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Job.Activity.MainActivity">
 
     <include android:id="@+id/toolbarMainActivity"
         layout="@layout/toolbar"/>
 
 
-    <androidx.viewpager.widget.ViewPager
+    <com.nexttech.easybusinesscard.Job.Utils.NonSwipeableViewPager
         android:layout_width="match_parent"
         android:background="#fff"
         android:layout_height="match_parent"

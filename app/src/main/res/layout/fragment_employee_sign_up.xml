@@ -5,7 +5,7 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".EmployeeSignUp">
+    tools:context=".Job.Fragment.EmployeeSignUp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,13 +15,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            card_view:cardElevation="20dp"
+            card_view:cardElevation="5dp"
             android:layout_margin="16dp"
             card_view:cardCornerRadius="5dp">
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbarStyle="outsideInset"
+            android:scrollbars="none"
 
             >
             <LinearLayout

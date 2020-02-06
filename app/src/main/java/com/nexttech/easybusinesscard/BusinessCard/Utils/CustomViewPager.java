@@ -1,4 +1,4 @@
-package com.nexttech.easybusinesscard;
+package com.nexttech.easybusinesscard.BusinessCard.Utils;
 
 import android.content.Context;
 import android.util.AttributeSet;

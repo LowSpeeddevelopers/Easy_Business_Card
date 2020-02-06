@@ -1,4 +1,4 @@
-package com.nexttech.easybusinesscard;
+package com.nexttech.easybusinesscard.Job.Fragment;
 
 import android.content.Context;
 import android.net.Uri;
@@ -16,19 +16,24 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.nexttech.easybusinesscard.Job.Activity.MainActivity;
+import com.nexttech.easybusinesscard.R;
+
 
 public class EmployeeSignUp extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
 
     Context context;
-    public EmployeeSignUp(Context context){
-        this.context=context;
-    }
     EditText empFirstName, empLastName, empUsername, empPassword, empEmail, empMobile, empCountry;
     Button empSignUp;
     CheckBox empCheckbox;
     TextView empLogIn, terms;
     View view;
+
+
+    public EmployeeSignUp(Context context){
+        this.context=context;
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -48,6 +53,13 @@ public class EmployeeSignUp extends Fragment {
         empCheckbox = view.findViewById(R.id.employee_checkbox);
 
         empSignUp = view.findViewById(R.id.btn_employee_signUp);
+
+        empLogIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.viewPager.setCurrentItem(0);
+            }
+        });
 
         empSignUp.setOnClickListener(new View.OnClickListener() {
             @Override

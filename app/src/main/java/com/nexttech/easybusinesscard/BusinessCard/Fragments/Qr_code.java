@@ -1,11 +1,9 @@
-package com.nexttech.easybusinesscard;
+package com.nexttech.easybusinesscard.BusinessCard.Fragments;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Point;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 
 import androidmads.library.qrgenearator.QRGContents;
@@ -14,7 +12,6 @@ import androidmads.library.qrgenearator.QRGEncoder;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-import android.text.style.AbsoluteSizeSpan;
 import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -30,6 +27,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.zxing.WriterException;
+import com.nexttech.easybusinesscard.BusinessCard.Activity.Create_card;
+import com.nexttech.easybusinesscard.BusinessCard.Fragments.ToolbarFragment;
+import com.nexttech.easybusinesscard.BusinessCard.Utils.LongPresslistener;
+import com.nexttech.easybusinesscard.R;
 
 public class Qr_code extends Fragment {
     TextView qr_generate,qr_from_cv;

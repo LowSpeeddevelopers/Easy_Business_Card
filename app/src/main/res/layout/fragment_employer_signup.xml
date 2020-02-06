@@ -5,7 +5,7 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".EmployeeSignUp">
+    tools:context=".Job.Fragment.EmployeeSignUp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,13 +15,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            card_view:cardElevation="20dp"
+            card_view:cardElevation="5dp"
             android:layout_margin="16dp"
             card_view:cardCornerRadius="5dp">
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scrollbarStyle="outsideInset"
+                android:scrollbars="none"
                 >
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -32,7 +32,7 @@
                     >
 
                     <EditText
-                        android:id="@+id/employee_firstName"
+                        android:id="@+id/employer_firstName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="First Name"
@@ -46,7 +46,7 @@
 
                         />
                     <EditText
-                        android:id="@+id/employee_lastName"
+                        android:id="@+id/employer_lastName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Last Name"
@@ -58,7 +58,7 @@
                         android:layout_marginBottom="16dp"
                         />
                     <EditText
-                        android:id="@+id/employee_userName"
+                        android:id="@+id/employer_userName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Username"
@@ -70,9 +70,8 @@
                         android:layout_marginBottom="16dp"
                         />
 
-
                     <EditText
-                        android:id="@+id/company_name"
+                        android:id="@+id/employer_company_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Company Name"
@@ -85,7 +84,7 @@
                         />
 
                     <EditText
-                        android:id="@+id/employee_password"
+                        android:id="@+id/employer_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Password"
@@ -97,7 +96,7 @@
                         android:layout_marginBottom="16dp"
                         />
                     <EditText
-                        android:id="@+id/employee_email"
+                        android:id="@+id/employer_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Email Address"
@@ -134,7 +133,7 @@
 
 
                         <EditText
-                            android:id="@+id/employee_mobile"
+                            android:id="@+id/employer_mobile"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="7"
@@ -147,7 +146,7 @@
 
                     </LinearLayout>
                     <EditText
-                        android:id="@+id/employee_country"
+                        android:id="@+id/employer_country"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Select Your Country"
@@ -164,7 +163,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
                         <androidx.appcompat.widget.AppCompatCheckBox
-                            android:id="@+id/employee_checkbox"
+                            android:id="@+id/employer_checkbox"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                         <TextView
@@ -173,7 +172,7 @@
                             android:textSize="10sp"
                             android:text="I have read and agree to the "/>
                         <TextView
-                            android:id="@+id/employee_terms"
+                            android:id="@+id/employer_terms"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/buttonColor"
@@ -183,7 +182,7 @@
                             android:text="terms and policies"/>
                     </LinearLayout>
                     <Button
-                        android:id="@+id/btn_employee_signUp"
+                        android:id="@+id/btn_employer_signUp"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -217,7 +216,7 @@
                             android:textSize="16sp"
                             />
                         <TextView
-                            android:id="@+id/employee_logIn"
+                            android:id="@+id/employer_logIn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/buttonColor"

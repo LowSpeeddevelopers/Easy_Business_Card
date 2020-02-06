@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:background="#f7fcff"
 
-    tools:context=".signUp_Type">
+    tools:context=".Job.Fragment.signUp_Type">
     <View
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -27,7 +27,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        card_view:cardElevation="20dp"
+        card_view:cardElevation="5dp"
         card_view:contentPadding="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
@@ -83,7 +83,7 @@
 
 
                 <Button
-                    android:id="@+id/button1"
+                    android:id="@+id/btn_signUp_employee"
                     android:layout_marginTop="20dp"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
@@ -140,7 +140,7 @@
 
 
                 <Button
-                    android:id="@+id/button2"
+                    android:id="@+id/btn_signUp_employer"
                     android:layout_marginTop="20dp"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"

@@ -1,4 +1,4 @@
-package com.nexttech.easybusinesscard;
+package com.nexttech.easybusinesscard.BusinessCard.Fragments;
 import android.content.Context;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -6,22 +6,19 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsoluteLayout;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
+import com.nexttech.easybusinesscard.BusinessCard.Activity.Create_card;
+import com.nexttech.easybusinesscard.BusinessCard.Utils.LongPresslistener;
+import com.nexttech.easybusinesscard.R;
 
 
 public class IconFragment extends Fragment {
@@ -32,6 +29,7 @@ public class IconFragment extends Fragment {
     private SeekBar seekBar;
     private ImageView imageView;
     private AlertDialog alertDialog;
+
 
 
     public IconFragment(Context context){
@@ -163,7 +161,8 @@ public class IconFragment extends Fragment {
                 if (seekBar.getVisibility() == View.GONE){
                     seekBar.setVisibility(View.VISIBLE);
                 }
-
+                Create_card.setCurrentFragmentwithData(2,imageView.getTag().toString());
+                Create_card.mAdapter.notifyDataSetChanged();
             }
         });
         ViewGroup.LayoutParams imageParams = new LinearLayout.LayoutParams(30, 30);

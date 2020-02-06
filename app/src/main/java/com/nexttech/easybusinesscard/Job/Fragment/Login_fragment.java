@@ -1,7 +1,6 @@
-package com.nexttech.easybusinesscard;
+package com.nexttech.easybusinesscard.Job.Fragment;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,6 +11,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.nexttech.easybusinesscard.Job.Activity.MainActivity;
+import com.nexttech.easybusinesscard.R;
 
 
 public class Login_fragment extends Fragment {

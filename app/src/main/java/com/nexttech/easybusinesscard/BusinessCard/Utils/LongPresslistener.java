@@ -1,4 +1,4 @@
-package com.nexttech.easybusinesscard;
+package com.nexttech.easybusinesscard.BusinessCard.Utils;
 
 import android.content.ClipData;
 import android.content.ClipDescription;
@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsoluteLayout;
 import android.widget.Toast;
+
+import com.nexttech.easybusinesscard.BusinessCard.Activity.Create_card;
 
 public class LongPresslistener implements View.OnLongClickListener,View.OnDragListener {
     int x;

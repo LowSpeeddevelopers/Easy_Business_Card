@@ -1,4 +1,4 @@
-package com.nexttech.easybusinesscard;
+package com.nexttech.easybusinesscard.Job.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,11 +13,18 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.nexttech.easybusinesscard.BusinessCard.Activity.Create_card;
+import com.nexttech.easybusinesscard.Job.Fragment.EmployeeSignUp;
+import com.nexttech.easybusinesscard.Job.Fragment.EmployerSignup;
+import com.nexttech.easybusinesscard.Job.Fragment.Login_fragment;
+import com.nexttech.easybusinesscard.Job.Utils.NonSwipeableViewPager;
+import com.nexttech.easybusinesscard.R;
+import com.nexttech.easybusinesscard.Job.Fragment.signUp_Type;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    public static ViewPager viewPager;
+    public static NonSwipeableViewPager viewPager;
 
     FirebaseAuth firebaseAuth;
     String userId;
@@ -52,13 +59,13 @@ public class MainActivity extends AppCompatActivity {
 
             switch (pos){
                 case 0:
-                   return new Login_fragment(MainActivity.this);
+                    return new Login_fragment(MainActivity.this);
                 case 1:
                     return new signUp_Type(MainActivity.this);
                 case 2:
-                    return new EmployerSignup(MainActivity.this);
-                case 3:
                     return new EmployeeSignUp(MainActivity.this);
+                case 3:
+                    return new EmployerSignup(MainActivity.this);
                 default:
                     return new Login_fragment(MainActivity.this);
             }
@@ -76,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
 
         if(firebaseUser!=null){
-            startActivity(new Intent(this,Create_card.class));
+            startActivity(new Intent(this, Create_card.class));
         }else {
             viewPager.setCurrentItem(0);
         }

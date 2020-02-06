@@ -25,9 +25,9 @@
         <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat"/>
         <activity
-            android:name=".Create_card"
+            android:name=".BusinessCard.Activity.Create_card"
             android:screenOrientation="landscape" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Job.Activity.MainActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,7 +40,7 @@
             android:resource="@array/preloaded_fonts" />
 
         <provider
-            android:name=".GenericFileProvider"
+            android:name=".BusinessCard.Utils.GenericFileProvider"
             android:authorities="com.nexttech.easybusinesscard.provider"
             android:exported="false"
             android:grantUriPermissions="true">
