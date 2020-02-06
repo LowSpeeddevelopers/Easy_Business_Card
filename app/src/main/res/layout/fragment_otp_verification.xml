@@ -38,8 +38,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:gravity="center">
+
+
 
 
 
@@ -52,26 +54,36 @@
                     android:gravity="center"
                     android:textStyle="bold"
                     android:text="Enter OTP"
+                    android:textSize="30dp"
                     />
                 <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
-                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:layout_weight="1"/>
 
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textColor="@color/buttonColor"
+                    android:textColor="#000"
                     android:gravity="center"
-                    android:textStyle="bold"
-                    android:text="Enter OTP"/>
-                
+                    android:text="We have sent you a access code"/>
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="#000"
+                    android:gravity="center"
+                    android:text="by SMS for mobile number verification"/>
+
 
 
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="25dp"
                 android:layout_weight="1"/>
 
 
@@ -81,34 +93,114 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit_text_border"
                 android:orientation="horizontal">
-                <TextView
+<!--                <TextView-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="2"-->
+<!--                    android:gravity="center"-->
+<!--                    android:padding="8dp"-->
+<!--                    android:hint="+88"-->
+<!--                    android:editable="false"-->
+<!--                    android:enabled="false"-->
+<!--                    android:textColor="#000"-->
+<!--                    android:textSize="20sp" />-->
+
+<!--                <View-->
+<!--                    android:layout_width="1dp"-->
+<!--                    android:background="@color/borderColor"-->
+<!--                    android:layout_height="match_parent"/>-->
+
+
+                <EditText
+                    android:id="@+id/otp_1st_digit"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:gravity="center"
+                    android:layout_weight="7"
                     android:padding="8dp"
-                    android:hint="+88"
-                    android:editable="false"
-                    android:enabled="false"
+                    android:hint="0"
+                    android:background="@android:color/transparent"
                     android:textColor="#000"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"/>
 
                 <View
                     android:layout_width="1dp"
                     android:background="@color/borderColor"
                     android:layout_height="match_parent"/>
 
-
                 <EditText
-                    android:id="@+id/employer_mobile"
+                    android:id="@+id/otp_2nd_digit"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="7"
                     android:padding="8dp"
-                    android:hint="1234567890"
+                    android:hint="0"
                     android:background="@android:color/transparent"
                     android:textColor="#000"
                     android:textSize="20sp"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:background="@color/borderColor"
+                    android:layout_height="match_parent"/>
+
+                <EditText
+                    android:id="@+id/otp_3rd_digit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7"
+                    android:padding="8dp"
+                    android:hint="0"
+                    android:background="@android:color/transparent"
+                    android:textColor="#000"
+                    android:textSize="20sp"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:background="@color/borderColor"
+                    android:layout_height="match_parent"/>
+
+                <EditText
+                    android:id="@+id/otp_4th_digit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7"
+                    android:padding="8dp"
+                    android:hint="0"
+                    android:background="@android:color/transparent"
+                    android:textColor="#000"
+                    android:textSize="20sp"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:background="@color/borderColor"
+                    android:layout_height="match_parent"/>
+
+                <EditText
+                    android:id="@+id/otp_5th_digit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7"
+                    android:padding="8dp"
+                    android:hint="0"
+                    android:background="@android:color/transparent"
+                    android:textColor="#000"
+                    android:textSize="20sp"/>
+                <View
+                    android:layout_width="1dp"
+                    android:background="@color/borderColor"
+                    android:layout_height="match_parent"/>
+
+                <EditText
+                    android:id="@+id/otp_6th_digit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7"
+                    android:padding="8dp"
+                    android:hint="0"
+                    android:background="@android:color/transparent"
+                    android:textColor="#000"
+                    android:textSize="20sp"/>
+
 
 
             </LinearLayout>
@@ -130,7 +222,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/submit_btn"
+                        android:id="@+id/verify_btn"
 
                         android:layout_width="wrap_content"
                         android:layout_weight="1"
@@ -155,7 +247,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="20dp"
                 android:layout_weight="1"/>
 
 
@@ -164,6 +256,35 @@
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:gravity="center"
+            android:text="Don't received code ? "/>
+
+
+
+        <TextView
+            android:id="@+id/resend_code"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="@color/buttonColor"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="Resend Code"/>
+
+
+    </LinearLayout>
+
 
 
 
