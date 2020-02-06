@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nexttech.easybusinesscard.Job.Activity.MainActivity;
 import com.nexttech.easybusinesscard.R;
@@ -65,9 +66,57 @@ public class EmployeeSignUp extends Fragment {
             @Override
             public void onClick(View v) {
 
+                if (validateEmail())
+                {
+                    Toast.makeText(context, "OK", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
         return view;
     }
+
+    private boolean validateEmail() {
+        String emailInput = empEmail.getText().toString().trim();
+        String FnameInput = empFirstName.getText().toString().trim();
+        String LnameInput = empLastName.getText().toString().trim();
+        String UnameInput = empUsername.getText().toString().trim();
+        String PassInput = empPassword.getText().toString().trim();
+        String MobileInput = empMobile.getText().toString().trim();
+        String CountryInput = empCountry.getText().toString().trim();
+
+        Boolean returnValue = true;
+
+        if (emailInput.isEmpty()) {
+            empEmail.setError("Field can't be empty");
+            returnValue = false;
+        }
+        if (FnameInput.isEmpty()) {
+            empFirstName.setError("Field can't be empty");
+            returnValue = false;
+        }
+        if (LnameInput.isEmpty()) {
+            empLastName.setError("Field can't be empty");
+            returnValue = false;
+        }
+        if (UnameInput.isEmpty()) {
+            empUsername.setError("Field can't be empty");
+            returnValue = false;
+        }
+        if (PassInput.isEmpty()) {
+            empPassword.setError("Field can't be empty");
+            returnValue = false;
+        }
+        if (MobileInput.isEmpty()) {
+            empMobile.setError("Field can't be empty");
+            returnValue = false;
+        }
+        if (CountryInput.isEmpty()) {
+            empCountry.setError("Field can't be empty");
+            returnValue = false;
+        }
+
+        return returnValue;
+    }
+
 }
