@@ -1,6 +1,7 @@
 package com.nexttech.easybusinesscard.Job.Fragment;
 
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -23,6 +24,13 @@ public class SettingsFragment extends Fragment {
     CardView cvprofile,cvsecurity,cvprivacy,cvnotification,cvappimage;
     TextView tvprofile,tvsecurity,tvprivacy,tvnotification,tvappimage;
     View vi;
+
+    View DialogueView;
+    AlertDialog.Builder builder;
+    AlertDialog alertDialog;
+
+
+
     public SettingsFragment(Context context) {
        this.context= context;
     }
@@ -50,9 +58,33 @@ public class SettingsFragment extends Fragment {
         tvnotification = vi.findViewById(R.id.tvnotification);
         tvappimage.findViewById(R.id.tvappimage);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         tvappimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DialogueView = getLayoutInflater().inflate(R.layout.save_image_dialog, null);
+
+
+                builder.setView(null);
+                builder.setView(DialogueView);
+                alertDialog=builder.create();
+                alertDialog.setCanceledOnTouchOutside(true);
+                alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                alertDialog.show();
 
             }
         });
@@ -60,6 +92,15 @@ public class SettingsFragment extends Fragment {
         cvappimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DialogueView = getLayoutInflater().inflate(R.layout.save_image_dialog, null);
+
+
+                builder.setView(null);
+                builder.setView(DialogueView);
+                alertDialog=builder.create();
+                alertDialog.setCanceledOnTouchOutside(true);
+                alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                alertDialog.show();
 
             }
         });
@@ -75,9 +116,6 @@ public class SettingsFragment extends Fragment {
 
             }
         });
-
-
-
 
         cvprofile.setOnClickListener(new View.OnClickListener() {
             @Override

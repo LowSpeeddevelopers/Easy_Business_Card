@@ -321,6 +321,7 @@ public class Create_card extends AppCompatActivity{
                 tvCancel = dialogueView.findViewById(R.id.tv_cancel);
                 radioPicture = dialogueView.findViewById(R.id.radio_picture);
                 radioPdf = dialogueView.findViewById(R.id.radio_pdf);
+
                 builder.setView(null);
                 builder.setView(dialogueView);
                 alertDialog=builder.create();
