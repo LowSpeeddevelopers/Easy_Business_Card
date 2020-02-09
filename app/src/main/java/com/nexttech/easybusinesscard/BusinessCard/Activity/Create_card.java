@@ -78,6 +78,7 @@ public class Create_card extends AppCompatActivity{
     AlertDialog alertDialog;
 
     RadioButton radioPicture, radioPdf;
+    
 
     public static ImageView mainTempFront, mainTempBack, ivLockCard;
 

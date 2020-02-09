@@ -22,6 +22,7 @@ import com.nexttech.easybusinesscard.Job.Fragment.Phone_number_Edit;
 import com.nexttech.easybusinesscard.Job.Model.EmployeeInfoModel;
 import com.nexttech.easybusinesscard.Job.Model.EmployerInfoModel;
 import com.nexttech.easybusinesscard.Job.Utils.NonSwipeableViewPager;
+import com.nexttech.easybusinesscard.Job.Verification;
 import com.nexttech.easybusinesscard.R;
 import com.nexttech.easybusinesscard.Job.Fragment.signUp_Type;
 
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     String userId;
     FirebaseUser firebaseUser;
+    Verification verification;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         firebaseAuth=FirebaseAuth.getInstance();
         //userId=firebaseAuth.getCurrentUser().getUid();
         firebaseUser=firebaseAuth.getCurrentUser();
+        verification=new Verification(this,firebaseAuth);
 
         viewPager = findViewById(R.id.container);
         viewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
@@ -73,9 +76,9 @@ public class MainActivity extends AppCompatActivity {
                 case 3:
                     return new EmployerSignup(MainActivity.this);
                 case 4:
-                    return new Phone_number_Edit(MainActivity.this);
+                    return new Phone_number_Edit(MainActivity.this,verification);
                 case 5:
-                    return new OTP_verification(MainActivity.this);
+                    return new OTP_verification(MainActivity.this,verification);
                 default:
                     return new Login_fragment(MainActivity.this);
             }
