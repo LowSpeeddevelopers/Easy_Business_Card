@@ -1,6 +1,7 @@
 package com.nexttech.easybusinesscard.Job.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.nexttech.easybusinesscard.Job.Activity.MainActivity;
+import com.nexttech.easybusinesscard.Job.Activity.job_navigation;
 import com.nexttech.easybusinesscard.R;
 
 
@@ -26,7 +28,7 @@ public class Login_fragment extends Fragment {
     View  vi;
     EditText email,Password;
     Button login;
-    TextView forgetpass,signup;
+    TextView forgetpass,signup,login1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,6 +37,14 @@ public class Login_fragment extends Fragment {
         vi = inflater.inflate(R.layout.fragment_login, container, false);
 
         signup=vi.findViewById(R.id.signuptext);
+        login1=vi.findViewById(R.id.login_btn);
+        login1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(),job_navigation.class);
+                startActivity(intent);
+            }
+        });
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override

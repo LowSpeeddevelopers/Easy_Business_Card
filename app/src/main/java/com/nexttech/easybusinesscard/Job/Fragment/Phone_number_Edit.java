@@ -46,7 +46,7 @@ public class Phone_number_Edit extends Fragment {
         view.findViewById(R.id.btn_send_code).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String number = edtMobileNumber.getText().toString();
+                String number = edtMobileNumber.getText().toString().trim();
                 if(!MainActivity.employeeInfoModel.equals(null)){
                     MainActivity.employeeInfoModel.setMobileNumber(number);
                 } else if(!MainActivity.employerInfoModel.equals(null)){
