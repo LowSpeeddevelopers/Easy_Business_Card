@@ -25,6 +25,7 @@ import com.nexttech.easybusinesscard.Job.Fragment.OTP_verification;
 import com.nexttech.easybusinesscard.Job.Fragment.Phone_number_Edit;
 import com.nexttech.easybusinesscard.Job.Fragment.PrivacyFragment;
 import com.nexttech.easybusinesscard.Job.Fragment.Profile_settings;
+import com.nexttech.easybusinesscard.Job.Fragment.SecurityFragment;
 import com.nexttech.easybusinesscard.Job.Fragment.SettingsFragment;
 import com.nexttech.easybusinesscard.Job.Model.EmployeeInfoModel;
 import com.nexttech.easybusinesscard.Job.Model.EmployerInfoModel;
@@ -187,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
 
             switch (pos){
                 case 0:
-                    return new Profile_settings();
+                    return new Login_fragment(MainActivity.this);
                 case 1:
                     return new signUp_Type(MainActivity.this);
                 case 2:
@@ -198,6 +199,12 @@ public class MainActivity extends AppCompatActivity {
                     return new Phone_number_Edit(MainActivity.this,verification);
                 case 5:
                     return new OTP_verification(MainActivity.this,verification);
+                case 6:
+                    return new Profile_settings();
+                case 7:
+                    return new PrivacyFragment();
+                case 8:
+                    return new SecurityFragment();
                 default:
                     return new SettingsFragment(MainActivity.this);
             }
@@ -205,19 +212,19 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return 6;
+            return 9;
         }
     }
 
 
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//
-//        if(firebaseUser!=null){
-//            startActivity(new Intent(this, Create_card.class));
-//        }else {
-//            viewPager.setCurrentItem(0);
-//        }
-//    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if(firebaseUser!=null){
+            startActivity(new Intent(this, Create_card.class));
+        }else {
+            viewPager.setCurrentItem(0);
+        }
+    }
 }

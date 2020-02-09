@@ -37,8 +37,10 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
+                    android:id="@+id/cvprofile"
                     android:layout_marginBottom="4dp">
                     <TextView
+                        android:id="@+id/tvprofile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Profile Settings"
@@ -52,6 +54,7 @@
                     card_view:cardElevation="2dp"
                     card_view:cardCornerRadius="5dp"
                     android:layout_marginTop="4dp"
+                    android:id="@+id/cvsecurity"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="4dp">
@@ -59,6 +62,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Security Settings"
+                        android:id="@+id/tvsecurity"
                         android:textColor="@color/colorPrimary"
                         android:padding="12dp"
                         android:textSize="18sp" />
@@ -71,6 +75,7 @@
                     card_view:cardCornerRadius="5dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginStart="8dp"
+                    android:id="@+id/cvprivacy"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="4dp">
                     <TextView
@@ -78,6 +83,7 @@
                         android:layout_height="wrap_content"
                         android:text="Privacy Settings"
                         android:textColor="@color/colorPrimary"
+                        android:id="@+id/tvprivacy"
                         android:padding="12dp"
                         android:textSize="18sp" />
                 </androidx.cardview.widget.CardView>
@@ -85,6 +91,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     card_view:cardElevation="2dp"
+                    android:id="@+id/cvnotification"
                     card_view:cardCornerRadius="5dp"
                     android:layout_marginTop="4dp"
                     android:layout_marginStart="8dp"
@@ -95,6 +102,7 @@
                         android:layout_height="wrap_content"
                         android:text="Notification Settings"
                         android:textColor="@color/colorPrimary"
+                        android:id="@+id/tvnotification"
                         android:padding="12dp"
                         android:textSize="18sp" />
                 </androidx.cardview.widget.CardView>
@@ -103,6 +111,7 @@
                     android:layout_height="wrap_content"
                     card_view:cardElevation="2dp"
                     card_view:cardCornerRadius="5dp"
+                    android:id="@+id/cvappimage"
                     android:layout_marginTop="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
@@ -111,6 +120,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="App Image Quality"
+                        android:id="@+id/tvappimage"
                         android:textColor="@color/colorPrimary"
                         android:padding="12dp"
                         android:textSize="18sp" />
