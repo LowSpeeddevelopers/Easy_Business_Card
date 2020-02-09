@@ -50,6 +50,32 @@ public class SettingsFragment extends Fragment {
         tvnotification = vi.findViewById(R.id.tvnotification);
         tvappimage.findViewById(R.id.tvappimage);
 
+        tvappimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        cvappimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        cvnotification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        tvnotification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
 
 
 
@@ -71,16 +97,31 @@ public class SettingsFragment extends Fragment {
         cvsecurity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                MainActivity.viewPager.setCurrentItem(8);
             }
         });
 
         tvsecurity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                MainActivity.viewPager.setCurrentItem(8);
             }
         });
+
+        cvprivacy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.viewPager.setCurrentItem(7);
+            }
+        });
+
+        tvprivacy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.viewPager.setCurrentItem(7);
+            }
+        });
+
         return vi;
     }
 
