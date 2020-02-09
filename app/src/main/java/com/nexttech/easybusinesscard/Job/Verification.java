@@ -29,9 +29,9 @@ public class Verification {
     FirebaseAuth mAuth;
 
 
-    public Verification(Context context,FirebaseAuth mAuth){
-        this.context=context;
-        this.mAuth=mAuth;
+    public Verification(Context context, FirebaseAuth mAuth) {
+        this.context = context;
+        this.mAuth = mAuth;
     }
 
     private String mVerificationId;
@@ -91,7 +91,7 @@ public class Verification {
 
     public void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
         mAuth.signInWithCredential(credential)
-                .addOnCompleteListener((Activity)context, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener((Activity) context, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
@@ -110,7 +110,7 @@ public class Verification {
                                 message = "Invalid code entered...";
                             }
 
-                            Toast.makeText(context, ""+message, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "" + message, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

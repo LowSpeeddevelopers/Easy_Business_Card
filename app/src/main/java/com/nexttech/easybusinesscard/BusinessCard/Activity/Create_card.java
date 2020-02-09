@@ -78,7 +78,7 @@ public class Create_card extends AppCompatActivity{
     AlertDialog alertDialog;
 
     RadioButton radioPicture, radioPdf;
-    
+
 
     public static ImageView mainTempFront, mainTempBack, ivLockCard;
 
@@ -691,22 +691,15 @@ public class Create_card extends AppCompatActivity{
             alertDialog.dismiss();
         }
     }
-
-
     void showSharePdfSingle(Bitmap bitmap,String name){
-
 
         Intent share = new Intent();
         share.setAction(Intent.ACTION_SEND);
         share.setType("application/pdf");
         share.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         share.setFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-
         savePDF(bitmap,name,true);
         share.putExtra(Intent.EXTRA_STREAM, getUriFromPdf(mydir,fname));
-
-
-
         startActivity(Intent.createChooser(share,"Share via"));
     }
     void showShareMultiplePdf(Bitmap front,String frontname,Bitmap back,String backname){
@@ -715,22 +708,17 @@ public class Create_card extends AppCompatActivity{
         share.setType("application/pdf");
         share.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         share.setFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-
         ArrayList<Uri> arrayList =new ArrayList<>();
-
         savePDF(front,frontname,true);
         arrayList.add(getUriFromPdf(mydir,fname));
         savePDF(back,backname,true);
         arrayList.add(getUriFromPdf(mydir,fname));
         share.putParcelableArrayListExtra(Intent.EXTRA_STREAM, arrayList);
-
         startActivity(Intent.createChooser(share,"Share via"));
     }
      Uri getUriFromPdf(File file,String name){
         String check = file.getAbsolutePath()+"/"+name;
         File outputFile = new File(check);
-
-
         Uri uri;
         try{
              uri = FileProvider
@@ -738,49 +726,35 @@ public class Create_card extends AppCompatActivity{
         }catch (Exception e){
              uri = Uri.fromFile(outputFile);
         }
-
          Log.e("uri",uri.toString());
         return uri  ;
     }
-
     void showShareDialougeBox(Bitmap bitmap){
-
-
         Intent share = new Intent(Intent.ACTION_SEND);
         share.setType("image/*");
         share.putExtra(Intent.EXTRA_STREAM, getImageUri(this,bitmap));
         startActivity(Intent.createChooser(share,"Share via"));
     }
-
     public Uri getImageUri(Context inContext, Bitmap inImage) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
         String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
         Uri uri = Uri.parse(path);
-
         grantUriPermission("com.nexttech.easybusinesscard", uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
 //revoke permisions
         revokeUriPermission(uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
          return uri;
     }
-
-
     void showMultipleImageDialogueBox(Bitmap front,Bitmap back){
-
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_SEND_MULTIPLE);
         intent.setType("image/*"); /* This example is sharing jpeg images. */
-
         ArrayList<Uri> files = new ArrayList<Uri>();
-
         files.add(getImageUri(this,front));
         files.add(getImageUri(this,back));
         intent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, files);
         startActivity(Intent.createChooser(intent,"Share via"));
     }
-
-
     public static void setCurrentFragmentwithData(int position,String tag){
         tageeee = tag;
         isDataAvailable = true;
@@ -789,5 +763,4 @@ public class Create_card extends AppCompatActivity{
     }
     public static boolean isDataAvailable = false;
     public static String tageeee;
-
 }
