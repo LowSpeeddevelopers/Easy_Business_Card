@@ -40,25 +40,24 @@
         android:layout_marginBottom="4dp">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="horizontal">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Display Name:"
+            android:text="Display Name "
             android:textColor="@color/colorPrimary"
             android:padding="12dp"
             android:textSize="18sp" />
-            <view
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1"/>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:id="@+id/dpname"
                 android:text="display"
+                android:layout_gravity="end"
+                android:gravity="end"
                 android:textColor="#000"
                 android:padding="12dp"
                 android:textSize="18sp" />
@@ -85,14 +84,13 @@
                     android:textColor="@color/colorPrimary"
                     android:padding="12dp"
                     android:textSize="18sp" />
-                <view
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"/>
+
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:gravity="end"
                     android:id="@+id/userid"
                     android:text="Id"
                     android:textColor="#000"
@@ -121,13 +119,12 @@
                     android:textColor="@color/colorPrimary"
                     android:padding="12dp"
                     android:textSize="18sp" />
-                <view
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"/>
+
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="end"
                     android:layout_height="wrap_content"
                     android:id="@+id/gender"
                     android:text="gender"
@@ -157,13 +154,11 @@
                     android:textColor="@color/colorPrimary"
                     android:padding="12dp"
                     android:textSize="18sp" />
-                <view
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="end"
                     android:layout_height="wrap_content"
                     android:id="@+id/contact"
                     android:text="number"
@@ -193,13 +188,11 @@
                     android:textColor="@color/colorPrimary"
                     android:padding="12dp"
                     android:textSize="18sp" />
-                <view
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="end"
                     android:layout_height="wrap_content"
                     android:id="@+id/email"
                     android:text="mail"

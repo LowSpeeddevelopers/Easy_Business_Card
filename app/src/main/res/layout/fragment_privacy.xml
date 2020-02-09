@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:cardBackgroundColor="#FFF"
+        card_view:cardBackgroundColor="#FFF"
         card_view:cardElevation="5dp">
 
         <LinearLayout
@@ -22,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
-                android:cardBackgroundColor="#FFF"
+                card_view:cardBackgroundColor="#FFF"
                 android:padding="4dp"
                 card_view:cardElevation="5dp">
                 <LinearLayout
@@ -48,7 +48,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:cardBackgroundColor="#FFF"
+                card_view:cardBackgroundColor="#FFF"
                 android:layout_margin="4dp"
                 android:padding="4dp"
                 card_view:cardElevation="5dp">
@@ -75,7 +75,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:cardBackgroundColor="#FFF"
+                card_view:cardBackgroundColor="#FFF"
                 android:layout_margin="4dp"
                 android:padding="4dp"
                 card_view:cardElevation="5dp">
@@ -102,7 +102,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:cardBackgroundColor="#FFF"
+                card_view:cardBackgroundColor="#FFF"
                 android:layout_margin="4dp"
                 android:padding="4dp"
                 card_view:cardElevation="5dp">

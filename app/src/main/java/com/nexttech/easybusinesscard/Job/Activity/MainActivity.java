@@ -23,6 +23,8 @@ import com.nexttech.easybusinesscard.Job.Fragment.EmployerSignup;
 import com.nexttech.easybusinesscard.Job.Fragment.Login_fragment;
 import com.nexttech.easybusinesscard.Job.Fragment.OTP_verification;
 import com.nexttech.easybusinesscard.Job.Fragment.Phone_number_Edit;
+import com.nexttech.easybusinesscard.Job.Fragment.PrivacyFragment;
+import com.nexttech.easybusinesscard.Job.Fragment.Profile_settings;
 import com.nexttech.easybusinesscard.Job.Fragment.SettingsFragment;
 import com.nexttech.easybusinesscard.Job.Model.EmployeeInfoModel;
 import com.nexttech.easybusinesscard.Job.Model.EmployerInfoModel;
@@ -185,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
 
             switch (pos){
                 case 0:
-                    return new SettingsFragment(MainActivity.this);
+                    return new Profile_settings();
                 case 1:
                     return new signUp_Type(MainActivity.this);
                 case 2:
