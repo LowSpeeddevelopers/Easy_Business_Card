@@ -14,7 +14,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.nexttech.easybusinesscard.Job.Activity.MainActivity;
-import com.nexttech.easybusinesscard.Job.Activity.job_navigation;
 import com.nexttech.easybusinesscard.R;
 
 
@@ -41,8 +40,8 @@ public class Login_fragment extends Fragment {
         login1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(),job_navigation.class);
-                startActivity(intent);
+//                Intent intent = new Intent(getContext(),job_navigation.class);
+//                startActivity(intent);
             }
         });
 

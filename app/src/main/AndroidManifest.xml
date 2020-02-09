@@ -22,10 +22,6 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".Job.Activity.job_navigation"
-            android:label="@string/title_activity_job_navigation"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
         <activity
