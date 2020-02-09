@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nexttech.easybusinesscard.Job.Activity.MainActivity;
+import com.nexttech.easybusinesscard.Job.Model.EmployeeInfoModel;
 import com.nexttech.easybusinesscard.R;
 
 
@@ -30,6 +31,8 @@ public class EmployeeSignUp extends Fragment {
     CheckBox empCheckbox;
     TextView empLogIn, terms;
     View view;
+
+    String emailInput, FnameInput, LnameInput, UnameInput, PassInput, MobileInput, CountryInput;
 
 
     public EmployeeSignUp(Context context){
@@ -66,9 +69,19 @@ public class EmployeeSignUp extends Fragment {
             @Override
             public void onClick(View v) {
 
+                emailInput = empEmail.getText().toString().trim();
+                FnameInput = empFirstName.getText().toString().trim();
+                LnameInput = empLastName.getText().toString().trim();
+                UnameInput = empUsername.getText().toString().trim();
+                PassInput = empPassword.getText().toString().trim();
+                MobileInput = empMobile.getText().toString().trim();
+                CountryInput = empCountry.getText().toString().trim();
+
                 if (validateEmail())
                 {
                     Toast.makeText(context, "OK", Toast.LENGTH_LONG).show();
+                    MainActivity.employeeInfoModel = new EmployeeInfoModel(FnameInput,LnameInput,UnameInput,PassInput,emailInput,MobileInput,CountryInput);
+                    MainActivity.viewPager.setCurrentItem(4);
                 }
             }
         });
@@ -77,44 +90,37 @@ public class EmployeeSignUp extends Fragment {
     }
 
     private boolean validateEmail() {
-        String emailInput = empEmail.getText().toString().trim();
-        String FnameInput = empFirstName.getText().toString().trim();
-        String LnameInput = empLastName.getText().toString().trim();
-        String UnameInput = empUsername.getText().toString().trim();
-        String PassInput = empPassword.getText().toString().trim();
-        String MobileInput = empMobile.getText().toString().trim();
-        String CountryInput = empCountry.getText().toString().trim();
 
         Boolean returnValue = true;
 
-        if (emailInput.isEmpty()) {
-            empEmail.setError("Field can't be empty");
-            returnValue = false;
-        }
-        if (FnameInput.isEmpty()) {
-            empFirstName.setError("Field can't be empty");
-            returnValue = false;
-        }
-        if (LnameInput.isEmpty()) {
-            empLastName.setError("Field can't be empty");
-            returnValue = false;
-        }
-        if (UnameInput.isEmpty()) {
-            empUsername.setError("Field can't be empty");
-            returnValue = false;
-        }
-        if (PassInput.isEmpty()) {
-            empPassword.setError("Field can't be empty");
-            returnValue = false;
-        }
-        if (MobileInput.isEmpty()) {
-            empMobile.setError("Field can't be empty");
-            returnValue = false;
-        }
-        if (CountryInput.isEmpty()) {
-            empCountry.setError("Field can't be empty");
-            returnValue = false;
-        }
+//        if (emailInput.isEmpty()) {
+//            empEmail.setError("Field can't be empty");
+//            returnValue = false;
+//        }
+//        if (FnameInput.isEmpty()) {
+//            empFirstName.setError("Field can't be empty");
+//            returnValue = false;
+//        }
+//        if (LnameInput.isEmpty()) {
+//            empLastName.setError("Field can't be empty");
+//            returnValue = false;
+//        }
+//        if (UnameInput.isEmpty()) {
+//            empUsername.setError("Field can't be empty");
+//            returnValue = false;
+//        }
+//        if (PassInput.isEmpty()) {
+//            empPassword.setError("Field can't be empty");
+//            returnValue = false;
+//        }
+//        if (MobileInput.isEmpty()) {
+//            empMobile.setError("Field can't be empty");
+//            returnValue = false;
+//        }
+//        if (CountryInput.isEmpty()) {
+//            empCountry.setError("Field can't be empty");
+//            returnValue = false;
+//        }
 
         return returnValue;
     }

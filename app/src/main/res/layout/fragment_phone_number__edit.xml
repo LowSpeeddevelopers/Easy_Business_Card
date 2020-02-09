@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,8 +13,6 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_weight="1" />
-
-
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -87,12 +84,14 @@
 
 
                 <EditText
-                    android:id="@+id/employer_mobile"
+                    android:id="@+id/edt_mobile_number"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="7"
                     android:padding="8dp"
                     android:hint="1234567890"
+                    android:inputType="number"
+                    android:digits="0123456789"
                     android:background="@android:color/transparent"
                     android:textColor="#000"
                     android:textSize="20sp"/>
@@ -117,7 +116,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/submit_btn"
+                        android:id="@+id/btn_send_code"
 
                         android:layout_width="wrap_content"
                         android:layout_weight="1"

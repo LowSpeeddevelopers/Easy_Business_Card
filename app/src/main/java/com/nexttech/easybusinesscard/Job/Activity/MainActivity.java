@@ -17,6 +17,10 @@ import com.nexttech.easybusinesscard.BusinessCard.Activity.Create_card;
 import com.nexttech.easybusinesscard.Job.Fragment.EmployeeSignUp;
 import com.nexttech.easybusinesscard.Job.Fragment.EmployerSignup;
 import com.nexttech.easybusinesscard.Job.Fragment.Login_fragment;
+import com.nexttech.easybusinesscard.Job.Fragment.OTP_verification;
+import com.nexttech.easybusinesscard.Job.Fragment.Phone_number_Edit;
+import com.nexttech.easybusinesscard.Job.Model.EmployeeInfoModel;
+import com.nexttech.easybusinesscard.Job.Model.EmployerInfoModel;
 import com.nexttech.easybusinesscard.Job.Utils.NonSwipeableViewPager;
 import com.nexttech.easybusinesscard.R;
 import com.nexttech.easybusinesscard.Job.Fragment.signUp_Type;
@@ -25,6 +29,8 @@ import com.nexttech.easybusinesscard.Job.Fragment.signUp_Type;
 public class MainActivity extends AppCompatActivity {
 
     public static NonSwipeableViewPager viewPager;
+    public static EmployerInfoModel employerInfoModel;
+    public static EmployeeInfoModel employeeInfoModel;
 
     FirebaseAuth firebaseAuth;
     String userId;
@@ -66,6 +72,10 @@ public class MainActivity extends AppCompatActivity {
                     return new EmployeeSignUp(MainActivity.this);
                 case 3:
                     return new EmployerSignup(MainActivity.this);
+                case 4:
+                    return new Phone_number_Edit(MainActivity.this);
+                case 5:
+                    return new OTP_verification(MainActivity.this);
                 default:
                     return new Login_fragment(MainActivity.this);
             }
@@ -73,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return 4;
+            return 6;
         }
     }
 

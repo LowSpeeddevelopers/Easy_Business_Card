@@ -11,10 +11,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.fragment.app.Fragment;
-
 import com.nexttech.easybusinesscard.Job.Activity.MainActivity;
+import com.nexttech.easybusinesscard.Job.Model.EmployerInfoModel;
 import com.nexttech.easybusinesscard.R;
 
 
@@ -26,6 +25,8 @@ public class EmployerSignup extends Fragment {
     CheckBox empCheckbox;
     TextView empLogIn, terms;
     View view;
+
+    String emailInput, FnameInput, LnameInput, UnameInput, PassInput, MobileInput, CountryInput, CompanyInput;
 
     public EmployerSignup(Context context) {
         this.context = context;
@@ -62,9 +63,20 @@ public class EmployerSignup extends Fragment {
         empSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (validateEmail())
-                {
+
+                emailInput = empEmail.getText().toString().trim();
+                FnameInput = empFirstName.getText().toString().trim();
+                LnameInput = empLastName.getText().toString().trim();
+                UnameInput = empUsername.getText().toString().trim();
+                PassInput = empPassword.getText().toString().trim();
+                MobileInput = empMobile.getText().toString().trim();
+                CountryInput = empCountry.getText().toString().trim();
+                CompanyInput = empCompanyName.getText().toString().trim();
+
+                if (validateEmail()) {
                     Toast.makeText(context, "OK", Toast.LENGTH_LONG).show();
+                    MainActivity.employerInfoModel = new EmployerInfoModel(FnameInput,LnameInput,UnameInput,PassInput,emailInput,MobileInput,CountryInput,CompanyInput);
+                    MainActivity.viewPager.setCurrentItem(4);
                 }
             }
         });
@@ -73,14 +85,6 @@ public class EmployerSignup extends Fragment {
     }
 
     private boolean validateEmail() {
-        String emailInput = empEmail.getText().toString().trim();
-        String FnameInput = empFirstName.getText().toString().trim();
-        String LnameInput = empLastName.getText().toString().trim();
-        String UnameInput = empUsername.getText().toString().trim();
-        String PassInput = empPassword.getText().toString().trim();
-        String MobileInput = empMobile.getText().toString().trim();
-        String CountryInput = empCountry.getText().toString().trim();
-        String CompanyInput = empCompanyName.getText().toString().trim();
 
         Boolean returnValue = true;
 

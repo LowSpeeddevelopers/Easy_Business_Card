@@ -112,7 +112,7 @@
 
 
                 <EditText
-                    android:id="@+id/otp_1st_digit"
+                    android:id="@+id/edt_text_code"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="7"
@@ -122,84 +122,84 @@
                     android:textColor="#000"
                     android:textSize="20sp"/>
 
-                <View
-                    android:layout_width="1dp"
-                    android:background="@color/borderColor"
-                    android:layout_height="match_parent"/>
+<!--                <View-->
+<!--                    android:layout_width="1dp"-->
+<!--                    android:background="@color/borderColor"-->
+<!--                    android:layout_height="match_parent"/>-->
 
-                <EditText
-                    android:id="@+id/otp_2nd_digit"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="7"
-                    android:padding="8dp"
-                    android:hint="0"
-                    android:background="@android:color/transparent"
-                    android:textColor="#000"
-                    android:textSize="20sp"/>
+<!--                <EditText-->
+<!--                    android:id="@+id/otp_2nd_digit"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="7"-->
+<!--                    android:padding="8dp"-->
+<!--                    android:hint="0"-->
+<!--                    android:background="@android:color/transparent"-->
+<!--                    android:textColor="#000"-->
+<!--                    android:textSize="20sp"/>-->
 
-                <View
-                    android:layout_width="1dp"
-                    android:background="@color/borderColor"
-                    android:layout_height="match_parent"/>
+<!--                <View-->
+<!--                    android:layout_width="1dp"-->
+<!--                    android:background="@color/borderColor"-->
+<!--                    android:layout_height="match_parent"/>-->
 
-                <EditText
-                    android:id="@+id/otp_3rd_digit"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="7"
-                    android:padding="8dp"
-                    android:hint="0"
-                    android:background="@android:color/transparent"
-                    android:textColor="#000"
-                    android:textSize="20sp"/>
+<!--                <EditText-->
+<!--                    android:id="@+id/otp_3rd_digit"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="7"-->
+<!--                    android:padding="8dp"-->
+<!--                    android:hint="0"-->
+<!--                    android:background="@android:color/transparent"-->
+<!--                    android:textColor="#000"-->
+<!--                    android:textSize="20sp"/>-->
 
-                <View
-                    android:layout_width="1dp"
-                    android:background="@color/borderColor"
-                    android:layout_height="match_parent"/>
+<!--                <View-->
+<!--                    android:layout_width="1dp"-->
+<!--                    android:background="@color/borderColor"-->
+<!--                    android:layout_height="match_parent"/>-->
 
-                <EditText
-                    android:id="@+id/otp_4th_digit"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="7"
-                    android:padding="8dp"
-                    android:hint="0"
-                    android:background="@android:color/transparent"
-                    android:textColor="#000"
-                    android:textSize="20sp"/>
+<!--                <EditText-->
+<!--                    android:id="@+id/otp_4th_digit"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="7"-->
+<!--                    android:padding="8dp"-->
+<!--                    android:hint="0"-->
+<!--                    android:background="@android:color/transparent"-->
+<!--                    android:textColor="#000"-->
+<!--                    android:textSize="20sp"/>-->
 
-                <View
-                    android:layout_width="1dp"
-                    android:background="@color/borderColor"
-                    android:layout_height="match_parent"/>
+<!--                <View-->
+<!--                    android:layout_width="1dp"-->
+<!--                    android:background="@color/borderColor"-->
+<!--                    android:layout_height="match_parent"/>-->
 
-                <EditText
-                    android:id="@+id/otp_5th_digit"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="7"
-                    android:padding="8dp"
-                    android:hint="0"
-                    android:background="@android:color/transparent"
-                    android:textColor="#000"
-                    android:textSize="20sp"/>
-                <View
-                    android:layout_width="1dp"
-                    android:background="@color/borderColor"
-                    android:layout_height="match_parent"/>
+<!--                <EditText-->
+<!--                    android:id="@+id/otp_5th_digit"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="7"-->
+<!--                    android:padding="8dp"-->
+<!--                    android:hint="0"-->
+<!--                    android:background="@android:color/transparent"-->
+<!--                    android:textColor="#000"-->
+<!--                    android:textSize="20sp"/>-->
+<!--                <View-->
+<!--                    android:layout_width="1dp"-->
+<!--                    android:background="@color/borderColor"-->
+<!--                    android:layout_height="match_parent"/>-->
 
-                <EditText
-                    android:id="@+id/otp_6th_digit"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="7"
-                    android:padding="8dp"
-                    android:hint="0"
-                    android:background="@android:color/transparent"
-                    android:textColor="#000"
-                    android:textSize="20sp"/>
+<!--                <EditText-->
+<!--                    android:id="@+id/otp_6th_digit"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="7"-->
+<!--                    android:padding="8dp"-->
+<!--                    android:hint="0"-->
+<!--                    android:background="@android:color/transparent"-->
+<!--                    android:textColor="#000"-->
+<!--                    android:textSize="20sp"/>-->
 
 
 
@@ -222,7 +222,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/verify_btn"
+                        android:id="@+id/btn_sign_in"
 
                         android:layout_width="wrap_content"
                         android:layout_weight="1"
