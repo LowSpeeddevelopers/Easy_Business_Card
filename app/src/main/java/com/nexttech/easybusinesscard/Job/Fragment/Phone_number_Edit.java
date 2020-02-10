@@ -37,11 +37,11 @@ public class Phone_number_Edit extends Fragment {
         View view = inflater.inflate(R.layout.fragment_phone_number__edit, container, false);
         edtMobileNumber = view.findViewById(R.id.edt_mobile_number);
 
-        if(!MainActivity.employeeInfoModel.equals(null)){
-            edtMobileNumber.setText(MainActivity.employeeInfoModel.getMobileNumber());
-        } else if(!MainActivity.employerInfoModel.equals(null)){
-            edtMobileNumber.setText(MainActivity.employerInfoModel.getMobileNumber());
-        }
+//        if(!MainActivity.employeeInfoModel.equals(null)){
+//            edtMobileNumber.setText(MainActivity.employeeInfoModel.getMobileNumber());
+//        } else if(!MainActivity.employerInfoModel.equals(null)){
+//            edtMobileNumber.setText(MainActivity.employerInfoModel.getMobileNumber());
+//        }
 
         view.findViewById(R.id.btn_send_code).setOnClickListener(new View.OnClickListener() {
             @Override

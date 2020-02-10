@@ -14,34 +14,41 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.nexttech.easybusinesscard.Job.Activity.MainActivity;
+import com.nexttech.easybusinesscard.Job.Verification;
 import com.nexttech.easybusinesscard.R;
 
 
 public class Login_fragment extends Fragment {
 
+    Context context;
+    Verification verification;
 
-    public Login_fragment(Context context) {
+    EditText email,password;
+    TextView forgetpass,signup,login;
 
 
+    public Login_fragment(Context context, Verification verification) {
+        this.context = context;
+        this.verification=verification;
     }
-    View  vi;
-    EditText email,Password;
-    Button login;
-    TextView forgetpass,signup,login1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        vi = inflater.inflate(R.layout.fragment_login, container, false);
+        View vi = inflater.inflate(R.layout.fragment_login, container, false);
+
+        email = vi.findViewById(R.id.login_email);
+        password= vi.findViewById(R.id.login_pass);
 
         signup=vi.findViewById(R.id.signuptext);
-        login1=vi.findViewById(R.id.login_btn);
-        login1.setOnClickListener(new View.OnClickListener() {
+        login=vi.findViewById(R.id.login_btn);
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(getContext(),job_navigation.class);
-//                startActivity(intent);
+                String number = email.getText().toString().trim();
+                MainActivity.viewPager.setCurrentItem(5);
+                verification.sendVerificationCode(number);
             }
         });
 
