@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.nexttech.easybusinesscard.BusinessCard.Activity.Create_card;
+import com.nexttech.easybusinesscard.Job.Activity.AuthenticationActivity;
 import com.nexttech.easybusinesscard.Job.Activity.MainActivity;
 
 import java.util.concurrent.TimeUnit;
@@ -108,11 +109,11 @@ public class Verification {
                             boolean isRegistered = false;
 
                             if (isRegistered){
-                                Intent intent = new Intent(context, Create_card.class);
+                                Intent intent = new Intent(context, MainActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 context.startActivity(intent);
                             } else {
-                                MainActivity.viewPager.setCurrentItem(2);
+                                AuthenticationActivity.viewPager.setCurrentItem(2);
                             }
 
 

@@ -1,7 +1,6 @@
 package com.nexttech.easybusinesscard.Job.Fragment;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,11 +8,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.nexttech.easybusinesscard.Job.Activity.MainActivity;
+import com.nexttech.easybusinesscard.Job.Activity.AuthenticationActivity;
 import com.nexttech.easybusinesscard.Job.Verification;
 import com.nexttech.easybusinesscard.R;
 
@@ -47,8 +45,8 @@ public class Login_fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String number = email.getText().toString().trim();
-                MainActivity.mobileNumber = number;
-                MainActivity.viewPager.setCurrentItem(1);
+                AuthenticationActivity.mobileNumber = number;
+                AuthenticationActivity.viewPager.setCurrentItem(1);
                 verification.sendVerificationCode(number);
             }
         });
@@ -56,7 +54,7 @@ public class Login_fragment extends Fragment {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.viewPager.setCurrentItem(1);
+                AuthenticationActivity.viewPager.setCurrentItem(1);
             }
         });
 

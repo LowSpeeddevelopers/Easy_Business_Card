@@ -1,7 +1,6 @@
 package com.nexttech.easybusinesscard.Job.Fragment;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,7 +16,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.nexttech.easybusinesscard.Job.Activity.MainActivity;
+import com.nexttech.easybusinesscard.Job.Activity.AuthenticationActivity;
 import com.nexttech.easybusinesscard.Job.Model.EmployeeInfoModel;
 import com.nexttech.easybusinesscard.R;
 
@@ -53,7 +52,7 @@ public class EmployeeSignUp extends Fragment {
         empMobile = view.findViewById(R.id.employee_mobile);
         empCountry = view.findViewById(R.id.employee_country);
 
-        empMobile.setText(MainActivity.mobileNumber);
+        empMobile.setText(AuthenticationActivity.mobileNumber);
         empMobile.setEnabled(false);
 
         empLogIn = view.findViewById(R.id.employee_logIn);
@@ -66,7 +65,7 @@ public class EmployeeSignUp extends Fragment {
         empLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.viewPager.setCurrentItem(0);
+                AuthenticationActivity.viewPager.setCurrentItem(0);
             }
         });
 
@@ -87,9 +86,9 @@ public class EmployeeSignUp extends Fragment {
                     Toast.makeText(context, "OK", Toast.LENGTH_LONG).show();
                     employeeInfoModel = new EmployeeInfoModel(FnameInput,LnameInput,UnameInput,PassInput,emailInput,MobileInput,CountryInput);
 
-                    MainActivity.employeeInfoSaveInFirebase(employeeInfoModel);
+                    AuthenticationActivity.employeeInfoSaveInFirebase(employeeInfoModel);
 
-                    //MainActivity.viewPager.setCurrentItem(4);
+                    //AuthenticationActivity.viewPager.setCurrentItem(4);
                 }
             }
         });

@@ -13,7 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
-import com.nexttech.easybusinesscard.Job.Activity.MainActivity;
+import com.nexttech.easybusinesscard.Job.Activity.AuthenticationActivity;
 import com.nexttech.easybusinesscard.Job.Model.EmployerInfoModel;
 import com.nexttech.easybusinesscard.R;
 
@@ -49,7 +49,7 @@ public class EmployerSignup extends Fragment {
         empMobile = view.findViewById(R.id.employer_mobile);
         empCountry = view.findViewById(R.id.employer_country);
 
-        empMobile.setText(MainActivity.mobileNumber);
+        empMobile.setText(AuthenticationActivity.mobileNumber);
         empMobile.setEnabled(false);
 
         empLogIn = view.findViewById(R.id.employer_logIn);
@@ -62,7 +62,7 @@ public class EmployerSignup extends Fragment {
         empLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //MainActivity.viewPager.setCurrentItem(0);
+                //AuthenticationActivity.viewPager.setCurrentItem(0);
             }
         });
 
@@ -83,9 +83,9 @@ public class EmployerSignup extends Fragment {
                     Toast.makeText(context, "OK", Toast.LENGTH_LONG).show();
                     employerInfoModel = new EmployerInfoModel(FnameInput,LnameInput,UnameInput,PassInput,emailInput,MobileInput,CountryInput,CompanyInput);
 
-                    MainActivity.employerInfoSaveInFirebase(employerInfoModel);
+                    AuthenticationActivity.employerInfoSaveInFirebase(employerInfoModel);
 
-                    //MainActivity.viewPager.setCurrentItem(4);
+                    //AuthenticationActivity.viewPager.setCurrentItem(4);
                 }
             }
         });
