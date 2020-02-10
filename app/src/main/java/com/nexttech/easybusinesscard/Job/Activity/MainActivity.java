@@ -188,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
 
             switch (pos){
                 case 0:
-                    return new Login_fragment(MainActivity.this);
+                    return new Login_fragment(MainActivity.this, verification);
                 case 1:
                     return new signUp_Type(MainActivity.this);
                 case 2:

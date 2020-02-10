@@ -51,6 +51,8 @@ public class Verification {
         @Override
         public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
 
+            Toast.makeText(context, "Call", Toast.LENGTH_SHORT).show();
+
             //Getting the code sent by SMS
             String code = phoneAuthCredential.getSmsCode();
 
@@ -66,6 +68,7 @@ public class Verification {
 
         @Override
         public void onVerificationFailed(FirebaseException e) {
+            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
             Log.e("Auth_Error", e.getMessage());
             Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
         }
@@ -73,6 +76,8 @@ public class Verification {
         @Override
         public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
             super.onCodeSent(s, forceResendingToken);
+
+            Toast.makeText(context, "Code Sent", Toast.LENGTH_SHORT).show();
 
             //storing the verification id that is sent to the user
             mVerificationId = s;
@@ -84,6 +89,8 @@ public class Verification {
     public void verifyVerificationCode(String code) {
         //creating the credential
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, code);
+
+        Toast.makeText(context, "Verified", Toast.LENGTH_SHORT).show();
 
         //signing the user
         signInWithPhoneAuthCredential(credential);
