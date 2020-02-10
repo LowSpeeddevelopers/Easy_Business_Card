@@ -28,15 +28,19 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:padding="4dp"
                     android:orientation="vertical">
                     <TextView
                         android:id="@+id/textview3"
+                        android:padding="4dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/buttonColor"
                         android:text="Who can see your business card?"/>
                     <TextView
                         android:id="@+id/textview4"
+                        android:padding="4dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#000"
@@ -55,15 +59,19 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:padding="4dp"
                     android:orientation="vertical">
                     <TextView
                         android:id="@+id/textview1"
+                        android:padding="4dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/buttonColor"
                         android:text="Who can see your email address?"/>
                     <TextView
                         android:id="@+id/textview2"
+                        android:padding="4dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#000"
@@ -82,15 +90,19 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:padding="4dp"
                     android:orientation="vertical">
                     <TextView
                         android:id="@+id/textview5"
+                        android:padding="4dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/buttonColor"
                         android:text="Who can see your follower's list?"/>
                     <TextView
                         android:id="@+id/textview6"
+                        android:padding="4dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#000"
@@ -109,15 +121,19 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:padding="4dp"
                     android:orientation="vertical">
                     <TextView
                         android:id="@+id/textview7"
+                        android:padding="4dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/buttonColor"
                         android:text="Who can see your following list?"/>
                     <TextView
                         android:id="@+id/textview8"
+                        android:padding="4dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#000"
