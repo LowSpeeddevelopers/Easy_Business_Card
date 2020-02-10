@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.fragment.app.Fragment;
+
 import com.nexttech.easybusinesscard.Job.Activity.MainActivity;
 import com.nexttech.easybusinesscard.Job.Model.EmployerInfoModel;
 import com.nexttech.easybusinesscard.R;
@@ -25,6 +26,8 @@ public class EmployerSignup extends Fragment {
     CheckBox empCheckbox;
     TextView empLogIn, terms;
     View view;
+
+    EmployerInfoModel employerInfoModel;
 
     String emailInput, FnameInput, LnameInput, UnameInput, PassInput, MobileInput, CountryInput, CompanyInput;
 
@@ -46,6 +49,9 @@ public class EmployerSignup extends Fragment {
         empMobile = view.findViewById(R.id.employer_mobile);
         empCountry = view.findViewById(R.id.employer_country);
 
+        empMobile.setText(MainActivity.mobileNumber);
+        empMobile.setEnabled(false);
+
         empLogIn = view.findViewById(R.id.employer_logIn);
         terms = view.findViewById(R.id.employer_terms);
 
@@ -56,7 +62,7 @@ public class EmployerSignup extends Fragment {
         empLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.viewPager.setCurrentItem(0);
+                //MainActivity.viewPager.setCurrentItem(0);
             }
         });
 
@@ -75,8 +81,11 @@ public class EmployerSignup extends Fragment {
 
                 if (validateEmail()) {
                     Toast.makeText(context, "OK", Toast.LENGTH_LONG).show();
-                    MainActivity.employerInfoModel = new EmployerInfoModel(FnameInput,LnameInput,UnameInput,PassInput,emailInput,MobileInput,CountryInput,CompanyInput);
-                    MainActivity.viewPager.setCurrentItem(4);
+                    employerInfoModel = new EmployerInfoModel(FnameInput,LnameInput,UnameInput,PassInput,emailInput,MobileInput,CountryInput,CompanyInput);
+
+                    MainActivity.employerInfoSaveInFirebase(employerInfoModel);
+
+                    //MainActivity.viewPager.setCurrentItem(4);
                 }
             }
         });

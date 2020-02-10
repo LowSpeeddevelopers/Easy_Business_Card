@@ -32,6 +32,8 @@ public class EmployeeSignUp extends Fragment {
     TextView empLogIn, terms;
     View view;
 
+    EmployeeInfoModel employeeInfoModel;
+
     String emailInput, FnameInput, LnameInput, UnameInput, PassInput, MobileInput, CountryInput;
 
 
@@ -50,6 +52,9 @@ public class EmployeeSignUp extends Fragment {
         empEmail = view.findViewById(R.id.employee_email);
         empMobile = view.findViewById(R.id.employee_mobile);
         empCountry = view.findViewById(R.id.employee_country);
+
+        empMobile.setText(MainActivity.mobileNumber);
+        empMobile.setEnabled(false);
 
         empLogIn = view.findViewById(R.id.employee_logIn);
         terms = view.findViewById(R.id.employee_terms);
@@ -80,8 +85,11 @@ public class EmployeeSignUp extends Fragment {
                 if (validateEmail())
                 {
                     Toast.makeText(context, "OK", Toast.LENGTH_LONG).show();
-                    MainActivity.employeeInfoModel = new EmployeeInfoModel(FnameInput,LnameInput,UnameInput,PassInput,emailInput,MobileInput,CountryInput);
-                    MainActivity.viewPager.setCurrentItem(4);
+                    employeeInfoModel = new EmployeeInfoModel(FnameInput,LnameInput,UnameInput,PassInput,emailInput,MobileInput,CountryInput);
+
+                    MainActivity.employeeInfoSaveInFirebase(employeeInfoModel);
+
+                    //MainActivity.viewPager.setCurrentItem(4);
                 }
             }
         });
@@ -93,34 +101,34 @@ public class EmployeeSignUp extends Fragment {
 
         Boolean returnValue = true;
 
-//        if (emailInput.isEmpty()) {
-//            empEmail.setError("Field can't be empty");
-//            returnValue = false;
-//        }
-//        if (FnameInput.isEmpty()) {
-//            empFirstName.setError("Field can't be empty");
-//            returnValue = false;
-//        }
-//        if (LnameInput.isEmpty()) {
-//            empLastName.setError("Field can't be empty");
-//            returnValue = false;
-//        }
-//        if (UnameInput.isEmpty()) {
-//            empUsername.setError("Field can't be empty");
-//            returnValue = false;
-//        }
-//        if (PassInput.isEmpty()) {
-//            empPassword.setError("Field can't be empty");
-//            returnValue = false;
-//        }
-//        if (MobileInput.isEmpty()) {
-//            empMobile.setError("Field can't be empty");
-//            returnValue = false;
-//        }
-//        if (CountryInput.isEmpty()) {
-//            empCountry.setError("Field can't be empty");
-//            returnValue = false;
-//        }
+        if (emailInput.isEmpty()) {
+            empEmail.setError("Field can't be empty");
+            returnValue = false;
+        }
+        if (FnameInput.isEmpty()) {
+            empFirstName.setError("Field can't be empty");
+            returnValue = false;
+        }
+        if (LnameInput.isEmpty()) {
+            empLastName.setError("Field can't be empty");
+            returnValue = false;
+        }
+        if (UnameInput.isEmpty()) {
+            empUsername.setError("Field can't be empty");
+            returnValue = false;
+        }
+        if (PassInput.isEmpty()) {
+            empPassword.setError("Field can't be empty");
+            returnValue = false;
+        }
+        if (MobileInput.isEmpty()) {
+            empMobile.setError("Field can't be empty");
+            returnValue = false;
+        }
+        if (CountryInput.isEmpty()) {
+            empCountry.setError("Field can't be empty");
+            returnValue = false;
+        }
 
         return returnValue;
     }
