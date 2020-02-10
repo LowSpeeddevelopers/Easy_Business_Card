@@ -47,7 +47,8 @@ public class Login_fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String number = email.getText().toString().trim();
-                MainActivity.viewPager.setCurrentItem(5);
+                MainActivity.mobileNumber = number;
+                MainActivity.viewPager.setCurrentItem(1);
                 verification.sendVerificationCode(number);
             }
         });
@@ -58,8 +59,6 @@ public class Login_fragment extends Fragment {
                 MainActivity.viewPager.setCurrentItem(1);
             }
         });
-
-
 
         return vi;
     }
