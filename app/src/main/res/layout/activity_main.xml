@@ -9,23 +9,55 @@
     android:background="@android:color/background_light"
     tools:context=".Job.Activity.MainActivity">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Main"
-            android:textSize="50dp"
-            android:id="@+id/textView"
-            android:layout_marginTop="200dp"
-            android:layout_marginLeft="130dp"/>
-
-
-    </RelativeLayout>
-
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <include android:id="@+id/toolbarMainActivity"
+            layout="@layout/toolbar"/>
+        <com.nexttech.easybusinesscard.Job.Utils.NonSwipeableViewPager
+            android:layout_width="match_parent"
+            android:background="#fff"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginBottom="1dp"
+            android:id="@+id/container"/>
+        <LinearLayout
+            android:id="@+id/bottomnav"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#fff"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="0dp"
+                android:id="@+id/bagbutton"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                android:src="@drawable/bagicon"
+                android:layout_weight="1"/>
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/chatbutton"
+                android:padding="8dp"
+                android:src="@drawable/chaticon"
+                android:layout_weight="1"/>
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/cardbutton"
+                android:padding="8dp"
+                android:src="@drawable/cardicon"
+                android:layout_weight="1"/>
+            <ImageView
+                android:layout_width="0dp"
+                android:src="@drawable/profileicon"
+                android:id="@+id/profilebutton"
+                android:padding="8dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+        </LinearLayout>
+    </LinearLayout>
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -33,9 +65,5 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
         android:id="@+id/nv">
-
     </com.google.android.material.navigation.NavigationView>
-
-
-
 </androidx.drawerlayout.widget.DrawerLayout>

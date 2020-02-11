@@ -28,14 +28,15 @@
 
 
             <EditText
-                android:drawableStart="@drawable/email"
+                android:drawableStart="@drawable/phone"
                 android:id="@+id/login_email"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:drawablePadding="16dp"
                 android:padding="10dp"
                 android:textColor="#000"
-                android:hint="Email"
+                android:hint="+880"
+                android:layout_marginBottom="4dp"
                 android:textSize="20sp"
                 android:background="@drawable/edit_text_border"/>
 
@@ -45,48 +46,15 @@
                 android:layout_weight="1"/>
 
 
-            <EditText
-                android:id="@+id/login_pass"
-                android:drawableStart="@drawable/password"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="10dp"
-                android:hint="Password"
-                android:drawablePadding="16dp"
-                android:textColor="#000"
-                android:textSize="20sp"
-                android:background="@drawable/edit_text_border"/>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Remember Me"/>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"/>
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:textColor="#000"
-                    android:gravity="center"
-                    android:text="Forget Password ?"/>
-
-            </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_weight="1"/>
+                android:orientation="horizontal"/>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginTop="4dp"
                 android:layout_height="?attr/actionBarSize"
                 app:cardCornerRadius="5dp">
 

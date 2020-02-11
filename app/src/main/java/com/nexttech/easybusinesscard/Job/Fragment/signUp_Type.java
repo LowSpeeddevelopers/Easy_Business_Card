@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.nexttech.easybusinesscard.Job.Activity.AuthenticationActivity;
+import com.nexttech.easybusinesscard.Job.Activity.MainActivity;
 import com.nexttech.easybusinesscard.R;
 
 
@@ -35,14 +35,14 @@ public class signUp_Type extends Fragment {
         btnSignupEmployee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AuthenticationActivity.viewPager.setCurrentItem(3);
+                MainActivity.viewPager.setCurrentItem(3);
             }
         });
 
         btnSignupEmployer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AuthenticationActivity.viewPager.setCurrentItem(4);
+                MainActivity.viewPager.setCurrentItem(4);
             }
         });
 

@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.nexttech.easybusinesscard.Job.Activity.AuthenticationActivity;
+import com.nexttech.easybusinesscard.Job.Activity.MainActivity;
 import com.nexttech.easybusinesscard.Job.Verification;
 import com.nexttech.easybusinesscard.R;
 
@@ -21,8 +21,8 @@ public class Login_fragment extends Fragment {
     Context context;
     Verification verification;
 
-    EditText email,password;
-    TextView forgetpass,signup,login;
+    EditText phone;
+    TextView signup,login;
 
 
     public Login_fragment(Context context, Verification verification) {
@@ -36,17 +36,16 @@ public class Login_fragment extends Fragment {
         // Inflate the layout for this fragment
         View vi = inflater.inflate(R.layout.fragment_login, container, false);
 
-        email = vi.findViewById(R.id.login_email);
-        password= vi.findViewById(R.id.login_pass);
+        phone = vi.findViewById(R.id.login_email);
 
         signup=vi.findViewById(R.id.signuptext);
         login=vi.findViewById(R.id.login_btn);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String number = email.getText().toString().trim();
-                AuthenticationActivity.mobileNumber = number;
-                AuthenticationActivity.viewPager.setCurrentItem(1);
+                String number = phone.getText().toString().trim();
+                MainActivity.mobileNumber = number;
+                MainActivity.viewPager.setCurrentItem(1);
                 verification.sendVerificationCode(number);
             }
         });
@@ -54,7 +53,7 @@ public class Login_fragment extends Fragment {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AuthenticationActivity.viewPager.setCurrentItem(1);
+                MainActivity.viewPager.setCurrentItem(1);
             }
         });
 
