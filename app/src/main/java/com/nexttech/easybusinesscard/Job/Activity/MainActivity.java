@@ -147,12 +147,22 @@ public class MainActivity extends AppCompatActivity {
                 int id = item.getItemId();
                 switch(id)
                 {
-                    case R.id.account:
-                        Toast.makeText(MainActivity.this, "My Account",Toast.LENGTH_SHORT).show();break;
+                    case R.id.home:
+                        Toast.makeText(MainActivity.this, "Home",Toast.LENGTH_SHORT).show();break;
                     case R.id.settings:
                         Toast.makeText(MainActivity.this, "Settings",Toast.LENGTH_SHORT).show();break;
-                    case R.id.mycart:
-                        Toast.makeText(MainActivity.this, "My Cart",Toast.LENGTH_SHORT).show();break;
+                    case R.id.notification:
+                        Toast.makeText(MainActivity.this, "Notification",Toast.LENGTH_SHORT).show();break;
+                    case R.id.invite_friends:
+                        Toast.makeText(MainActivity.this, "Invite friends",Toast.LENGTH_SHORT).show();break;
+                    case R.id.help:
+                        Toast.makeText(MainActivity.this, "Help and Support",Toast.LENGTH_SHORT).show();break;
+                    case R.id.about_us:
+                        Toast.makeText(MainActivity.this, "About us",Toast.LENGTH_SHORT).show();break;
+                    case R.id.privacy_policy:
+                        Toast.makeText(MainActivity.this, "Privacy Policy",Toast.LENGTH_SHORT).show();break;
+                    case R.id.log_out:
+                        Toast.makeText(MainActivity.this, "Log out",Toast.LENGTH_SHORT).show();break;
                     default:
                         return true;
                 }
