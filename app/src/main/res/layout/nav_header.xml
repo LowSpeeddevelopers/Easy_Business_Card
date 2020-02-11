@@ -3,23 +3,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="180dp"
-    android:gravity="center"
+    android:layout_height="160dp"
+    android:gravity="bottom"
     android:padding="16dp"
     android:background="@color/colorPrimaryDark">
 
-    <TextView
-        android:id="@+id/tv_user_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Afroz Hossain"
-        android:textColor="#FFF"
-        android:textSize="22sp" />
-    <TextView
-        android:id="@+id/tv_user_type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Employer"
-        android:textColor="#FFF"
-        android:textSize="18sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical" >
+            <TextView
+                android:id="@+id/tv_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Afroz Hossain"
+                android:textColor="#FFF"
+                android:textSize="25sp"/>
+
+            <TextView
+                android:id="@+id/tv_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="afroz@gmail.com"
+                android:textColor="#FFF"
+                android:textSize="18sp"/>
+        </LinearLayout>
 </LinearLayout>
+
+
+
