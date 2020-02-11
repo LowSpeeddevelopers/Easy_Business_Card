@@ -111,7 +111,7 @@ public class Verification {
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 context.startActivity(intent);
                             } else {
-                                MainActivity.viewPager.setCurrentItem(2);
+                               // MainActivity.viewPager.setCurrentItem(2);
                             }
 
 

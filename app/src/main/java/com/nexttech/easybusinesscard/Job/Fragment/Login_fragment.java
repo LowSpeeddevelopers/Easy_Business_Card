@@ -22,7 +22,7 @@ public class Login_fragment extends Fragment {
     Verification verification;
 
     EditText phone;
-    TextView signup,login;
+    TextView login;
 
 
     public Login_fragment(Context context, Verification verification) {
@@ -38,22 +38,14 @@ public class Login_fragment extends Fragment {
 
         phone = vi.findViewById(R.id.login_email);
 
-        signup=vi.findViewById(R.id.signuptext);
         login=vi.findViewById(R.id.login_btn);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String number = phone.getText().toString().trim();
                 MainActivity.mobileNumber = number;
-                MainActivity.viewPager.setCurrentItem(1);
+                //MainActivity.viewPager.setCurrentItem(1);
                 verification.sendVerificationCode(number);
-            }
-        });
-
-        signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MainActivity.viewPager.setCurrentItem(1);
             }
         });
 

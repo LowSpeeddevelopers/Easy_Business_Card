@@ -35,14 +35,14 @@ public class signUp_Type extends Fragment {
         btnSignupEmployee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.viewPager.setCurrentItem(3);
+                //MainActivity.viewPager.setCurrentItem(3);
             }
         });
 
         btnSignupEmployer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.viewPager.setCurrentItem(4);
+                //MainActivity.viewPager.setCurrentItem(4);
             }
         });
 

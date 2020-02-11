@@ -120,14 +120,14 @@ public class SettingsFragment extends Fragment {
         cvprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.viewPager.setCurrentItem(6);
+                //MainActivity.viewPager.setCurrentItem(6);
             }
         });
 
         tvprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.viewPager.setCurrentItem(6);
+                //MainActivity.viewPager.setCurrentItem(6);
             }
         });
 
@@ -135,28 +135,28 @@ public class SettingsFragment extends Fragment {
         cvsecurity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.viewPager.setCurrentItem(8);
+               // MainActivity.viewPager.setCurrentItem(8);
             }
         });
 
         tvsecurity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.viewPager.setCurrentItem(8);
+               // MainActivity.viewPager.setCurrentItem(8);
             }
         });
 
         cvprivacy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.viewPager.setCurrentItem(7);
+                //MainActivity.viewPager.setCurrentItem(7);
             }
         });
 
         tvprivacy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.viewPager.setCurrentItem(7);
+                //MainActivity.viewPager.setCurrentItem(7);
             }
         });
 

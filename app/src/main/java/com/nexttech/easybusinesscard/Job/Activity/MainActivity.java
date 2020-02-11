@@ -19,6 +19,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -51,7 +52,8 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout bottomnav;
     private ActionBarDrawerToggle t;
     private NavigationView nv;
-    public static NonSwipeableViewPager viewPager;
+
+
     FirebaseAuth firebaseAuth;
     static FirebaseUser firebaseUser;
     Verification verification;
@@ -59,9 +61,11 @@ public class MainActivity extends AppCompatActivity {
     AlertDialog.Builder builder;
     static FirebaseDatabase database;
     ImageView bagbutton,chatbutton,cardbutton,profilebutton;
+    FrameLayout container;
     boolean isSelected = false;
     View view;
     static Context context;
+
 
     @Override
     protected void onStart() {
@@ -87,9 +91,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(firebaseUser!=null){
-            viewPager.setCurrentItem(0);
+            getSupportFragmentManager().beginTransaction().replace(R.id.container,new Login_fragment(this,verification)).commit();
         }else {
-            viewPager.setCurrentItem(0);
+            getSupportFragmentManager().beginTransaction().replace(R.id.container,new Login_fragment(this,verification)).commit();
         }
     }
 
@@ -102,11 +106,13 @@ public class MainActivity extends AppCompatActivity {
         dl.addDrawerListener(t);
         t.syncState();
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        container=findViewById(R.id.container);
 
 
         setSupportActionBar(null);
         Toolbar toolbar = findViewById(R.id.toolbarMainActivity);
         TextView toolbartext = toolbar.findViewById(R.id.toolbartext);
+
         bagbutton=findViewById(R.id.bagbutton);
         chatbutton=findViewById(R.id.chatbutton);
         cardbutton=findViewById(R.id.cardbutton);
@@ -118,8 +124,14 @@ public class MainActivity extends AppCompatActivity {
         verification=new Verification(this,firebaseAuth);
         database = FirebaseDatabase.getInstance();
         context = this;
-        viewPager = findViewById(R.id.container);
-        viewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
+
+
+
+
+
+
+
+
         nv = findViewById(R.id.nv);
         bottomnav = findViewById(R.id.bottomnav);
 
@@ -321,44 +333,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private class MyPagerAdapter extends FragmentPagerAdapter {
 
-        public MyPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int pos) {
-
-            switch (pos){
-                case 0:
-                    return new Login_fragment(MainActivity.this, verification);
-                case 1:
-                    return new OTP_verification(MainActivity.this,verification);
-                case 2:
-                    return new signUp_Type(MainActivity.this);
-                case 3:
-                    return new EmployeeSignUp(MainActivity.this);
-                case 4:
-                    return new EmployerSignup(MainActivity.this);
-                case 5:
-                    return new Phone_number_Edit(MainActivity.this,verification);
-                case 6:
-                    return new Profile_settings();
-                case 7:
-                    return new PrivacyFragment();
-                case 8:
-                    return new SecurityFragment();
-                default:
-                    return new SettingsFragment(MainActivity.this);
-            }
-        }
-
-        @Override
-        public int getCount() {
-            return 9;
-        }
-    }
 
 
 

@@ -66,7 +66,7 @@ public class EmployeeSignUp extends Fragment {
         empLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.viewPager.setCurrentItem(0);
+                //MainActivity.viewPager.setCurrentItem(0);
             }
         });
 

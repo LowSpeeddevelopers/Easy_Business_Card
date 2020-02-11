@@ -15,12 +15,10 @@
         android:orientation="vertical">
         <include android:id="@+id/toolbarMainActivity"
             layout="@layout/toolbar"/>
-        <com.nexttech.easybusinesscard.Job.Utils.NonSwipeableViewPager
+        <FrameLayout
             android:layout_width="match_parent"
-            android:background="#fff"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:layout_marginBottom="1dp"
             android:id="@+id/container"/>
         <LinearLayout
             android:id="@+id/bottomnav"
