@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.nexttech.easybusinesscard.Job.Verification;
@@ -24,6 +25,8 @@ public class OTP_verification extends Fragment {
     private FirebaseAuth mAuth;
 
     Verification verification;
+    TextView phonenumber;
+
 
     public OTP_verification(Context context,Verification verification) {
         this.context = context;
@@ -38,6 +41,12 @@ public class OTP_verification extends Fragment {
         mAuth = FirebaseAuth.getInstance();
 
         editTextCode = view.findViewById(R.id.edt_text_code);
+        phonenumber=view.findViewById(R.id.phonenumber);
+
+
+        String s = getArguments().getString("phone");
+
+        phonenumber.setText(s);
 
         //if the automatic sms detection did not work, user can also enter the code manually
         //so adding a click listener to the button
@@ -50,14 +59,12 @@ public class OTP_verification extends Fragment {
                     editTextCode.requestFocus();
                     return;
                 }
-
                 //verifying the code entered manually
                 verification.verifyVerificationCode(code);
+
             }
         });
-
         return view;
-
     }
 
     //the method is sending verification code

@@ -3,10 +3,12 @@ package com.nexttech.easybusinesscard.Job;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -17,7 +19,15 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.nexttech.easybusinesscard.Job.Activity.MainActivity;
+import com.nexttech.easybusinesscard.Job.Fragment.SettingsFragment;
+import com.nexttech.easybusinesscard.Job.Fragment.signUp_Type;
+import com.nexttech.easybusinesscard.R;
 
 import java.util.concurrent.TimeUnit;
 
@@ -27,6 +37,9 @@ public class Verification {
 
     Context context;
     FirebaseAuth mAuth;
+    String mobile;
+    DatabaseReference referenc;
+
 
 
     public Verification(Context context, FirebaseAuth mAuth) {
@@ -37,12 +50,15 @@ public class Verification {
     private String mVerificationId;
 
     public void sendVerificationCode(String mobile) {
+        this.mobile = mobile;
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 "+88" + mobile,
                 60,
                 TimeUnit.SECONDS,
                 TaskExecutors.MAIN_THREAD,
                 mCallbacks);
+
+        referenc = FirebaseDatabase.getInstance().getReference();
     }
 
 
@@ -96,25 +112,15 @@ public class Verification {
         signInWithPhoneAuthCredential(credential);
     }
 
-    public void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
+    public void signInWithPhoneAuthCredential(final PhoneAuthCredential credential) {
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener((Activity) context, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            //verification successful we will start the profile activity
-
-                            boolean isRegistered = false;
-
-                            if (isRegistered){
-                                Intent intent = new Intent(context, MainActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                context.startActivity(intent);
-                            } else {
-                               // MainActivity.viewPager.setCurrentItem(2);
-                            }
-
-
+                            Toast.makeText(context, "Account Creation Successful", Toast.LENGTH_SHORT).show();
+                            Intent i =new Intent(context,MainActivity.class);
+                            context.startActivity(i);
                         } else {
 
                             //verification unsuccessful.. display an error message

@@ -6,12 +6,12 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.nexttech.easybusinesscard.Job.Activity.MainActivity;
 import com.nexttech.easybusinesscard.R;
 
 
@@ -31,6 +31,9 @@ public class signUp_Type extends Fragment {
 
         btnSignupEmployee = view.findViewById(R.id.btn_signUp_employee);
         btnSignupEmployer = view.findViewById(R.id.btn_signUp_employer);
+
+
+        Log.e("phonenumber",getArguments().getString("phone"));
 
         btnSignupEmployee.setOnClickListener(new View.OnClickListener() {
             @Override

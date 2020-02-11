@@ -45,6 +45,13 @@ public class Login_fragment extends Fragment {
                 String number = phone.getText().toString().trim();
                 MainActivity.mobileNumber = number;
                 //MainActivity.viewPager.setCurrentItem(1);
+                Bundle b = new Bundle();
+                b.putString("phone",number);
+
+                Fragment f = new OTP_verification(context,verification);
+                f.setArguments(b);
+
+                getFragmentManager().beginTransaction().replace(R.id.container,f).commit();
                 verification.sendVerificationCode(number);
             }
         });

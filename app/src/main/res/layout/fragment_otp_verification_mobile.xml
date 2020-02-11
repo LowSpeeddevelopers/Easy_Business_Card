@@ -41,11 +41,6 @@
                 android:orientation="vertical"
                 android:gravity="center">
 
-
-
-
-
-
                 <TextView
                     android:id="@+id/enter_otp"
                     android:layout_width="wrap_content"
@@ -79,6 +74,13 @@
                     android:text="by SMS for mobile number verification"/>
 
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text="number"
+                    android:id="@+id/phonenumber"
+                    android:gravity="center"/>
 
             </LinearLayout>
             <View

@@ -17,6 +17,7 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -25,11 +26,19 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCanceledListener;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.nexttech.easybusinesscard.Job.Fragment.EmployeeSignUp;
 import com.nexttech.easybusinesscard.Job.Fragment.EmployerSignup;
 import com.nexttech.easybusinesscard.Job.Fragment.Login_fragment;
@@ -59,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     Verification verification;
     public static String mobileNumber;
     AlertDialog.Builder builder;
-    static FirebaseDatabase database;
+     static DatabaseReference database;
     ImageView bagbutton,chatbutton,cardbutton,profilebutton;
     FrameLayout container;
     boolean isSelected = false;
@@ -67,10 +76,13 @@ public class MainActivity extends AppCompatActivity {
     static Context context;
 
 
+
+
+
+
     @Override
     protected void onStart() {
         super.onStart();
-
         if (!hasConnection()){
             builder = new AlertDialog.Builder(this);
             //Uncomment the below code to Set the message and title from the strings.xml file
@@ -88,12 +100,33 @@ public class MainActivity extends AppCompatActivity {
             //Setting the title manually
             alert.setTitle("No Internet");
             alert.show();
-        }
-
-        if(firebaseUser!=null){
-            getSupportFragmentManager().beginTransaction().replace(R.id.container,new Login_fragment(this,verification)).commit();
         }else {
-            getSupportFragmentManager().beginTransaction().replace(R.id.container,new Login_fragment(this,verification)).commit();
+            if(firebaseUser!=null){
+                database.child("Users").child("Employer").child(firebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.exists()){
+
+                        }else {
+                            Bundle b = new Bundle();
+                            b.putString("phone",firebaseUser.getPhoneNumber());
+                            Fragment f = new signUp_Type(MainActivity.this);
+                            f.setArguments(b);
+
+                            getSupportFragmentManager().beginTransaction().replace(R.id.container,f).commit();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }else {
+                Fragment f=new Login_fragment(this,verification);
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.container,f).commit();
+            }
         }
     }
 
@@ -108,11 +141,9 @@ public class MainActivity extends AppCompatActivity {
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         container=findViewById(R.id.container);
 
-
         setSupportActionBar(null);
         Toolbar toolbar = findViewById(R.id.toolbarMainActivity);
         TextView toolbartext = toolbar.findViewById(R.id.toolbartext);
-
         bagbutton=findViewById(R.id.bagbutton);
         chatbutton=findViewById(R.id.chatbutton);
         cardbutton=findViewById(R.id.cardbutton);
@@ -122,22 +153,21 @@ public class MainActivity extends AppCompatActivity {
         //userId=firebaseAuth.getCurrentUser().getUid();
         firebaseUser=firebaseAuth.getCurrentUser();
         verification=new Verification(this,firebaseAuth);
-        database = FirebaseDatabase.getInstance();
+        database = FirebaseDatabase.getInstance().getReference();
         context = this;
-
-
-
-
-
-
 
 
         nv = findViewById(R.id.nv);
         bottomnav = findViewById(R.id.bottomnav);
 
 
+        
+
+
         nv.setVisibility(View.GONE);
         bottomnav.setVisibility(View.GONE);
+
+
 
 
 
@@ -278,76 +308,43 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
         if(firebaseUser!=null){
             nv.setVisibility(View.VISIBLE);
             bottomnav.setVisibility(View.VISIBLE);
         }
-
-
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(t.onOptionsItemSelected(item))
             return true;
         return super.onOptionsItemSelected(item);
     }
-
-
-
-
-
-
-
-
     public static void employerInfoSaveInFirebase(EmployerInfoModel employerInfoModel){
         String userId = firebaseUser.getUid();
-
-        DatabaseReference myRef = database.getReference("Users").child("Employer").child(userId);
-
+        DatabaseReference myRef = database.child("Users").child("Employer").child(userId);
         myRef.setValue(employerInfoModel);
-
         Toast.makeText(context, "Employer Information Insert Successfully", Toast.LENGTH_SHORT).show();
     }
-
     public static void employeeInfoSaveInFirebase(EmployeeInfoModel employeeInfoModel){
         String userId = firebaseUser.getUid();
-
-        DatabaseReference myRef = database.getReference("Users").child("Employee").child(userId);
-
+        DatabaseReference myRef = database.child("Users").child("Employee").child(userId);
         myRef.setValue(employeeInfoModel);
-
         Toast.makeText(context, "Employee Information Insert Successfully", Toast.LENGTH_SHORT).show();
     }
-
     public boolean hasConnection() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-
         NetworkInfo wifiNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         if (wifiNetwork != null && wifiNetwork.isConnected()) {
             return true;
         }
-
         NetworkInfo mobileNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
         if (mobileNetwork != null && mobileNetwork.isConnected()) {
             return true;
         }
-
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         if (activeNetwork != null && activeNetwork.isConnected()) {
             return true;
         }
-
         return false;
     }
-
-
-
-
-
-
-
-
-
 }

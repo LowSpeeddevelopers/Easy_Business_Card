@@ -63,5 +63,11 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
         android:id="@+id/nv">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="this is the text"/>
+
     </com.google.android.material.navigation.NavigationView>
 </androidx.drawerlayout.widget.DrawerLayout>
