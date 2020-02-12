@@ -7,30 +7,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCanceledListener;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -39,19 +31,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.nexttech.easybusinesscard.Job.Fragment.EmployeeSignUp;
-import com.nexttech.easybusinesscard.Job.Fragment.EmployerSignup;
+import com.nexttech.easybusinesscard.Job.Fragment.HomeFragment;
 import com.nexttech.easybusinesscard.Job.Fragment.Login_fragment;
-import com.nexttech.easybusinesscard.Job.Fragment.OTP_verification;
-import com.nexttech.easybusinesscard.Job.Fragment.Phone_number_Edit;
-import com.nexttech.easybusinesscard.Job.Fragment.PrivacyFragment;
-import com.nexttech.easybusinesscard.Job.Fragment.Profile_settings;
-import com.nexttech.easybusinesscard.Job.Fragment.SecurityFragment;
-import com.nexttech.easybusinesscard.Job.Fragment.SettingsFragment;
 import com.nexttech.easybusinesscard.Job.Fragment.signUp_Type;
-import com.nexttech.easybusinesscard.Job.Model.EmployeeInfoModel;
-import com.nexttech.easybusinesscard.Job.Model.EmployerInfoModel;
-import com.nexttech.easybusinesscard.Job.Utils.NonSwipeableViewPager;
+import com.nexttech.easybusinesscard.Job.Model.UserInfoModel;
 import com.nexttech.easybusinesscard.Job.Verification;
 import com.nexttech.easybusinesscard.R;
 
@@ -62,22 +45,21 @@ public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle t;
     private NavigationView nv;
 
+    ProgressBar progressBar;
 
     FirebaseAuth firebaseAuth;
     static FirebaseUser firebaseUser;
     Verification verification;
     public static String mobileNumber;
     AlertDialog.Builder builder;
-     static DatabaseReference database;
+    static DatabaseReference database;
     ImageView bagbutton,chatbutton,cardbutton,profilebutton;
     FrameLayout container;
     boolean isSelected = false;
     View view;
     static Context context;
 
-
-
-
+    TextView tvUsername, tvEmail;
 
 
     @Override
@@ -100,33 +82,9 @@ public class MainActivity extends AppCompatActivity {
             //Setting the title manually
             alert.setTitle("No Internet");
             alert.show();
+            progressBar.setVisibility(View.GONE);
         }else {
-            if(firebaseUser!=null){
-                database.child("Users").child("Employer").child(firebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.exists()){
-
-                        }else {
-                            Bundle b = new Bundle();
-                            b.putString("phone",firebaseUser.getPhoneNumber());
-                            Fragment f = new signUp_Type(MainActivity.this);
-                            f.setArguments(b);
-
-                            getSupportFragmentManager().beginTransaction().replace(R.id.container,f).commit();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-            }else {
-                Fragment f=new Login_fragment(this,verification);
-
-                getSupportFragmentManager().beginTransaction().replace(R.id.container,f).commit();
-            }
+            setFragment();
         }
     }
 
@@ -148,6 +106,10 @@ public class MainActivity extends AppCompatActivity {
         chatbutton=findViewById(R.id.chatbutton);
         cardbutton=findViewById(R.id.cardbutton);
         profilebutton=findViewById(R.id.profilebutton);
+        progressBar = findViewById(R.id.progress_bar);
+
+        progressBar.setVisibility(View.VISIBLE);
+
         toolbartext.setText("LOG IN");
         firebaseAuth=FirebaseAuth.getInstance();
         //userId=firebaseAuth.getCurrentUser().getUid();
@@ -156,20 +118,13 @@ public class MainActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance().getReference();
         context = this;
 
-
         nv = findViewById(R.id.nv);
         bottomnav = findViewById(R.id.bottomnav);
 
+        View headerView = nv.getHeaderView(0);
 
-        
-
-
-        nv.setVisibility(View.GONE);
-        bottomnav.setVisibility(View.GONE);
-
-
-
-
+        tvUsername = headerView.findViewById(R.id.tv_user_name);
+        tvEmail = headerView.findViewById(R.id.tv_email);
 
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -192,7 +147,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.privacy_policy:
                         Toast.makeText(MainActivity.this, "Privacy Policy",Toast.LENGTH_SHORT).show();break;
                     case R.id.log_out:
-                        Toast.makeText(MainActivity.this, "Log out",Toast.LENGTH_SHORT).show();break;
+                        firebaseAuth.signOut();
+                        setFragment();
+                        break;
                     default:
                         return true;
                 }
@@ -319,18 +276,12 @@ public class MainActivity extends AppCompatActivity {
             return true;
         return super.onOptionsItemSelected(item);
     }
-    public static void employerInfoSaveInFirebase(EmployerInfoModel employerInfoModel){
-        String userId = firebaseUser.getUid();
-        DatabaseReference myRef = database.child("Users").child("Employer").child(userId);
-        myRef.setValue(employerInfoModel);
-        Toast.makeText(context, "Employer Information Insert Successfully", Toast.LENGTH_SHORT).show();
+    public static void userInfoSaveInFirebase(UserInfoModel userInfoModel){
+        DatabaseReference myRef = database.child("Users").child(userInfoModel.getUserId());
+        myRef.setValue(userInfoModel);
+        Toast.makeText(context, "User Information Insert Successfully", Toast.LENGTH_SHORT).show();
     }
-    public static void employeeInfoSaveInFirebase(EmployeeInfoModel employeeInfoModel){
-        String userId = firebaseUser.getUid();
-        DatabaseReference myRef = database.child("Users").child("Employee").child(userId);
-        myRef.setValue(employeeInfoModel);
-        Toast.makeText(context, "Employee Information Insert Successfully", Toast.LENGTH_SHORT).show();
-    }
+
     public boolean hasConnection() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo wifiNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
@@ -346,5 +297,51 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return false;
+    }
+
+    public void setFragment(){
+        firebaseUser = firebaseAuth.getCurrentUser();
+
+        nv.setVisibility(View.GONE);
+        bottomnav.setVisibility(View.GONE);
+
+        if(firebaseUser!=null){
+            database.child("Users").child(firebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if(dataSnapshot.exists()){
+
+                        UserInfoModel userInfoModel = dataSnapshot.getValue(UserInfoModel.class);
+
+                        String fullname = userInfoModel.getFirstName()+" "+userInfoModel.getLastName();
+                        tvUsername.setText(fullname);
+                        tvEmail.setText(userInfoModel.getEmail());
+
+                        Fragment fragment = new HomeFragment();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container,fragment).commit();
+                        progressBar.setVisibility(View.GONE);
+                        nv.setVisibility(View.VISIBLE);
+                        bottomnav.setVisibility(View.VISIBLE);
+                    }else {
+                        Fragment f = new signUp_Type(MainActivity.this);
+
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container,f).commit();
+
+                        progressBar.setVisibility(View.GONE);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }else {
+            Fragment f=new Login_fragment(this,verification);
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.container,f).commit();
+
+            progressBar.setVisibility(View.GONE);
+        }
     }
 }

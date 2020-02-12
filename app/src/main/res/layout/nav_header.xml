@@ -18,7 +18,6 @@
                 android:id="@+id/tv_user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Afroz Hossain"
                 android:textColor="#FFF"
                 android:textSize="25sp"/>
 
@@ -26,7 +25,6 @@
                 android:id="@+id/tv_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="afroz@gmail.com"
                 android:textColor="#FFF"
                 android:textSize="18sp"/>
 

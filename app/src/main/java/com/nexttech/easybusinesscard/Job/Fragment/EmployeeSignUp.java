@@ -17,8 +17,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.nexttech.easybusinesscard.Job.Activity.MainActivity;
-import com.nexttech.easybusinesscard.Job.Model.EmployeeInfoModel;
+import com.nexttech.easybusinesscard.Job.Model.UserInfoModel;
 import com.nexttech.easybusinesscard.R;
 
 
@@ -31,8 +32,6 @@ public class EmployeeSignUp extends Fragment {
     CheckBox empCheckbox;
     TextView empLogIn, terms;
     View view;
-
-    EmployeeInfoModel employeeInfoModel;
 
     String emailInput, FnameInput, LnameInput, UnameInput, PassInput, MobileInput, CountryInput;
 
@@ -53,7 +52,11 @@ public class EmployeeSignUp extends Fragment {
         empMobile = view.findViewById(R.id.employee_mobile);
         empCountry = view.findViewById(R.id.employee_country);
 
-        empMobile.setText(MainActivity.mobileNumber);
+        String phoneNumber = FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber();
+
+        phoneNumber = phoneNumber.replace("+88","");
+
+        empMobile.setText(phoneNumber);
         empMobile.setEnabled(false);
 
         empLogIn = view.findViewById(R.id.employee_logIn);
@@ -85,9 +88,12 @@ public class EmployeeSignUp extends Fragment {
                 if (validateEmail())
                 {
                     Toast.makeText(context, "OK", Toast.LENGTH_LONG).show();
-                    employeeInfoModel = new EmployeeInfoModel(FnameInput,LnameInput,UnameInput,PassInput,emailInput,MobileInput,CountryInput);
 
-                    MainActivity.employeeInfoSaveInFirebase(employeeInfoModel);
+                    String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+                    UserInfoModel userInfoModel = new UserInfoModel(userId, FnameInput, LnameInput, "Employee", UnameInput, "", PassInput, emailInput, MobileInput, CountryInput);
+
+                    MainActivity.userInfoSaveInFirebase(userInfoModel);
 
                     //AuthenticationActivity.viewPager.setCurrentItem(4);
                 }

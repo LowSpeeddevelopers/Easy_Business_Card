@@ -13,8 +13,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.nexttech.easybusinesscard.Job.Activity.MainActivity;
-import com.nexttech.easybusinesscard.Job.Model.EmployerInfoModel;
+import com.nexttech.easybusinesscard.Job.Model.UserInfoModel;
 import com.nexttech.easybusinesscard.R;
 
 
@@ -27,7 +28,7 @@ public class EmployerSignup extends Fragment {
     TextView empLogIn, terms;
     View view;
 
-    EmployerInfoModel employerInfoModel;
+    UserInfoModel userInfoModel;
 
     String emailInput, FnameInput, LnameInput, UnameInput, PassInput, MobileInput, CountryInput, CompanyInput;
 
@@ -49,7 +50,11 @@ public class EmployerSignup extends Fragment {
         empMobile = view.findViewById(R.id.employer_mobile);
         empCountry = view.findViewById(R.id.employer_country);
 
-        empMobile.setText(MainActivity.mobileNumber);
+        String phoneNumber = FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber();
+
+        phoneNumber = phoneNumber.replace("+88","");
+
+        empMobile.setText(phoneNumber);
         empMobile.setEnabled(false);
 
         empLogIn = view.findViewById(R.id.employer_logIn);
@@ -81,9 +86,12 @@ public class EmployerSignup extends Fragment {
 
                 if (validateEmail()) {
                     Toast.makeText(context, "OK", Toast.LENGTH_LONG).show();
-                    employerInfoModel = new EmployerInfoModel(FnameInput,LnameInput,UnameInput,PassInput,emailInput,MobileInput,CountryInput,CompanyInput);
 
-                    MainActivity.employerInfoSaveInFirebase(employerInfoModel);
+                    String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+                    UserInfoModel userInfoModel = new UserInfoModel(userId, FnameInput, LnameInput, "Employer", UnameInput, CompanyInput, PassInput, emailInput, MobileInput, CountryInput);
+
+                    MainActivity.userInfoSaveInFirebase(userInfoModel);
 
                     //AuthenticationActivity.viewPager.setCurrentItem(4);
                 }

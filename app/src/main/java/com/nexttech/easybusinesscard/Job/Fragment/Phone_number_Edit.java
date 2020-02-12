@@ -34,8 +34,8 @@ public class Phone_number_Edit extends Fragment {
 
 //        if(!AuthenticationActivity.employeeInfoModel.equals(null)){
 //            edtMobileNumber.setText(AuthenticationActivity.employeeInfoModel.getMobileNumber());
-//        } else if(!AuthenticationActivity.employerInfoModel.equals(null)){
-//            edtMobileNumber.setText(AuthenticationActivity.employerInfoModel.getMobileNumber());
+//        } else if(!AuthenticationActivity.userInfoModel.equals(null)){
+//            edtMobileNumber.setText(AuthenticationActivity.userInfoModel.getMobileNumber());
 //        }
 
         view.findViewById(R.id.btn_send_code).setOnClickListener(new View.OnClickListener() {
@@ -44,8 +44,8 @@ public class Phone_number_Edit extends Fragment {
 //                String number = edtMobileNumber.getText().toString().trim();
 //                if(!AuthenticationActivity.employeeInfoModel.equals(null)){
 //                    AuthenticationActivity.employeeInfoModel.setMobileNumber(number);
-//                } else if(!AuthenticationActivity.employerInfoModel.equals(null)){
-//                    AuthenticationActivity.employerInfoModel.setMobileNumber(number);
+//                } else if(!AuthenticationActivity.userInfoModel.equals(null)){
+//                    AuthenticationActivity.userInfoModel.setMobileNumber(number);
 //                }
 //                AuthenticationActivity.viewPager.setCurrentItem(5);
 //                verification.sendVerificationCode(number);
