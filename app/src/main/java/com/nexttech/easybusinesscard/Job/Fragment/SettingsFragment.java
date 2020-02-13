@@ -1,6 +1,7 @@
 package com.nexttech.easybusinesscard.Job.Fragment;
 
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -37,7 +38,7 @@ public class SettingsFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
 
         vi = inflater.inflate(R.layout.fragment_settings, container, false);
@@ -48,7 +49,7 @@ public class SettingsFragment extends Fragment {
         cvsecurity = vi.findViewById(R.id.cvsecurity);
         cvprivacy = vi.findViewById(R.id.cvprivacy);
         cvnotification = vi.findViewById(R.id.cvnotification);
-        cvappimage.findViewById(R.id.cvappimage);
+        cvappimage = vi.findViewById(R.id.cvappimage);
 
 
 
@@ -56,27 +57,15 @@ public class SettingsFragment extends Fragment {
         tvsecurity = vi.findViewById(R.id.tvsecurity);
         tvprivacy = vi.findViewById(R.id.tvprivacy);
         tvnotification = vi.findViewById(R.id.tvnotification);
-        tvappimage.findViewById(R.id.tvappimage);
-
-
-
-
-
-
-
-
-
-
-
-
-
+        tvappimage= vi.findViewById(R.id.tvappimage);
+        builder = new AlertDialog.Builder(context);
 
 
 
         tvappimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogueView = getLayoutInflater().inflate(R.layout.save_image_dialog, null);
+                DialogueView = getLayoutInflater().inflate(R.layout.dailoige_image_quality, null,false);
 
 
                 builder.setView(null);
@@ -92,7 +81,7 @@ public class SettingsFragment extends Fragment {
         cvappimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogueView = getLayoutInflater().inflate(R.layout.save_image_dialog, null);
+                DialogueView = getLayoutInflater().inflate(R.layout.dailoige_image_quality, null,false);
 
 
                 builder.setView(null);
@@ -107,27 +96,44 @@ public class SettingsFragment extends Fragment {
         cvnotification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DialogueView = getLayoutInflater().inflate(R.layout.notification, null,false);
+
+
+                builder.setView(null);
+                builder.setView(DialogueView);
+                alertDialog=builder.create();
+                alertDialog.setCanceledOnTouchOutside(true);
+                alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                alertDialog.show();
 
             }
         });
         tvnotification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DialogueView = getLayoutInflater().inflate(R.layout.notification, null,false);
 
+
+                builder.setView(null);
+                builder.setView(DialogueView);
+                alertDialog=builder.create();
+                alertDialog.setCanceledOnTouchOutside(true);
+                alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                alertDialog.show();
             }
         });
 
         cvprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //MainActivity.viewPager.setCurrentItem(6);
+                getFragmentManager().beginTransaction().replace(R.id.container,new Profile_settings()).commit();
             }
         });
 
         tvprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //MainActivity.viewPager.setCurrentItem(6);
+                getFragmentManager().beginTransaction().replace(R.id.container,new Profile_settings()).commit();
             }
         });
 
@@ -135,28 +141,44 @@ public class SettingsFragment extends Fragment {
         cvsecurity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // MainActivity.viewPager.setCurrentItem(8);
+                getFragmentManager().beginTransaction().replace(R.id.container,new SecurityFragment()).commit();
             }
         });
 
         tvsecurity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // MainActivity.viewPager.setCurrentItem(8);
+                getFragmentManager().beginTransaction().replace(R.id.container,new SecurityFragment()).commit();
             }
         });
 
         cvprivacy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //MainActivity.viewPager.setCurrentItem(7);
+                DialogueView = getLayoutInflater().inflate(R.layout.dailoige_privacy_who_can_see_my_bussniess_card, null,false);
+
+
+                builder.setView(null);
+                builder.setView(DialogueView);
+                alertDialog=builder.create();
+                alertDialog.setCanceledOnTouchOutside(true);
+                alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                alertDialog.show();
             }
         });
 
         tvprivacy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //MainActivity.viewPager.setCurrentItem(7);
+                DialogueView = getLayoutInflater().inflate(R.layout.dailoige_privacy_who_can_see_my_bussniess_card, null,false);
+
+
+                builder.setView(null);
+                builder.setView(DialogueView);
+                alertDialog=builder.create();
+                alertDialog.setCanceledOnTouchOutside(true);
+                alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                alertDialog.show();
             }
         });
 

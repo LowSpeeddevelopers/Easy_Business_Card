@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="#FFF"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="32dp"
         card_view:cardCornerRadius="5dp"
         card_view:contentPadding="25dp"
-        card_view:cardElevation="5dp">
+        card_view:cardElevation="5dp"
+        android:layout_margin="8dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,6 +37,7 @@
                 card_view:cardCornerRadius="5dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
+                android:layout_marginBottom="4dp"
                 >
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -65,6 +64,8 @@
                 android:layout_height="wrap_content"
                 card_view:cardElevation="2dp"
                 card_view:cardCornerRadius="5dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 >
@@ -94,6 +95,7 @@
                 card_view:cardElevation="2dp"
                 card_view:cardCornerRadius="5dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginEnd="8dp"
                 >
                 <LinearLayout
@@ -122,6 +124,7 @@
                 android:layout_width="120dp"
                 android:textColor="#FFFFFF"
                 android:focusable="true"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/button_signup"
                 android:layout_gravity="center"
                 android:layout_height="50dp"
@@ -135,4 +138,4 @@
 
     </androidx.cardview.widget.CardView>
 
-</LinearLayout>
+</FrameLayout>
