@@ -230,7 +230,8 @@
                         android:layout_weight="1"
                         android:textColor="#FFFFFF"
                         android:focusable="true"
-                        android:background="#31508F"
+                        android:clickable="true"
+                        android:background="@drawable/ripple_effect"
 
                         android:layout_height="match_parent"
                         android:text="VERIFY"

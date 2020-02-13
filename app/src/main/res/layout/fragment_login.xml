@@ -57,13 +57,15 @@
                 android:layout_weight="1"
                 android:textColor="#FFFFFF"
                 android:focusable="true"
-                android:background="#31508F"
+                android:background="@drawable/ripple_effect"
                 android:padding="14dp"
                 android:layout_height="match_parent"
                 android:text="LOG IN"
                 android:textStyle="bold"
                 android:layout_gravity="center"
-                android:textSize="25dp"/>
+                android:textSize="25dp"
+                android:clickable="true"
+                />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
