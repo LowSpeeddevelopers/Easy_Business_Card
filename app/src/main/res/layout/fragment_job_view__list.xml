@@ -19,6 +19,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:textColor="#31508F"
+            android:textSize="18sp"
             android:layout_marginBottom="1dp"
             android:layout_marginRight="1dp"
             android:text="All Jobs"/>
@@ -30,6 +31,8 @@
             android:background="#fff"
             android:layout_gravity="center"
             android:gravity="center"
+            android:textSize="17sp"
+
             android:textColor="#31508F"
             android:layout_marginBottom="1dp"
             android:layout_marginRight="1dp"
@@ -42,6 +45,8 @@
             android:background="#fff"
             android:layout_gravity="center"
             android:gravity="center"
+            android:textSize="18sp"
+
             android:textColor="#31508F"
             android:layout_marginBottom="1dp"
             android:layout_marginRight="1dp"
@@ -60,13 +65,14 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:textColor="#31508F"
+            android:textSize="18sp"
             android:layout_marginBottom="1dp"
-            android:layout_marginRight="1dp"
             android:text="Last Viewed"/>
 
     </LinearLayout>
 
     <FrameLayout
+        android:id="@+id/jobcontainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
