@@ -130,8 +130,8 @@ public class MainActivity extends AppCompatActivity {
         bottomnav = findViewById(R.id.bottomnav);
 
 
-        TextView Title = nv.findViewById(R.id.title);
-        TextView email = nv.findViewById(R.id.email);
+        tvUsername = nv.findViewById(R.id.title);
+        tvEmail = nv.findViewById(R.id.email);
         TextView onlinestatus = nv.findViewById(R.id.onlinestatus);
         final TextView coinCount = nv.findViewById(R.id.coin);
         TextView home = nv.findViewById(R.id.home);
@@ -147,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.container,new HomeFragment()).commit();
                 dl.closeDrawer(GravityCompat.START,true);
             }
         });
@@ -174,35 +175,38 @@ public class MainActivity extends AppCompatActivity {
         inviteFriens.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "home selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Invite selected", Toast.LENGTH_SHORT).show();
                 dl.closeDrawer(GravityCompat.START,true);
             }
         });
         HelpandSupport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "home selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Help selected", Toast.LENGTH_SHORT).show();
                 dl.closeDrawer(GravityCompat.START,true);
             }
         });
         about.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "home selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "About selected", Toast.LENGTH_SHORT).show();
                 dl.closeDrawer(GravityCompat.START,true);
             }
         });
         privacy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "home selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Privacy selected", Toast.LENGTH_SHORT).show();
                 dl.closeDrawer(GravityCompat.START,true);
             }
         });
         Logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "home selected", Toast.LENGTH_SHORT).show();
+                firebaseAuth.signOut();
+                Fragment f=new Login_fragment(MainActivity.this,verification);
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.container,f).commit();
                 dl.closeDrawer(GravityCompat.START,true);
             }
         });
@@ -374,8 +378,8 @@ public class MainActivity extends AppCompatActivity {
                         UserInfoModel userInfoModel = dataSnapshot.getValue(UserInfoModel.class);
 
                         String fullname = userInfoModel.getFirstName()+" "+userInfoModel.getLastName();
-//                        tvUsername.setText(fullname);
-//                        tvEmail.setText(userInfoModel.getEmail());
+                        tvUsername.setText(fullname);
+                        tvEmail.setText(userInfoModel.getEmail());
 
                         Fragment fragment = new HomeFragment();
                         getSupportFragmentManager().beginTransaction().replace(R.id.container,fragment).commit();

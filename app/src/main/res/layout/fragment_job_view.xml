@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Job.Fragment.Job_view_List">
+    tools:context=".Job.Fragment.JobViewFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,6 +12,7 @@
         android:orientation="horizontal"
         android:background="#31508F">
         <TextView
+            android:id="@+id/tv_all_jobs"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -25,6 +26,7 @@
             android:text="All Jobs"/>
 
         <TextView
+            android:id="@+id/tv_applied_jobs"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -32,13 +34,13 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:textSize="17sp"
-
             android:textColor="#31508F"
             android:layout_marginBottom="1dp"
             android:layout_marginRight="1dp"
             android:text="Applied Jobs"/>
 
         <TextView
+            android:id="@+id/tv_saved_jobs"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -46,18 +48,13 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:textSize="18sp"
-
             android:textColor="#31508F"
             android:layout_marginBottom="1dp"
             android:layout_marginRight="1dp"
             android:text="Saved Jobs"/>
-<!--        <View-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="0dp"-->
-<!--            android:layout_weight="1"/>-->
 
         <TextView
-
+            android:id="@+id/tv_last_viewed_jobs"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -71,12 +68,10 @@
 
     </LinearLayout>
 
-    <FrameLayout
-        android:id="@+id/jobcontainer"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_job_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </FrameLayout>
+        android:layout_height="match_parent" />
 
 
 
