@@ -32,8 +32,10 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 Fragment fragment = new JobPostFragment();
 
+                String backStateName = fragment.getClass().getName();
+
                 ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.container, fragment).commit();
+                        .replace(R.id.container, fragment).addToBackStack(backStateName).commit();
             }
         });
 
@@ -42,8 +44,10 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 Fragment fragment = new JobViewFragment();
 
+                String backStateName = fragment.getClass().getName();
+
                 ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.container, fragment).commit();
+                        .replace(R.id.container, fragment).addToBackStack(backStateName).commit();
             }
         });
 

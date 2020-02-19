@@ -1,6 +1,7 @@
 package com.nexttech.easybusinesscard.Job.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.nexttech.easybusinesscard.Job.Model.PostModel;
 import com.nexttech.easybusinesscard.R;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class ViewJobListAdapter extends RecyclerView.Adapter<ViewJobListAdapter.ViewHolder> {
@@ -57,18 +59,37 @@ public class ViewJobListAdapter extends RecyclerView.Adapter<ViewJobListAdapter.
 
         isFavourite(String.valueOf(model.getPostId()), holder.jobFavourite);
 
+        isViewed(String.valueOf(model.getPostId()), holder.itemView);
+
         holder.jobFavourite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(holder.jobFavourite.getTag().equals("Like")){
-                    FirebaseDatabase.getInstance().getReference().child("Favourites").child(String.valueOf(model.getPostId()))
-                            .child(firebaseUser.getUid()).setValue(true);
+                if(holder.jobFavourite.getTag().equals("Save")){
+                    FirebaseDatabase.getInstance().getReference().child("Saves").child(firebaseUser.getUid())
+                            .child(String.valueOf(model.getPostId())).setValue(true);
                 } else {
-                    FirebaseDatabase.getInstance().getReference().child("Favourites").child(String.valueOf(model.getPostId()))
-                            .child(firebaseUser.getUid()).removeValue();
+                    FirebaseDatabase.getInstance().getReference().child("Saves").child(firebaseUser.getUid())
+                            .child(String.valueOf(model.getPostId())).removeValue();
                 }
+
             }
         });
+
+//        holder.itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if(holder.itemView.getTag().equals("View")){
+//                    FirebaseDatabase.getInstance().getReference().child("Last Viewed").child(firebaseUser.getUid())
+//                            .child(String.valueOf(model.getPostId())).setValue(true);
+//                } else {
+//                    FirebaseDatabase.getInstance().getReference().child("Last Viewed").child(firebaseUser.getUid())
+//                            .child(String.valueOf(model.getPostId())).removeValue();
+//
+//                    FirebaseDatabase.getInstance().getReference().child("Last Viewed").child(firebaseUser.getUid())
+//                            .child(String.valueOf(model.getPostId())).setValue(true);
+//                }
+//            }
+//        });
     }
 
     @Override
@@ -96,22 +117,46 @@ public class ViewJobListAdapter extends RecyclerView.Adapter<ViewJobListAdapter.
 
 
 
-    private void isFavourite(String postId, final ImageView imageView){
+    private void isFavourite(final String postId, final ImageView imageView){
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         final String userKey = firebaseUser.getUid();
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Favourites").child(postId);
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Saves").child(userKey);
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.child(userKey).exists()){
+                if(dataSnapshot.child(postId).exists()){
                     imageView.setImageResource(R.drawable.ic_favorite_selected);
-                    imageView.setTag("Liked");
+                    imageView.setTag("Saved");
                 } else {
                     imageView.setImageResource(R.drawable.ic_favorite_nonselected);
-                    imageView.setTag("Like");
+                    imageView.setTag("Save");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void isViewed(final String postId, final View view){
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        final String userKey = firebaseUser.getUid();
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Last Viewed").child(userKey);
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.child(postId).exists()){
+                    view.setTag("Viewed");
+                } else {
+                    view.setTag("View");
                 }
             }
 
