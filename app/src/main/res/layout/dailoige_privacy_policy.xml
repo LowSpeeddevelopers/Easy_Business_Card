@@ -52,7 +52,6 @@
                     android:textSize="20sp"
                     android:layout_gravity="center"
                     android:background="@null"/>
-
             </LinearLayout>
 
             <View
